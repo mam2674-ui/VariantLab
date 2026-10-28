@@ -1,0 +1,263 @@
+{
+  "id": "influenza-a",
+  "commonName": "Influenza A virus",
+  "abbreviation": "FLUAV",
+  "representative": "Species-level profile. Sequence lengths come from the ICTV exemplar isolate A/Puerto Rico/8/1934 (H1N1), a laboratory-adapted strain; particle shape varies between strains.",
+  "summary": "An enveloped, negative-sense RNA virus whose genome is split into eight separate segments, each wrapped as a helical ribonucleoprotein. It has no icosahedral capsid, and unlike most RNA viruses it copies its genome in the cell nucleus.",
+  "taxonomy": {
+    "msl": "MSL41 (VMR v1, 2026-07-29)",
+    "realm": "Riboviria",
+    "kingdom": "Orthornavirae",
+    "phylum": "Negarnaviricota",
+    "class": "Insthoviricetes",
+    "order": "Articulavirales",
+    "family": "Orthomyxoviridae",
+    "subfamily": null,
+    "genus": "Alphainfluenzavirus",
+    "subgenus": null,
+    "species": "Alphainfluenzavirus influenzae",
+    "ictvId": "ICTV19710226",
+    "vmrId": "VMR1001046",
+    "exemplar": true,
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ],
+    "note": "“Influenza A virus” is the virus name; the ICTV species name has been the binomial Alphainfluenzavirus influenzae since the 2023 move to binomial species names."
+  },
+  "referenceSequence": {
+    "value": "NC_002016–NC_002023 (A/PR/8/34, 8 segments)",
+    "status": "verified",
+    "scope": "isolate",
+    "sourceIds": [
+      "ncbi-pr8-segments",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostCategory": {
+    "value": "vertebrates",
+    "status": "verified",
+    "scope": "species",
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostDetail": {
+    "value": "Vertebrates (ICTV host-source category)",
+    "status": "verified",
+    "scope": "species",
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ],
+    "note": "Host range by subtype is not modelled in this atlas."
+  },
+  "genome": {
+    "nucleicAcid": {
+      "value": "RNA",
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "viralzone-alphainfluenzavirus",
+        "ictv-vmr-msl41"
+      ]
+    },
+    "strandedness": {
+      "value": "single",
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "viralzone-alphainfluenzavirus"
+      ]
+    },
+    "sense": {
+      "value": "negative",
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "viralzone-alphainfluenzavirus",
+        "ictv-vmr-msl41"
+      ]
+    },
+    "segmented": {
+      "value": true,
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "viralzone-alphainfluenzavirus"
+      ]
+    },
+    "segmentCount": {
+      "value": 8,
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "viralzone-alphainfluenzavirus",
+        "ncbi-pr8-segments"
+      ]
+    },
+    "topology": {
+      "value": "linear",
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "viralzone-alphainfluenzavirus"
+      ]
+    },
+    "lengthKb": {
+      "value": {
+        "min": 13.5,
+        "max": 13.6
+      },
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "viralzone-alphainfluenzavirus",
+        "ncbi-pr8-segments"
+      ],
+      "note": "ViralZone gives ~13.5 kb total; the eight PR8 reference segments sum to 13,588 nt (890–2,341 nt each)."
+    },
+    "referenceLengthNt": {
+      "value": 13588,
+      "status": "verified",
+      "scope": "isolate",
+      "sourceIds": [
+        "ncbi-pr8-segments"
+      ],
+      "note": "Sum of the eight RefSeq segment lengths."
+    }
+  },
+  "baltimore": {
+    "value": "V",
+    "status": "verified",
+    "scope": "genus",
+    "sourceIds": [
+      "viralzone-baltimore",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "envelope": {
+    "value": true,
+    "status": "verified",
+    "scope": "genus",
+    "sourceIds": [
+      "viralzone-alphainfluenzavirus"
+    ]
+  },
+  "capsid": {
+    "value": "No icosahedral capsid. Each genome segment is coated with nucleoprotein as a helical ribonucleoprotein (RNP), 50–150 nm long, carrying the viral polymerase.",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-orthomyxo-report",
+      "viralzone-alphainfluenzavirus"
+    ]
+  },
+  "morphology": {
+    "value": "pleomorphic-enveloped",
+    "status": "variable",
+    "scope": "genus",
+    "sourceIds": [
+      "viralzone-alphainfluenzavirus",
+      "ictv-orthomyxo-report"
+    ],
+    "note": "Usually rounded but can be filamentous. Fresh clinical isolates include many filaments up to several micrometres long; lab-adapted strains are mostly spherical."
+  },
+  "dimensions": [
+    {
+      "id": "virion-diameter",
+      "part": "virion",
+      "measure": "diameter",
+      "label": "Spherical virion diameter",
+      "min": 80,
+      "max": 120,
+      "unit": "nm",
+      "approximate": false,
+      "status": "variable",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-orthomyxo-report",
+        "viralzone-alphainfluenzavirus"
+      ],
+      "note": "Applies to spherical particles only. Filamentous particles can reach several micrometres and are not drawn to scale here."
+    }
+  ],
+  "replication": {
+    "site": {
+      "value": "Nucleus (transcription and genome replication)",
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "viralzone-alphainfluenzavirus",
+        "ictv-orthomyxo-report"
+      ]
+    },
+    "mRNARoute": {
+      "value": "The negative-sense segments cannot be read as mRNA. The packaged viral polymerase copies them into capped, polyadenylated mRNAs in the nucleus, priming with short capped fragments cut from host RNAs.",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-orthomyxo-report",
+        "viralzone-alphainfluenzavirus"
+      ]
+    },
+    "steps": [
+      {
+        "id": "attach",
+        "title": "Attachment",
+        "text": "The haemagglutinin (HA) spike binds sialic-acid receptors on the cell surface.",
+        "status": "verified",
+        "sourceIds": [
+          "viralzone-alphainfluenzavirus"
+        ]
+      },
+      {
+        "id": "entry",
+        "title": "Entry and fusion",
+        "text": "The particle is taken up by clathrin-mediated endocytosis. Endosomal acidification triggers fusion of the viral and endosomal membranes, releasing the RNPs.",
+        "status": "verified",
+        "sourceIds": [
+          "viralzone-alphainfluenzavirus"
+        ]
+      },
+      {
+        "id": "nuclear-import",
+        "title": "Nuclear import",
+        "text": "RNPs are transported into the nucleus.",
+        "status": "verified",
+        "sourceIds": [
+          "viralzone-alphainfluenzavirus",
+          "ictv-orthomyxo-report"
+        ]
+      },
+      {
+        "id": "transcription",
+        "title": "Transcription",
+        "text": "The viral polymerase makes capped, polyadenylated mRNAs in the nucleus.",
+        "status": "verified",
+        "sourceIds": [
+          "viralzone-alphainfluenzavirus",
+          "ictv-orthomyxo-report"
+        ]
+      },
+      {
+        "id": "replication",
+        "title": "Genome replication",
+        "text": "Genome segments are copied in the nucleus.",
+        "status": "verified",
+        "sourceIds": [
+          "viralzone-alphainfluenzavirus"
+        ]
+      },
+      {
+        "id": "assembly",
+        "title": "Assembly and budding",
+        "text": "New RNPs are exported from the nucleus (driven by M1 and NEP), and particles assemble and bud at the plasma membrane, taking their envelope from it.",
+        "status": "verified",
+        "sourceIds": [
+          "viralzone-alphainfluenzavirus",
+          "ictv-orthomyxo-report"
+        ]
+      }
+    ]
+  },
+  "diagramId": "influenza-a"
+}

@@ -1,26 +1,483 @@
+/* Hallmark v2.0.0 · direction: custom (by request) — "scientific atlas": warm paper, ink ladder, one semantic palette reserved for structure · genre: editorial/app · signature: six specimens on one true-scale line */
+/* critique: the colour budget belongs to structural components only; chrome stays ink-on-paper so the diagrams carry meaning, not decoration. Labels are sentence case; mono only for measured values. */
+/* waive 9 (mono labels): Geist Mono is used solely for measurements, accessions and IDs — data, not costume. */
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* Surface + ink ladder (from DESIGN.md's Geist system, canvas warmed toward paper) */
+  --canvas: #f6f4ee;
+  --canvas-elevated: #fdfcf8;
+  --canvas-sunk: #efece4;
+  --ink: #171717;
+  --body: #45433e;
+  --mute: #66635b;
+  --hairline: #e1ddd2;
+  --hairline-strong: #cdc8bb;
+  --link: #0761d1;
+  --focus: #0761d1;
+  --selection: #d3e5ff;
+  --danger: #b42318;
+  --warn-ink: #8a4b08;
+  --warn-soft: #fbeed5;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Semantic structural palette: one hue per component type, used identically in every diagram */
+  --c-envelope: #b7791f;
+  --c-surface: #be2f5b;
+  --c-matrix: #7c6aa6;
+  --c-tegument: #9a8a5c;
+  --c-capsid: #2563a8;
+  --c-nucleocapsid: #0f7f86;
+  --c-genome: #3f3f46;
+  --c-portal: #6b7280;
+  --c-tail: #57534e;
+  --c-fibre: #8b5e3c;
+  --c-envelope-soft: #f3e3c4;
+  --c-capsid-soft: #dbe6f3;
+
+  /* Evidence status */
+  --s-verified: #1d6b3a;
+  --s-simplified: #5b4ba0;
+  --s-variable: #8a4b08;
+  --s-unverified: #b42318;
+  --s-na: #66635b;
+
+  --font-display: var(--font-newsreader), Georgia, serif;
+  --font-text: var(--font-geist-sans), system-ui, sans-serif;
+  --font-data: var(--font-geist-mono), ui-monospace, Menlo, monospace;
+
+  --shadow-float: 0 2px 2px rgb(0 0 0 / 0.04), 0 8px 16px -4px rgb(0 0 0 / 0.12);
+  --shadow-press: 0 1px 2px rgb(0 0 0 / 0.08);
+  --radius-control: 6px;
+  --radius-panel: 12px;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --canvas: #121211;
+    --canvas-elevated: #1a1a18;
+    --canvas-sunk: #0d0d0c;
+    --ink: #eeede8;
+    --body: #c9c6bd;
+    --mute: #a29f95;
+    --hairline: #2c2b28;
+    --hairline-strong: #403e39;
+    --link: #79b0ff;
+    --focus: #79b0ff;
+    --selection: #1f3a66;
+    --danger: #ff8a7a;
+    --warn-ink: #f2c27a;
+    --warn-soft: #3a2c14;
+
+    --c-envelope: #e0a84a;
+    --c-surface: #f0789c;
+    --c-matrix: #ab9bd6;
+    --c-tegument: #c4b68a;
+    --c-capsid: #6fa6e6;
+    --c-nucleocapsid: #45c2c4;
+    --c-genome: #d4d4d8;
+    --c-portal: #a1a7b3;
+    --c-tail: #b5afa8;
+    --c-fibre: #d19a6c;
+    --c-envelope-soft: #3b2e17;
+    --c-capsid-soft: #182a40;
+
+    --s-verified: #6fd391;
+    --s-simplified: #b7a8f5;
+    --s-variable: #f2c27a;
+    --s-unverified: #ff8a7a;
+    --s-na: #a29f95;
+    color-scheme: dark;
   }
 }
 
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-elevated: var(--canvas-elevated);
+  --color-sunk: var(--canvas-sunk);
+  --color-ink: var(--ink);
+  --color-body: var(--body);
+  --color-mute: var(--mute);
+  --color-hairline: var(--hairline);
+  --color-link: var(--link);
+  --font-display: var(--font-display);
+  --font-sans: var(--font-text);
+  --font-mono: var(--font-data);
+}
+
+@layer base {
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: clip;
+}
+body {
+  background: var(--canvas);
+  color: var(--body);
+  font-family: var(--font-text);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+::selection {
+  background: var(--selection);
+  color: var(--ink);
+}
+h1,
+h2,
+h3 {
+  color: var(--ink);
+  overflow-wrap: break-word;
+  min-width: 0;
+  text-wrap: balance;
+}
+a {
+  color: var(--link);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+}
+
+.num {
+  font-family: var(--font-data);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.9em;
+}
+.species {
+  font-style: italic;
+}
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+.measure {
+  max-width: 68ch;
+}
+.container-atlas {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 16px;
+}
+@media (min-width: 768px) {
+  .container-atlas {
+    padding-inline: 32px;
+  }
+}
+
+/* Controls */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: var(--radius-control);
+  border: 1px solid var(--hairline-strong);
+  background: var(--canvas-elevated);
+  color: var(--ink);
+  font: 500 14px/20px var(--font-text);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 150ms var(--ease-out), border-color 150ms var(--ease-out), color 150ms var(--ease-out);
+}
+.btn:hover {
+  border-color: var(--ink);
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+.btn-primary {
+  background: var(--ink);
+  color: var(--canvas);
+  border-color: var(--ink);
+}
+.btn-primary:hover {
+  background: var(--body);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid var(--hairline-strong);
+  background: transparent;
+  color: var(--body);
+  font: 500 14px/1 var(--font-text);
+  cursor: pointer;
+  transition: background-color 150ms var(--ease-out), border-color 150ms var(--ease-out), color 150ms var(--ease-out);
+}
+.chip:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+.chip[aria-pressed="true"],
+.chip[aria-checked="true"],
+.chip:has(input:checked) {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--canvas);
+}
+.chip input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.chip:has(input:focus-visible) {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.segmented {
+  display: inline-flex;
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius-control);
+  padding: 2px;
+  background: var(--canvas-sunk);
+}
+.segmented button {
+  min-height: 36px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--body);
+  font: 500 14px/1 var(--font-text);
+  cursor: pointer;
+  transition: background-color 150ms var(--ease-out), color 150ms var(--ease-out);
+}
+.segmented button[aria-pressed="true"],
+.segmented button[aria-selected="true"],
+.segmented button[aria-checked="true"] {
+  background: var(--canvas-elevated);
+  color: var(--ink);
+  box-shadow: var(--shadow-press);
+}
+
+.input {
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 12px;
+  border-radius: var(--radius-control);
+  border: 1px solid var(--hairline-strong);
+  background: var(--canvas-elevated);
+  color: var(--ink);
+  font: 400 16px/1.4 var(--font-text);
+}
+.input::placeholder {
+  color: var(--mute);
+}
+
+.shadow-float {
+  box-shadow: var(--shadow-float);
+}
+.panel {
+  background: var(--canvas-elevated);
+  color: var(--body);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-panel);
+}
+.rule {
+  border: 0;
+  border-top: 1px solid var(--hairline);
+}
+
+/* Structural palette as classes so SVG never carries literal colours */
+.fill-envelope { fill: var(--c-envelope); }
+.fill-envelope-soft { fill: var(--c-envelope-soft); }
+.fill-surface { fill: var(--c-surface); }
+.fill-matrix { fill: var(--c-matrix); }
+.fill-tegument { fill: var(--c-tegument); }
+.fill-capsid { fill: var(--c-capsid); }
+.fill-capsid-soft { fill: var(--c-capsid-soft); }
+.fill-nucleocapsid { fill: var(--c-nucleocapsid); }
+.fill-genome { fill: var(--c-genome); }
+.fill-portal { fill: var(--c-portal); }
+.fill-tail { fill: var(--c-tail); }
+.fill-fibre { fill: var(--c-fibre); }
+.fill-canvas { fill: var(--canvas-elevated); }
+.fill-ink { fill: var(--ink); }
+.fill-mute { fill: var(--mute); }
+.stroke-envelope { stroke: var(--c-envelope); }
+.stroke-surface { stroke: var(--c-surface); }
+.stroke-matrix { stroke: var(--c-matrix); }
+.stroke-tegument { stroke: var(--c-tegument); }
+.stroke-capsid { stroke: var(--c-capsid); }
+.stroke-nucleocapsid { stroke: var(--c-nucleocapsid); }
+.stroke-genome { stroke: var(--c-genome); }
+.stroke-portal { stroke: var(--c-portal); }
+.stroke-tail { stroke: var(--c-tail); }
+.stroke-fibre { stroke: var(--c-fibre); }
+.stroke-ink { stroke: var(--ink); }
+.stroke-mute { stroke: var(--mute); }
+.stroke-hairline { stroke: var(--hairline-strong); }
+.stroke-canvas { stroke: var(--canvas-elevated); }
+.bg-envelope { background: var(--c-envelope); }
+.bg-surface { background: var(--c-surface); }
+.bg-matrix { background: var(--c-matrix); }
+.bg-tegument { background: var(--c-tegument); }
+.bg-capsid { background: var(--c-capsid); }
+.bg-nucleocapsid { background: var(--c-nucleocapsid); }
+.bg-genome { background: var(--c-genome); }
+.bg-portal { background: var(--c-portal); }
+.bg-tail { background: var(--c-tail); }
+.bg-fibre { background: var(--c-fibre); }
+
+/* Diagram interaction */
+.part {
+  cursor: pointer;
+  transition: opacity 200ms var(--ease-out);
+}
+.part:focus {
+  outline: none;
+}
+.part:focus-visible .part-hit {
+  stroke: var(--focus);
+  stroke-width: 3;
+  stroke-dasharray: 6 4;
+}
+.diagram[data-has-selection="true"] .part:not([data-selected="true"]) {
+  opacity: 0.28;
+}
+.part-hit {
+  fill: transparent;
+  stroke: transparent;
+}
+.marker-badge circle {
+  fill: var(--ink);
+}
+.marker-badge text {
+  fill: var(--canvas);
+  font: 600 13px var(--font-text);
+}
+
+.status-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+}
+
+/* Route-drawing motion for the replication explorer */
+@keyframes draw {
+  from {
+    stroke-dashoffset: var(--len, 200);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.route-draw {
+  stroke-dasharray: var(--len, 200);
+  animation: draw 700ms var(--ease-out) both;
+}
+@keyframes fade-up {
+  from {
+    opacity: 0.001;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.step-enter {
+  animation: fade-up 400ms var(--ease-out) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
+  .route-draw {
+    stroke-dasharray: none;
+  }
+}
+
+/* Tables that stay readable on phones: rows become stacked blocks */
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.compare-table th,
+.compare-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 12px;
+  border-top: 1px solid var(--hairline);
+  font-size: 15px;
+}
+.compare-table thead th {
+  border-top: 0;
+  color: var(--ink);
+  font-weight: 600;
+}
+.compare-table tbody th {
+  color: var(--mute);
+  font-weight: 500;
+  width: 180px;
+}
+@media (max-width: 767px) {
+  .compare-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+  .compare-table tr {
+    display: block;
+    border-top: 1px solid var(--hairline);
+    padding: 12px 0;
+  }
+  .compare-table th,
+  .compare-table td {
+    display: block;
+    border: 0;
+    padding: 4px 0;
+    width: auto;
+  }
+  .compare-table tbody th {
+    width: auto;
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .compare-table td::before {
+    content: attr(data-virus);
+    display: block;
+    font-size: 13px;
+    color: var(--mute);
+  }
+}
+
+::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--hairline-strong);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
 }

@@ -1,0 +1,60 @@
+{
+  "id": "phage-t4",
+  "commonName": "Bacteriophage T4",
+  "abbreviation": "T4",
+  "representative": "Virus-level profile of the ICTV exemplar, Escherichia phage T4. Dimensions come from cryo-EM studies of the mature particle.",
+  "summary": "A tailed bacterial virus with a prolate (elongated) icosahedral head and a contractile tail. It has no envelope; it delivers its double-stranded DNA through the tail into the bacterial cytoplasm, leaving the protein particle outside.",
+  "taxonomy": {
+    "msl": "MSL41 (VMR v1, 2026-07-29)",
+    "realm": "Duplodnaviria",
+    "kingdom": "Heunggongvirae",
+    "phylum": "Uroviricota",
+    "class": "Caudoviricetes",
+    "order": "Pantevenvirales",
+    "family": "Straboviridae",
+    "subfamily": "Tevenvirinae",
+    "genus": "Tequatrovirus",
+    "subgenus": null,
+    "species": "Tequatrovirus T4",
+    "ictvId": "ICTV19990390",
+    "vmrId": "VMR1003017",
+    "exemplar": true,
+    "sourceIds": ["ictv-vmr-msl41"],
+    "note": "Older textbooks place T4 in the abolished family Myoviridae; that grouping was based on tail morphology, not shared ancestry."
+  },
+  "referenceSequence": { "value": "AF158101.6 / NC_000866.4", "status": "verified", "scope": "virus", "sourceIds": ["ncbi-af158101", "ictv-vmr-msl41"] },
+  "hostCategory": { "value": "bacteria", "status": "verified", "scope": "species", "sourceIds": ["ictv-vmr-msl41"] },
+  "hostDetail": { "value": "Bacteria (Escherichia, as in the ICTV virus name “Escherichia phage T4”)", "status": "verified", "scope": "virus", "sourceIds": ["ictv-vmr-msl41"] },
+  "genome": {
+    "nucleicAcid": { "value": "DNA", "status": "verified", "scope": "virus", "sourceIds": ["ictv-vmr-msl41", "rao2023-t4-head"] },
+    "strandedness": { "value": "double", "status": "verified", "scope": "virus", "sourceIds": ["rao2023-t4-head"] },
+    "sense": { "value": null, "status": "not_applicable", "scope": "virus", "sourceIds": [], "note": "Sense (positive/negative) is defined for single-stranded RNA genomes; both strands of a dsDNA genome are templates." },
+    "segmented": { "value": false, "status": "verified", "scope": "virus", "sourceIds": ["ncbi-af158101"] },
+    "segmentCount": { "value": 1, "status": "verified", "scope": "virus", "sourceIds": ["ncbi-af158101"] },
+    "topology": { "value": "linear", "status": "verified", "scope": "virus", "sourceIds": ["rao2023-t4-head"] },
+    "lengthKb": { "value": { "min": 168.9, "max": 171 }, "status": "variable", "scope": "virus", "sourceIds": ["ncbi-af158101", "rao2023-t4-head"], "note": "The reference sequence is 168,903 bp; each head packages ~171 kb, 2–3% more than one genome length." },
+    "referenceLengthNt": { "value": 168903, "status": "verified", "scope": "virus", "sourceIds": ["ncbi-af158101"] }
+  },
+  "baltimore": { "value": "I", "status": "verified", "scope": "virus", "sourceIds": ["viralzone-baltimore", "ictv-vmr-msl41"] },
+  "envelope": { "value": false, "status": "verified", "scope": "virus", "sourceIds": ["rao2023-t4-head", "leiman2010-t4-tail"], "note": "The particle is described as a protein head, tail and fibres; no lipid envelope." },
+  "capsid": { "value": "Prolate icosahedral head elongated along a fivefold axis (T_end = 13 laevo, T_mid = 20), joined to the tail through a dodecameric portal–neck connector.", "status": "verified", "scope": "virus", "sourceIds": ["fokine2004-t4-head", "rao2023-t4-head"] },
+  "morphology": { "value": "head-tail", "status": "verified", "scope": "virus", "sourceIds": ["rao2023-t4-head"] },
+  "dimensions": [
+    { "id": "head-length", "part": "head", "measure": "length", "label": "Head length (along fivefold axis)", "min": 119.5, "max": 120, "unit": "nm", "approximate": false, "status": "verified", "scope": "virus", "sourceIds": ["fokine2004-t4-head", "rao2023-t4-head"], "note": "1,195 Å by cryo-EM (Fokine 2004); 120 nm (Rao 2023)." },
+    { "id": "head-width", "part": "head", "measure": "width", "label": "Head width", "min": 86, "max": 86, "unit": "nm", "approximate": false, "status": "verified", "scope": "virus", "sourceIds": ["fokine2004-t4-head", "rao2023-t4-head"] },
+    { "id": "tail-length", "part": "tail", "measure": "length", "label": "Contractile tail length (extended)", "min": 140, "max": 140, "unit": "nm", "approximate": true, "status": "verified", "scope": "virus", "sourceIds": ["rao2023-t4-head"] },
+    { "id": "fibre-length", "part": "tail-fibre", "measure": "length", "label": "Long tail fibre length", "min": 160, "max": 160, "unit": "nm", "approximate": true, "status": "verified", "scope": "virus", "sourceIds": ["rao2023-t4-head"], "note": "Six kinked fibres; their angle varies, so they do not add a fixed amount to particle length." }
+  ],
+  "replication": {
+    "site": { "value": "Bacterial cytoplasm (bacteria have no nucleus)", "status": "verified", "scope": "virus", "sourceIds": ["leiman2010-t4-tail"] },
+    "mRNARoute": { "value": "Like every dsDNA genome, the DNA is transcribed directly into mRNA. The phage-specific transcription programme is not modelled here.", "status": "simplified", "scope": "virus", "sourceIds": ["viralzone-baltimore"] },
+    "steps": [
+      { "id": "recognition", "title": "Host recognition", "text": "Long and short tail fibres recognise and bind the bacterial cell.", "status": "verified", "sourceIds": ["leiman2010-t4-tail"] },
+      { "id": "contraction", "title": "Baseplate change and contraction", "text": "A conformational change in the baseplate triggers tail-sheath contraction, driving the inner tail tube through the cell envelope.", "status": "verified", "sourceIds": ["leiman2010-t4-tail"] },
+      { "id": "injection", "title": "DNA delivery", "text": "The tail acts as a channel that delivers the DNA from the head into the host cytoplasm.", "status": "verified", "sourceIds": ["leiman2010-t4-tail"] },
+      { "id": "head-assembly", "title": "Head assembly and packaging", "text": "New heads assemble as proheads that expand (~70% more inner volume); a motor at the portal vertex packages the DNA.", "status": "verified", "sourceIds": ["rao2023-t4-head"] },
+      { "id": "release", "title": "Release", "text": "Progeny phages are released when the host cell lyses.", "status": "not_verified", "sourceIds": [] }
+    ]
+  },
+  "diagramId": "phage-t4"
+}
