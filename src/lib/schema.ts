@@ -66,7 +66,7 @@ export type Unit = z.infer<typeof Unit>;
 export const Dimension = z
   .object({
     id: z.string(),
-    part: z.enum(["virion", "capsid", "head", "tail", "tail-fibre", "fibre", "filament"]),
+    part: z.enum(["virion", "capsid", "head", "tail", "tail-fibre", "fibre", "filament", "rod"]),
     measure: z.enum(["diameter", "length", "width"]),
     label: z.string(),
     min: z.number().positive(),
@@ -90,17 +90,24 @@ export const Morphology = z.enum([
   "enveloped-icosahedral-core", // envelope around an icosahedral capsid
   "icosahedral-nonenveloped",
   "head-tail", // tailed phage
+  "enveloped-conical-core", // envelope around a cone-shaped core (lentiviruses)
+  "helical-rod", // rigid helical rod, no envelope
 ]);
 export type Morphology = z.infer<typeof Morphology>;
 
-export const HostCategory = z.enum(["vertebrates", "bacteria"]);
+export const HostCategory = z.enum(["vertebrates", "bacteria", "plants"]);
 export type HostCategory = z.infer<typeof HostCategory>;
 
 export const Baltimore = z.enum(["I", "II", "III", "IV", "V", "VI", "VII"]);
 export type Baltimore = z.infer<typeof Baltimore>;
 
+/** Where in the host cell a step happens; omitted when our sources don't say. */
+export const CellLocation = z.enum(["outside", "membrane", "endosome", "cytoplasm", "er-golgi", "nucleus"]);
+export type CellLocation = z.infer<typeof CellLocation>;
+
 export const ReplicationStep = z.object({
   id: z.string(),
+  location: CellLocation.optional(),
   title: z.string(),
   text: z.string(),
   status: EvidenceStatus,
@@ -136,7 +143,9 @@ export const Virus = z.object({
   hostDetail: fact(z.string()),
   genome: z.object({
     nucleicAcid: fact(z.enum(["DNA", "RNA"])),
-    strandedness: fact(z.enum(["single", "double"])),
+    /** The ICTV VMR "Genome" label, e.g. ssRNA(-), dsDNA-RT. */
+    ictvLabel: fact(z.string()),
+    strandedness: fact(z.enum(["single", "double", "partially double"])),
     sense: fact(z.enum(["positive", "negative", "ambisense"])),
     segmented: fact(z.boolean()),
     segmentCount: fact(z.number().int().positive()),
@@ -210,7 +219,20 @@ export type DiagramComponent = z.infer<typeof DiagramComponent>;
 export const DiagramSpec = z.object({
   id: z.string(),
   virusId: z.string(),
-  renderer: z.enum(["influenza", "coronavirus", "adenovirus", "herpesvirus", "papillomavirus", "phage-t4"]),
+  renderer: z.enum([
+    "influenza",
+    "coronavirus",
+    "adenovirus",
+    "herpesvirus",
+    "papillomavirus",
+    "phage-t4",
+    "retrovirus",
+    "hepadnavirus",
+    "rotavirus",
+    "picornavirus",
+    "tobamovirus",
+    "microvirus",
+  ]),
   caption: z.string(),
   cannotShow: z.array(z.string()).min(1),
   components: z.array(DiagramComponent).min(2),

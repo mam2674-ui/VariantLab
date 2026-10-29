@@ -25,10 +25,22 @@ Run this before adding or changing any virus record. Automated checks (Vitest) c
 - [ ] `cannotShow` lists at least one honest limitation. [auto]
 - [ ] No third-party image copied; shapes drawn from cited descriptions.
 
+## Per protein structure
+- [ ] PDB entry exists; method, resolution and release read from the RCSB API, not memory. [auto: source registered]
+- [ ] Chains in the coordinate file match the curated chain list; host and nucleic-acid chains labelled. [auto]
+- [ ] Caveats state fragment / subunit / strain / bound ligands honestly.
+- [ ] Role text cites an atlas source, not the PDB title alone.
+
+## Per genome map
+- [ ] Molecule lengths sum to the recorded reference length. [auto]
+- [ ] Segment count matches. [auto]
+- [ ] Every CDS lies inside its molecule. [auto]
+
 ## Known open items (2026-10-28)
 - Influenza A: none in the record; the 7+1 RNP arrangement is deliberately not drawn because it was not verified.
 - HPV16: replication compartment (nucleus) flagged `not_verified`.
 - Phage T4: release by lysis flagged `not_verified`.
 - HAdV-5: type-specific fibre length not verified (family range shown).
 - HSV-1: envelope diameter is a family range.
+- HBV and poliovirus entry steps, TMV assembly and phiX174 entry are flagged not_verified.
 - No expert review yet.

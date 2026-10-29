@@ -8,7 +8,7 @@ import { toNm } from "./units";
 export type Shape =
   | { kind: "circle"; cx: number; cy: number; r: number; style: "solid" | "range-max" | "range-min" }
   | { kind: "hexagon"; cx: number; cy: number; w: number; h: number; cap: number; style: "solid" }
-  | { kind: "rect"; x: number; y: number; w: number; h: number; style: "solid" }
+  | { kind: "rect"; x: number; y: number; w: number; h: number; style: "solid" | "rod" }
   | { kind: "line"; x1: number; y1: number; x2: number; y2: number; style: "illustrative" | "range-max" };
 
 export interface Silhouette {
@@ -50,6 +50,14 @@ export function silhouette(v: Virus): Silhouette | null {
       notes.push("Tail fibres drawn in one illustrative pose; their angle varies.");
     }
     return { width, height: L + T + (F ? F * 0.45 : 0), shapes, notes };
+  }
+
+  if (v.morphology.value === "helical-rod") {
+    const len = pick(v, "rod", "length"), dia = pick(v, "rod", "diameter");
+    if (!len || !dia) return null;
+    const L = nm(len, "max"), D = nm(dia, "max");
+    notes.push("Rod drawn lying flat; length and diameter use the same scale.");
+    return { width: L, height: D, shapes: [{ kind: "rect", x: 0, y: 0, w: L, h: D, style: "rod" }], notes };
   }
 
   if (v.morphology.value === "icosahedral-nonenveloped") {

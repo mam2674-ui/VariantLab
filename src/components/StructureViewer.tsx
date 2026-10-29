@@ -5,6 +5,9 @@ import type { ComponentType, DiagramSpec, Source } from "@/lib/schema";
 import { renderers } from "./diagrams/registry";
 import { Badges, type View } from "./diagrams/kit";
 import { SourceRefs, StatusMark } from "./Evidence";
+import { Lazy3D, useWebGL } from "./three/Lazy3D";
+import Link from "next/link";
+import { proteinsForComponent } from "@/data/proteins";
 
 const TYPE_LABEL: Record<ComponentType, string> = {
   envelope: "Envelope (lipid membrane)",
@@ -41,6 +44,9 @@ export function StructureViewer({ spec, sources, title }: { spec: DiagramSpec; s
   const [detail, setDetail] = useState<"simple" | "detailed">("simple");
   const [hidden, setHidden] = useState<Set<string>>(new Set());
   const [selected, setSelected] = useState<string | null>(null);
+  const [mode, setMode] = useState<"2d" | "3d">("2d");
+  const [exploded, setExploded] = useState(false);
+  const webgl = useWebGL();
 
   const byId = useMemo(() => new Map(spec.components.map((c) => [c.id, c])), [spec]);
   const numberFor = useCallback((id: string) => spec.components.findIndex((c) => c.id === id) + 1, [spec]);
@@ -66,6 +72,18 @@ export function StructureViewer({ spec, sources, title }: { spec: DiagramSpec; s
 
   const sel = selected ? byId.get(selected) : null;
   const props = { view, hidden, selected, onSelect: select, labelFor, numberFor };
+  const svg2d = (
+    <svg
+      viewBox={r.viewBox}
+      className="diagram w-full h-auto max-h-[620px] mt-6"
+      data-has-selection={Boolean(selected)}
+      role="group"
+      aria-label={`${title}: ${view} schematic. Select a numbered component to read about it.`}
+    >
+      <r.Draw {...props} />
+      <Badges r={r} p={props} />
+    </svg>
+  );
 
   return (
     <section aria-labelledby="viewer-title" className="grid gap-8 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)]" onKeyDown={(e) => e.key === "Escape" && setSelected(null)}>
@@ -74,23 +92,44 @@ export function StructureViewer({ spec, sources, title }: { spec: DiagramSpec; s
           Structure viewer
         </h2>
         <div className="panel p-3 sm:p-6 relative">
-          <span className="absolute top-3 left-3 text-[13px] text-mute">Schematic, not to scale internally</span>
-          <svg
-            viewBox={r.viewBox}
-            className="diagram w-full h-auto max-h-[620px] mt-6"
-            data-has-selection={Boolean(selected)}
-            role="group"
-            aria-label={`${title}: ${view} schematic. Select a numbered component to read about it.`}
-          >
-            <r.Draw {...props} />
-            <Badges r={r} p={props} />
-          </svg>
+          <span className="absolute top-3 left-3 text-[13px] text-mute">
+            {mode === "3d" ? "3D schematic: drag to rotate, scroll or pinch to zoom" : "Schematic, not to scale internally"}
+          </span>
+          {mode === "3d" ? (
+            <Lazy3D
+              spec={spec}
+              view={view}
+              hidden={hidden}
+              selected={selected}
+              onSelect={select}
+              exploded={exploded}
+              autoRotate={!selected}
+              className="w-full aspect-square max-h-[620px] mt-6 touch-none"
+              label={`${title}: interactive 3D ${view} schematic. Use the component list to select parts with the keyboard.`}
+              fallback={svg2d}
+            />
+          ) : (
+            svg2d
+          )}
         </div>
         <figcaption className="mt-3 text-[14px] text-mute measure">{spec.caption}</figcaption>
       </figure>
 
       <div className="min-w-0 flex flex-col gap-6">
         <div className="flex flex-wrap gap-3">
+          <div className="segmented" role="radiogroup" aria-label="Model type">
+            <button role="radio" aria-checked={mode === "2d"} onClick={() => setMode("2d")}>
+              2D schematic
+            </button>
+            <button role="radio" aria-checked={mode === "3d"} onClick={() => setMode("3d")} disabled={!webgl} title={webgl ? undefined : "3D needs WebGL, which this browser does not provide"}>
+              3D model
+            </button>
+          </div>
+          {mode === "3d" && (
+            <button type="button" className="btn" aria-pressed={exploded} onClick={() => setExploded((x) => !x)}>
+              {exploded ? "Reassemble layers" : "Separate layers"}
+            </button>
+          )}
           <div className="segmented" role="radiogroup" aria-label="View">
             {(["exterior", "cutaway"] as const).map((v) => (
               <button key={v} role="radio" aria-checked={view === v} onClick={() => setView(v)}>
@@ -155,6 +194,15 @@ export function StructureViewer({ spec, sources, title }: { spec: DiagramSpec; s
                 <StatusMark status={sel.status} />
                 <SourceRefs ids={sel.sourceIds} sources={sources} />
               </div>
+              {proteinsForComponent(spec.virusId, sel.id).length > 0 && (
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {proteinsForComponent(spec.virusId, sel.id).map((prot) => (
+                    <Link key={prot.pdbId} href={`/proteins/${prot.pdbId}`} className="btn">
+                      Structure: {prot.name} (PDB {prot.pdbId})
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
           ) : (
             <p className="text-[15px] text-mute">

@@ -1,0 +1,267 @@
+{
+  "id": "hepatitis-b",
+  "commonName": "Hepatitis B virus",
+  "abbreviation": "HBV",
+  "representative": "Species-level profile; sequence length from strain ayw (V01460). The ICTV exemplar isolate is a genotype D sequence. Sizes are family-level ICTV values.",
+  "summary": "A small enveloped DNA virus that, unusually, copies its genome through an RNA intermediate using reverse transcriptase. Its genome is a partially double-stranded circle of only about 3.2 kb.",
+  "taxonomy": {
+    "msl": "MSL41 (VMR v1, 2026-07-29)",
+    "subfamily": null,
+    "subgenus": null,
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ],
+    "realm": "Riboviria",
+    "kingdom": "Pararnavirae",
+    "phylum": "Artverviricota",
+    "class": "Revtraviricetes",
+    "order": "Blubervirales",
+    "family": "Hepadnaviridae",
+    "genus": "Orthohepadnavirus",
+    "species": "Orthohepadnavirus hominoidei",
+    "ictvId": "ICTV19910781",
+    "vmrId": "VMR1003513",
+    "exemplar": true,
+    "note": "The species exemplar is a genotype D isolate (V01460 is listed for it); several other HBV genotypes and ape viruses are additional isolates of the same species."
+  },
+  "referenceSequence": {
+    "value": "V01460.1 (strain ayw)",
+    "status": "verified",
+    "scope": "isolate",
+    "sourceIds": [
+      "ncbi-v01460",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostCategory": {
+    "value": "vertebrates",
+    "status": "verified",
+    "scope": "species",
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostDetail": {
+    "value": "Vertebrates (ICTV host-source category); replicates in hepatocytes",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-vmr-msl41",
+      "ictv-hepadnaviridae-report"
+    ]
+  },
+  "genome": {
+    "nucleicAcid": {
+      "value": "DNA",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-hepadnaviridae-report",
+        "ictv-vmr-msl41"
+      ]
+    },
+    "ictvLabel": {
+      "value": "dsDNA-RT",
+      "status": "verified",
+      "scope": "species",
+      "sourceIds": [
+        "ictv-vmr-msl41"
+      ]
+    },
+    "strandedness": {
+      "value": "partially double",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-hepadnaviridae-report"
+      ],
+      "note": "Relaxed-circular DNA: one strand complete, the other incomplete."
+    },
+    "sense": {
+      "value": null,
+      "status": "not_applicable",
+      "scope": "family",
+      "sourceIds": [],
+      "note": "Sense applies to single-stranded genomes; this genome is double-stranded (or partially so) with two template strands."
+    },
+    "segmented": {
+      "value": false,
+      "status": "verified",
+      "scope": "isolate",
+      "sourceIds": [
+        "ncbi-v01460"
+      ]
+    },
+    "segmentCount": {
+      "value": 1,
+      "status": "verified",
+      "scope": "isolate",
+      "sourceIds": [
+        "ncbi-v01460"
+      ]
+    },
+    "topology": {
+      "value": "circular",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-hepadnaviridae-report"
+      ],
+      "note": "Held in a circular conformation (relaxed circular)."
+    },
+    "lengthKb": {
+      "value": {
+        "min": 3.2,
+        "max": 3.2
+      },
+      "status": "verified",
+      "scope": "isolate",
+      "sourceIds": [
+        "ncbi-v01460"
+      ],
+      "note": "Hepadnavirus genomes are 3.0–3.4 kb (ICTV)."
+    },
+    "referenceLengthNt": {
+      "value": 3182,
+      "status": "verified",
+      "scope": "isolate",
+      "sourceIds": [
+        "ncbi-v01460"
+      ]
+    }
+  },
+  "baltimore": {
+    "value": "VII",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "viralzone-baltimore",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "envelope": {
+    "value": true,
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-hepadnaviridae-report"
+    ]
+  },
+  "capsid": {
+    "value": "Icosahedral nucleocapsid, mostly ~36 nm with 240 core-protein subunits (T=4); a minority ~32 nm with 180 subunits (T=3).",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-hepadnaviridae-report"
+    ]
+  },
+  "morphology": {
+    "value": "enveloped-icosahedral-core",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-hepadnaviridae-report"
+    ],
+    "note": "Spherical, occasionally pleomorphic."
+  },
+  "dimensions": [
+    {
+      "id": "virion-diameter",
+      "part": "virion",
+      "measure": "diameter",
+      "label": "Enveloped particle diameter (family range)",
+      "min": 42,
+      "max": 50,
+      "unit": "nm",
+      "approximate": false,
+      "status": "variable",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-hepadnaviridae-report"
+      ]
+    },
+    {
+      "id": "capsid-diameter",
+      "part": "capsid",
+      "measure": "diameter",
+      "label": "Nucleocapsid diameter (T=3 minority to T=4 majority)",
+      "min": 32,
+      "max": 36,
+      "unit": "nm",
+      "approximate": true,
+      "status": "variable",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-hepadnaviridae-report"
+      ]
+    }
+  ],
+  "replication": {
+    "site": {
+      "value": "Nucleus (cccDNA, transcription) and cytoplasm (reverse transcription in nucleocapsids)",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-hepadnaviridae-report"
+      ]
+    },
+    "mRNARoute": {
+      "value": "In the nucleus the genome is converted to covalently closed circular DNA (cccDNA), a minichromosome that host machinery transcribes into mRNAs and a pregenomic RNA. The pregenomic RNA is reverse-transcribed back into DNA inside new nucleocapsids.",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-hepadnaviridae-report"
+      ]
+    },
+    "steps": [
+      {
+        "id": "entry",
+        "title": "Entry",
+        "text": "The particle binds and enters a hepatocyte.",
+        "status": "not_verified",
+        "sourceIds": []
+      },
+      {
+        "id": "cccdna",
+        "location": "nucleus",
+        "title": "cccDNA formation",
+        "text": "In the nucleus the relaxed-circular genome becomes cccDNA, a histone-associated minichromosome.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-hepadnaviridae-report"
+        ]
+      },
+      {
+        "id": "transcription",
+        "location": "nucleus",
+        "title": "Transcription",
+        "text": "Viral mRNAs and the pregenomic RNA are transcribed from cccDNA in the nucleus.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-hepadnaviridae-report"
+        ]
+      },
+      {
+        "id": "rt",
+        "location": "cytoplasm",
+        "title": "Reverse transcription",
+        "text": "Pregenomic RNA is reverse-transcribed into DNA inside immature nucleocapsids in the cytoplasm.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-hepadnaviridae-report"
+        ]
+      },
+      {
+        "id": "envelopment",
+        "location": "er-golgi",
+        "title": "Envelopment and release",
+        "text": "Surface proteins bud into a post-ER/pre-Golgi compartment; nucleocapsids bud into multivesicular bodies as maturing virions. Empty subviral particles are also made.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-hepadnaviridae-report"
+        ]
+      }
+    ]
+  },
+  "diagramId": "hepatitis-b"
+}

@@ -43,6 +43,8 @@ const MORPHOLOGY_LABEL: Record<string, string> = {
   "enveloped-icosahedral-core": "Envelope around icosahedral capsid",
   "icosahedral-nonenveloped": "Icosahedral, non-enveloped",
   "head-tail": "Head–tail (tailed phage)",
+  "enveloped-conical-core": "Envelope around a cone-shaped core",
+  "helical-rod": "Rigid helical rod",
 };
 export const morphologyLabel = (m: string | null) => (m ? MORPHOLOGY_LABEL[m] ?? m : "Not verified");
 
@@ -75,7 +77,7 @@ export function compareRows(vs: Virus[]): CompareRow[] {
     { id: "baltimore", group: "Classification", label: "Baltimore class", cells: vs.map((v) => cell(v.baltimore, v.baltimore.value ? `Class ${v.baltimore.value}` : undefined)) },
     { id: "realm", group: "Classification", label: "ICTV realm", cells: vs.map((v) => ({ text: v.taxonomy.realm, status: "verified", scope: "species", sourceIds: v.taxonomy.sourceIds })) },
     { id: "family", group: "Classification", label: "ICTV family", cells: vs.map((v) => ({ text: v.taxonomy.family, status: "verified", scope: "species", sourceIds: v.taxonomy.sourceIds })) },
-    { id: "host", group: "Host", label: "Host category", cells: vs.map((v) => cell(v.hostCategory, v.hostCategory.value === "bacteria" ? "Bacteria" : v.hostCategory.value === "vertebrates" ? "Vertebrates" : undefined)) },
+    { id: "host", group: "Host", label: "Host category", cells: vs.map((v) => cell(v.hostCategory, v.hostCategory.value ? v.hostCategory.value.charAt(0).toUpperCase() + v.hostCategory.value.slice(1) : undefined)) },
     { id: "site", group: "Replication", label: "Replication site", cells: vs.map((v) => cell(v.replication.site)) },
     { id: "mrna", group: "Replication", label: "Route to mRNA", cells: vs.map((v) => cell(v.replication.mRNARoute)) },
   ];
@@ -136,7 +138,7 @@ export function compareInsights(vs: Virus[]): Insight[] {
   // Host
   const hosts = vs.map((v) => v.hostCategory.value);
   if (!hosts.every((h) => h === hosts[0])) {
-    out.push({ kind: "difference", text: `They infect different kinds of host (${vs.map((v) => `${v.abbreviation}: ${v.hostCategory.value}`).join("; ")}). Bacterial cells have no nucleus, which constrains where a phage can replicate.`, sourceIds: src(...vs.map((v) => v.hostCategory)) });
+    out.push({ kind: "difference", text: `They infect different kinds of host (${vs.map((v) => `${v.abbreviation}: ${v.hostCategory.value}`).join("; ")}).${hosts.includes("bacteria") ? " Bacterial cells have no nucleus, which constrains where a phage can replicate." : ""}`, sourceIds: src(...vs.map((v) => v.hostCategory)) });
   }
 
   // Uncertainty: family-level dimensions, variable morphology, unverified facts

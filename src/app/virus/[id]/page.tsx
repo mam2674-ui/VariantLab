@@ -10,6 +10,9 @@ import { formatDimension, formatKb, formatNt } from "@/lib/units";
 import { StructureViewer } from "@/components/StructureViewer";
 import { FactTable, type FactRowData } from "@/components/FactTable";
 import { SourceRefs, StatusMark } from "@/components/Evidence";
+import { SectionHead } from "@/components/SectionHead";
+import { GenomeViewer } from "@/components/genome/GenomeViewer";
+import { proteinsFor } from "@/data/proteins";
 
 export function generateStaticParams() {
   return viruses.map((v) => ({ id: v.id }));
@@ -49,7 +52,7 @@ async function VirusProfile({ params }: { params: PageProps<"/virus/[id]">["para
         <nav aria-label="Breadcrumb" className="text-[14px] mb-6">
           <Link href="/#atlas">Atlas</Link> <span aria-hidden="true" className="text-mute">/</span> <span className="text-mute">{v.commonName}</span>
         </nav>
-        <h1 className="display text-[42px] sm:text-[56px]">{v.commonName}</h1>
+        <SectionHead index={`VA-${String(viruses.indexOf(v) + 1).padStart(3, "0")} ${v.abbreviation}`} title={v.commonName} />
         <p className="mt-2 text-[17px]">
           Species <span className="species text-ink">{t.species}</span>, family {t.family}
         </p>
@@ -69,6 +72,37 @@ async function VirusProfile({ params }: { params: PageProps<"/virus/[id]">["para
       <div className="container-atlas">
         {spec ? <StructureViewer spec={spec} sources={sources} title={v.commonName} /> : <p className="panel p-6">No diagram yet.</p>}
       </div>
+
+      <section className="container-atlas mt-20" aria-labelledby="genome-title">
+        <p className="index-label mb-3">Genetic material</p>
+        <h2 id="genome-title" className="display text-[28px] sm:text-[40px] mb-6">
+          Genome map
+        </h2>
+        <GenomeViewer virus={v} sources={sources} />
+      </section>
+
+      {proteinsFor(v.id).length > 0 && (
+        <section className="container-atlas mt-20" aria-labelledby="prot-title">
+          <p className="index-label mb-3">Parts</p>
+          <h2 id="prot-title" className="display text-[28px] sm:text-[40px] mb-4">
+            Protein structures
+          </h2>
+          <ul className="border-t border-hairline">
+            {proteinsFor(v.id).map((p) => (
+              <li key={p.pdbId} className="grid gap-x-6 sm:grid-cols-[110px_minmax(0,1fr)_auto] py-3 border-b border-hairline items-baseline">
+                <span className="num text-mute">PDB {p.pdbId}</span>
+                <Link href={`/proteins/${p.pdbId}`} className="text-[16px]">
+                  {p.name}
+                </Link>
+                <span className="text-[13px] text-mute">
+                  {p.method}
+                  {p.resolutionA ? `, ${p.resolutionA} Å` : ""}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       <div className="container-atlas mt-16 grid gap-12 lg:grid-cols-2">
         <FactTable

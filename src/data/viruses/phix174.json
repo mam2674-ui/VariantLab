@@ -1,0 +1,243 @@
+{
+  "id": "phix174",
+  "commonName": "Bacteriophage phiX174",
+  "abbreviation": "phiX174",
+  "representative": "Virus-level profile of the ICTV exemplar (J02482). Capsid size and architecture come from an older (2009) ICTV chapter written when the family was Microviridae.",
+  "summary": "A tiny, tail-less bacterial virus: a 25 nm icosahedral shell with spikes at its vertices, carrying a circular single-stranded DNA genome of just 5,386 nucleotides.",
+  "taxonomy": {
+    "msl": "MSL41 (VMR v1, 2026-07-29)",
+    "subfamily": null,
+    "subgenus": null,
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ],
+    "realm": "Volvereviria",
+    "kingdom": "Sangervirae",
+    "phylum": "Phixviricota",
+    "class": "Microviricetes",
+    "order": "Bullavirales",
+    "family": "Eubullaviridae",
+    "genus": "Sinsheimervirus",
+    "species": "Sinsheimervirus phiX174",
+    "ictvId": "ICTV19710244",
+    "vmrId": "VMR1006845",
+    "exemplar": true,
+    "note": "Textbooks place phiX174 in family Microviridae; MSL41 lists it in Eubullaviridae within the realm Volvereviria."
+  },
+  "referenceSequence": {
+    "value": "J02482.1",
+    "status": "verified",
+    "scope": "virus",
+    "sourceIds": [
+      "ncbi-j02482",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostCategory": {
+    "value": "bacteria",
+    "status": "verified",
+    "scope": "species",
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostDetail": {
+    "value": "Bacteria (Escherichia, as in the ICTV virus name “Escherichia phage phiX174”)",
+    "status": "verified",
+    "scope": "virus",
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ]
+  },
+  "genome": {
+    "nucleicAcid": {
+      "value": "DNA",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-microviridae-report",
+        "ictv-vmr-msl41"
+      ]
+    },
+    "ictvLabel": {
+      "value": "ssDNA(+)",
+      "status": "verified",
+      "scope": "species",
+      "sourceIds": [
+        "ictv-vmr-msl41"
+      ]
+    },
+    "strandedness": {
+      "value": "single",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-microviridae-report"
+      ]
+    },
+    "sense": {
+      "value": "positive",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-microviridae-report",
+        "ictv-vmr-msl41"
+      ],
+      "note": "Sense is usually discussed for RNA, but ICTV also describes this ssDNA genome as positive-sense."
+    },
+    "segmented": {
+      "value": false,
+      "status": "verified",
+      "scope": "virus",
+      "sourceIds": [
+        "ncbi-j02482"
+      ]
+    },
+    "segmentCount": {
+      "value": 1,
+      "status": "verified",
+      "scope": "virus",
+      "sourceIds": [
+        "ncbi-j02482"
+      ]
+    },
+    "topology": {
+      "value": "circular",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-microviridae-report"
+      ]
+    },
+    "lengthKb": {
+      "value": {
+        "min": 5.4,
+        "max": 5.4
+      },
+      "status": "verified",
+      "scope": "virus",
+      "sourceIds": [
+        "ncbi-j02482"
+      ],
+      "note": "Microvirus genomes are 5.3–6.1 kb (ICTV 2009)."
+    },
+    "referenceLengthNt": {
+      "value": 5386,
+      "status": "verified",
+      "scope": "virus",
+      "sourceIds": [
+        "ncbi-j02482"
+      ]
+    }
+  },
+  "baltimore": {
+    "value": "II",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "viralzone-baltimore",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "envelope": {
+    "value": false,
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-microviridae-report"
+    ]
+  },
+  "capsid": {
+    "value": "T=1 icosahedral capsid, 25 nm across, with spike-protein pentamers at the twelve fivefold vertices.",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-microviridae-report"
+    ]
+  },
+  "morphology": {
+    "value": "icosahedral-nonenveloped",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-microviridae-report"
+    ]
+  },
+  "dimensions": [
+    {
+      "id": "capsid-diameter",
+      "part": "capsid",
+      "measure": "diameter",
+      "label": "Capsid diameter (excluding spikes)",
+      "min": 25,
+      "max": 25,
+      "unit": "nm",
+      "approximate": false,
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-microviridae-report"
+      ],
+      "note": "250 Å; spikes rise a further ~3 nm."
+    }
+  ],
+  "replication": {
+    "site": {
+      "value": "Bacterial cytoplasm (bacteria have no nucleus)",
+      "status": "simplified",
+      "scope": "virus",
+      "sourceIds": [
+        "ictv-microviridae-report",
+        "ictv-vmr-msl41"
+      ]
+    },
+    "mRNARoute": {
+      "value": "The single-stranded DNA is first converted into a double-stranded circle (replicative form I), which is transcribed into mRNA and used to make new genomes by rolling-circle replication.",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-microviridae-report"
+      ]
+    },
+    "steps": [
+      {
+        "id": "entry",
+        "title": "Attachment and DNA entry",
+        "text": "The phage binds its bacterial host and delivers its genome.",
+        "status": "not_verified",
+        "sourceIds": []
+      },
+      {
+        "id": "rf",
+        "location": "cytoplasm",
+        "title": "Double-strand conversion",
+        "text": "The ssDNA genome is converted into a covalently closed double-stranded replicative form (RFI).",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-microviridae-report"
+        ]
+      },
+      {
+        "id": "rolling",
+        "location": "cytoplasm",
+        "title": "Rolling-circle synthesis",
+        "text": "New positive strands are made by a rolling-circle mechanism.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-microviridae-report"
+        ]
+      },
+      {
+        "id": "lysis",
+        "location": "membrane",
+        "title": "Lysis",
+        "text": "The E protein is involved in lysing the host cell to release progeny.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-microviridae-report"
+        ]
+      }
+    ]
+  },
+  "diagramId": "phix174"
+}

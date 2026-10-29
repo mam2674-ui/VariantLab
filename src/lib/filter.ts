@@ -1,7 +1,8 @@
 import type { Virus } from "./schema";
 import { toNm } from "./units";
 
-export type GenomeClass = "dsDNA" | "ssDNA" | "dsRNA" | "+ssRNA" | "-ssRNA";
+export type GenomeClass = "dsDNA" | "ssDNA" | "dsRNA" | "+ssRNA" | "-ssRNA" | "ssRNA-RT" | "dsDNA-RT";
+export const GENOME_CLASSES: GenomeClass[] = ["dsDNA", "ssDNA", "dsRNA", "+ssRNA", "-ssRNA", "ssRNA-RT", "dsDNA-RT"];
 export type SizeBand = "small" | "medium" | "large";
 
 export interface AtlasFilters {
@@ -15,15 +16,23 @@ export interface AtlasFilters {
 
 export const emptyFilters: AtlasFilters = { q: "", genome: [], envelope: [], host: [], morphology: [], size: [] };
 
+const ICTV_TO_CLASS: Record<string, GenomeClass> = {
+  dsDNA: "dsDNA",
+  "ssDNA(+)": "ssDNA",
+  "ssDNA(-)": "ssDNA",
+  "ssDNA(+/-)": "ssDNA",
+  ssDNA: "ssDNA",
+  dsRNA: "dsRNA",
+  "ssRNA(+)": "+ssRNA",
+  "ssRNA(-)": "-ssRNA",
+  "ssRNA-RT": "ssRNA-RT",
+  "dsDNA-RT": "dsDNA-RT",
+};
+
+/** Genome class from the ICTV VMR genome label, so reverse-transcribing viruses keep their own classes. */
 export function genomeClass(v: Virus): GenomeClass | null {
-  const { nucleicAcid, strandedness, sense } = v.genome;
-  if (!nucleicAcid.value || !strandedness.value) return null;
-  const s = strandedness.value === "double" ? "ds" : "ss";
-  if (nucleicAcid.value === "DNA") return `${s}DNA` as GenomeClass;
-  if (s === "ds") return "dsRNA";
-  if (sense.value === "positive") return "+ssRNA";
-  if (sense.value === "negative") return "-ssRNA";
-  return null;
+  const label = v.genome.ictvLabel.value;
+  return label ? ICTV_TO_CLASS[label] ?? null : null;
 }
 
 /**
@@ -32,8 +41,9 @@ export function genomeClass(v: Virus): GenomeClass | null {
  * Bands: small < 70 nm, medium 70–130 nm, large > 130 nm (by max of range).
  */
 export function sizeBand(v: Virus): SizeBand | null {
-  const body = v.dimensions.filter((d) => (d.part === "virion" || d.part === "head" || d.part === "capsid") && d.scope !== "family");
-  const pool = body.length ? body : v.dimensions.filter((d) => d.part === "virion" || d.part === "head" || d.part === "capsid");
+  const isBody = (p: string) => p === "virion" || p === "head" || p === "capsid";
+  const body = v.dimensions.filter((d) => isBody(d.part) && d.scope !== "family");
+  const pool = body.length ? body : v.dimensions.filter((d) => isBody(d.part) || d.part === "rod");
   if (!pool.length) return null;
   const max = Math.max(...pool.map((d) => toNm(d.max, d.unit)));
   return max < 70 ? "small" : max <= 130 ? "medium" : "large";

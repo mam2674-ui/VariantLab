@@ -1,0 +1,247 @@
+{
+  "id": "tmv",
+  "commonName": "Tobacco mosaic virus",
+  "abbreviation": "TMV",
+  "representative": "Virus-level profile of the ICTV exemplar (variant 1, V01408). Rod dimensions are genus-level ICTV values.",
+  "summary": "A plant virus shaped as a rigid rod: coat protein wound in a helix around a single positive-sense RNA, with a hollow canal down the middle. It has no envelope and spreads between plants by contact.",
+  "taxonomy": {
+    "msl": "MSL41 (VMR v1, 2026-07-29)",
+    "subfamily": null,
+    "subgenus": null,
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ],
+    "realm": "Riboviria",
+    "kingdom": "Orthornavirae",
+    "phylum": "Kitrinoviricota",
+    "class": "Alsuviricetes",
+    "order": "Martellivirales",
+    "family": "Virgaviridae",
+    "genus": "Tobamovirus",
+    "species": "Tobamovirus tabaci",
+    "ictvId": "ICTV19710322",
+    "vmrId": "VMR1008771",
+    "exemplar": true
+  },
+  "referenceSequence": {
+    "value": "V01408.1 (variant 1)",
+    "status": "verified",
+    "scope": "virus",
+    "sourceIds": [
+      "ncbi-v01408",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostCategory": {
+    "value": "plants",
+    "status": "verified",
+    "scope": "species",
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostDetail": {
+    "value": "Plants (ICTV host-source category); spreads by contact between plants, no natural vector",
+    "status": "verified",
+    "scope": "genus",
+    "sourceIds": [
+      "ictv-vmr-msl41",
+      "ictv-tobamovirus-report",
+      "ictv-virgaviridae-2017"
+    ]
+  },
+  "genome": {
+    "nucleicAcid": {
+      "value": "RNA",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-virgaviridae-2017",
+        "ictv-vmr-msl41"
+      ]
+    },
+    "ictvLabel": {
+      "value": "ssRNA(+)",
+      "status": "verified",
+      "scope": "species",
+      "sourceIds": [
+        "ictv-vmr-msl41"
+      ]
+    },
+    "strandedness": {
+      "value": "single",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-virgaviridae-2017"
+      ]
+    },
+    "sense": {
+      "value": "positive",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-virgaviridae-2017"
+      ]
+    },
+    "segmented": {
+      "value": false,
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-virgaviridae-2017"
+      ]
+    },
+    "segmentCount": {
+      "value": 1,
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-virgaviridae-2017"
+      ]
+    },
+    "topology": {
+      "value": "linear",
+      "status": "verified",
+      "scope": "virus",
+      "sourceIds": [
+        "ncbi-v01408"
+      ]
+    },
+    "lengthKb": {
+      "value": {
+        "min": 6.4,
+        "max": 6.4
+      },
+      "status": "verified",
+      "scope": "virus",
+      "sourceIds": [
+        "ncbi-v01408"
+      ],
+      "note": "Tobamovirus genomes are 6.3–6.6 kb (ICTV)."
+    },
+    "referenceLengthNt": {
+      "value": 6395,
+      "status": "verified",
+      "scope": "virus",
+      "sourceIds": [
+        "ncbi-v01408"
+      ]
+    }
+  },
+  "baltimore": {
+    "value": "IV",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "viralzone-baltimore",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "envelope": {
+    "value": false,
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-virgaviridae-2017"
+    ]
+  },
+  "capsid": {
+    "value": "No icosahedral capsid. Coat protein forms a helical rod (pitch 2.3–2.5 nm) around the RNA, with an axial canal.",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-virgaviridae-2017"
+    ]
+  },
+  "morphology": {
+    "value": "helical-rod",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-virgaviridae-2017"
+    ]
+  },
+  "dimensions": [
+    {
+      "id": "rod-length",
+      "part": "rod",
+      "measure": "length",
+      "label": "Rod length (predominant)",
+      "min": 300,
+      "max": 310,
+      "unit": "nm",
+      "approximate": false,
+      "status": "variable",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-tobamovirus-report"
+      ]
+    },
+    {
+      "id": "rod-diameter",
+      "part": "rod",
+      "measure": "diameter",
+      "label": "Rod diameter",
+      "min": 18,
+      "max": 18,
+      "unit": "nm",
+      "approximate": false,
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-tobamovirus-report"
+      ]
+    }
+  ],
+  "replication": {
+    "site": {
+      "value": "Cytoplasm, probably associated with the ER",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-virgaviridae-2017"
+      ]
+    },
+    "mRNARoute": {
+      "value": "As a positive-sense RNA, the genome can be translated directly; replication makes negative-sense copies as templates.",
+      "status": "simplified",
+      "scope": "family",
+      "sourceIds": [
+        "viralzone-baltimore",
+        "ictv-virgaviridae-2017"
+      ]
+    },
+    "steps": [
+      {
+        "id": "entry",
+        "location": "outside",
+        "title": "Entry",
+        "text": "Virus reaches plant cells through contact between plants; there is no natural vector.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-tobamovirus-report",
+          "ictv-virgaviridae-2017"
+        ]
+      },
+      {
+        "id": "replication",
+        "location": "er-golgi",
+        "title": "Replication",
+        "text": "The RNA is replicated in the cytoplasm, probably in association with the ER.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-virgaviridae-2017"
+        ]
+      },
+      {
+        "id": "assembly",
+        "title": "Assembly",
+        "text": "Coat protein assembles helically around new genomes to form rods.",
+        "status": "not_verified",
+        "sourceIds": []
+      }
+    ]
+  },
+  "diagramId": "tmv"
+}

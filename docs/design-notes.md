@@ -10,9 +10,22 @@
 - **Type:** Geist for UI/text (from DESIGN.md), Newsreader serif for editorial display headings (the brief asked for an editorial atlas), Geist Mono only for measurements and IDs. Vercel's mono uppercase eyebrows were dropped: Hallmark and Impeccable both ban eyebrows and tracked-caps labels.
 - **Cards:** used only for panels that hold a tool (viewer, detail panel); lists are hairline-ruled rows, not card grids.
 - **Motion:** one explanatory motion (arrows drawing along the mRNA route) and a short fade on step changes, both disabled under reduced motion.
-- **3D:** not used. SVG keeps layers precise and accessible; no WebGL fallback needed.
+- **3D (v1):** not used; superseded in v2 below, where 3D is optional and falls back to the 2D SVG.
 
 ## Review tools run
 - Impeccable hook on every UI edit: no findings.
 - Hallmark sloplint: 2 REFLEX (off-scale spacing) + 1 WARN fixed; now clean. Render tier unavailable (no puppeteer-core).
 - Manual review at 1280px and 375px, light and dark, via the in-app browser and Playwright screenshots. Fixes made: wordmark colour (CSS layer order), line-up readability, HSV DNA path, hydration rounding, stage label and route-diagram sizing, an inaccurate T4 caption.
+
+## v2 redesign (2026-10-28)
+
+The user asked for the look and flow of colossal.com with blue accents, then for a typeface that does not read as AI-generated.
+
+- **Taken from the reference:** near-black cinematic surfaces; a full-viewport hero with a full-width wordmark; a top bar of numbered page links in hairline-divided columns with an "Index" overlay listing every virus; numbered section labels over large all-caps headings; a solid-colour statistics band; scroll-staged reveals. No Colossal logo, copy, imagery or wording is reused.
+- **Blue accent:** electric blue (#3d7bff) for actions, focus, selection and the statistics band only. The structural palette stays separate (capsid moved to a lighter sky blue so it never reads as "interactive").
+- **Typeface:** IBM Plex Sans (variable; condensed width 75% for display caps), IBM Plex Mono for data and section numbers. Replaced Archivo Expanded and Geist, which read as a template.
+- **Removed as template tells:** "+" prefixes, fake "000-000" codes, gutter registration marks, a hatched rule.
+- **Statistics band:** every number is computed from the dataset at build time and carries its citation. An early draft heading compared TMV to bacterial width; it was removed because no source in the atlas supports it.
+- **3D:** procedural models redrawn in a molecular-graphics style after ChimeraX: N8AO ambient occlusion, a custom depth-edge silhouette shader, matte materials, capsids built from subunit rings on geodesic lattices.
+- **Hero:** the rotating virus changed from SARS-CoV-2 to human adenovirus 5, whose capsomer lattice and fibres read as more realistic.
+- **Waivers recorded in the CSS stamp:** mono labels and section numbers (Hallmark rule 9), by explicit request.

@@ -10,8 +10,8 @@ const clone = <T,>(x: T): T => JSON.parse(JSON.stringify(x));
 describe("scientific schema", () => {
   it("parses every virus record and cross-checks references", () => {
     const ds = loadDataset();
-    expect(ds.viruses).toHaveLength(6);
-    expect(new Set(ds.viruses.map((v) => v.id)).size).toBe(6);
+    expect(ds.viruses).toHaveLength(12);
+    expect(new Set(ds.viruses.map((v) => v.id)).size).toBe(12);
   });
 
   it("every cited source id exists in the registry", () => {
@@ -45,19 +45,32 @@ describe("scientific schema", () => {
     expect(F.safeParse({ value: null, status: "verified", scope: "family", sourceIds: ["a"] }).success).toBe(false);
   });
 
-  it("marks RNA sense as not applicable for every DNA genome", () => {
+  it("marks sense as not applicable for every double or partially double-stranded genome", () => {
     const { viruses } = loadDataset();
-    for (const v of viruses.filter((x) => x.genome.nucleicAcid.value === "DNA")) expect(v.genome.sense.status).toBe("not_applicable");
+    for (const v of viruses.filter((x) => x.genome.strandedness.value !== "single")) expect(v.genome.sense.status, v.id).toBe("not_applicable");
     for (const v of viruses.filter((x) => x.genome.nucleicAcid.value === "RNA" && x.genome.strandedness.value === "single")) expect(v.genome.sense.value).not.toBeNull();
   });
 
-  it("keeps Baltimore class consistent with genome type", () => {
-    const { viruses } = loadDataset();
-    for (const v of viruses) {
-      const g = v.genome;
-      const expected = g.nucleicAcid.value === "DNA" && g.strandedness.value === "double" ? "I" : g.sense.value === "positive" ? "IV" : g.sense.value === "negative" ? "V" : null;
-      expect(v.baltimore.value, v.id).toBe(expected);
-    }
+  it("keeps Baltimore class consistent with the ICTV genome label", () => {
+    const expected: Record<string, string> = {
+      dsDNA: "I",
+      "ssDNA(+)": "II",
+      dsRNA: "III",
+      "ssRNA(+)": "IV",
+      "ssRNA(-)": "V",
+      "ssRNA-RT": "VI",
+      "dsDNA-RT": "VII",
+    };
+    for (const v of loadDataset().viruses) expect(v.baltimore.value, v.id).toBe(expected[v.genome.ictvLabel.value!]);
+  });
+
+  it("covers all seven Baltimore classes", () => {
+    expect(new Set(loadDataset().viruses.map((v) => v.baltimore.value)).size).toBe(7);
+  });
+
+  it("never places a bacterial virus step in a nucleus", () => {
+    for (const v of loadDataset().viruses.filter((x) => x.hostCategory.value === "bacteria"))
+      for (const s of v.replication.steps) expect(s.location, `${v.id}/${s.id}`).not.toBe("nucleus");
   });
 
   it("segment count agrees with segmentation", () => {

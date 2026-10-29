@@ -1,6 +1,6 @@
 # Two-minute demo script
 
-**0:00 — Hook (home).** "Most virus diagrams are either too simplified or too detailed to compare. Virus Atlas puts six contrasting viruses on one page, and every fact carries its source." Point at the line-up: "These outlines are on one true linear scale, from HPV16 at ~55 nm to phage T4."
+**0:00 — Hook (home).** "Most virus diagrams are either too simplified or too detailed to compare. Virus Atlas puts twelve viruses, one or more per Baltimore class, on one page, and every fact carries its source." Point at the rotating adenovirus, then the line-up: "These outlines share one linear scale, from phiX174 at 25 nm to the 300 nm TMV rod."
 
 **0:20 — Structure (Influenza A profile).** Switch Exterior/Cutaway; click the RNA segments. "No icosahedral capsid here, just eight helical ribonucleoproteins. The panel shows the evidence status and the ICTV source." Toggle Detailed labels. Scroll to "What this diagram cannot tell you".
 
@@ -10,6 +10,8 @@
 
 **1:25 — Genomes.** Step through SARS-CoV-2 stages; show the seven Baltimore classes: "Four viruses here are class I but sit in three ICTV realms: mechanism isn't ancestry."
 
-**1:40 — Sources & tutor.** Filter sources by HPV16; show Known gaps. "Unverified items are labelled, not hidden." Tutor: "Without a key it returns curated passages, clearly labelled. With a key, answers must cite retrieved passages or they're rejected."
+**1:35 — Proteins & genomes.** Open PDB 6VSB from the spike: cartoon, then surface. "Real coordinates, and the page says it is a stabilised ectodomain, not a spike on a virion." Then the HBV genome ring: "genes from the NCBI record, wrapping across the origin."
 
-**1:55 — Close.** "Built with Next.js, Zod-validated data, 46 unit tests and 17 browser tests. Next step: expert review and a small user study."
+**1:45 — Sources & tutor.** Filter sources by HPV16; show Known gaps. "Unverified items are labelled, not hidden." Tutor: "Without a key it returns curated passages, clearly labelled. With a key, answers must cite retrieved passages or they're rejected."
+
+**1:55 — Close.** "Built with Next.js, Zod-validated data, 60 unit tests and 25 browser tests. Next step: expert review and a small user study."

@@ -114,4 +114,102 @@ export const diagramSpecs: DiagramSpec[] = [
       { id: "genome", type: "genome", layer: "interior", labelSimple: "Circular DNA", labelDetailed: "Circular dsDNA (7,904 bp in HPV16)", description: "A single circular double-stranded DNA genome. No envelope surrounds the capsid.", status: "verified", sourceIds: ["ictv-papillomaviridae-2018", "ncbi-k02718"] },
     ],
   },
+  {
+    id: "hiv-1",
+    virusId: "hiv-1",
+    renderer: "retrovirus",
+    caption: "Schematic of a mature HIV-1 particle: envelope, glycoprotein spikes and a cone-shaped core holding two copies of the RNA genome. Spike number and positions are illustrative.",
+    cannotShow: [
+      "The immature particle, in which the core has not yet formed.",
+      "The real number of Env spikes, which ICTV describes only as irregularly spaced.",
+      "Proteins between the envelope and the core, and the enzymes packed inside the core.",
+    ],
+    components: [
+      { id: "envelope", type: "envelope", layer: "exterior", labelSimple: "Envelope", labelDetailed: "Lipid envelope (from host membrane)", description: "A lipid envelope that displays the viral glycoproteins; budding takes place mainly at the plasma membrane.", status: "verified", sourceIds: ["ictv-retroviridae-report"] },
+      { id: "env", type: "surface-protein", layer: "exterior", labelSimple: "Env spikes", labelDetailed: "Env glycoprotein projections (SU/TM, ~8 nm)", description: "Glycoprotein projections about 8 nm long, irregularly spaced. The SU part binds specific receptors at entry.", status: "verified", sourceIds: ["ictv-retroviridae-report"] },
+      { id: "core", type: "capsid", layer: "interior", labelSimple: "Core", labelDetailed: "Cone-shaped capsid core", description: "In lentiviruses the capsid core is rod or truncated-cone shaped. It contains the genome and the replicative enzymes.", status: "verified", sourceIds: ["ictv-retroviridae-report", "ictv-retroviridae-2021"] },
+      { id: "genome", type: "genome", layer: "interior", labelSimple: "RNA ×2", labelDetailed: "Two copies of +ssRNA (9,181 nt each)", description: "A homodimer: two copies of the linear, positive-sense RNA genome.", status: "verified", sourceIds: ["ictv-retroviridae-report", "ncbi-af033819"] },
+    ],
+  },
+  {
+    id: "hepatitis-b",
+    virusId: "hepatitis-b",
+    renderer: "hepadnavirus",
+    caption: "Schematic of a hepatitis B virion: envelope with surface proteins around an icosahedral nucleocapsid holding a partially double-stranded circular DNA.",
+    cannotShow: [
+      "The empty subviral particles that are made alongside virions.",
+      "The polymerase attached to the genome.",
+      "Which nucleocapsids are T=3 versus T=4.",
+    ],
+    components: [
+      { id: "envelope", type: "envelope", layer: "exterior", labelSimple: "Envelope", labelDetailed: "Lipid envelope (42–50 nm particle)", description: "An envelope 42–50 nm across surrounding the nucleocapsid.", status: "verified", sourceIds: ["ictv-hepadnaviridae-report"] },
+      { id: "surface", type: "surface-protein", layer: "exterior", labelSimple: "Surface proteins", labelDetailed: "Surface proteins S, M and L (HBs)", description: "The envelope contains two or three surface proteins; orthohepadnaviruses have small, middle and large forms.", status: "verified", sourceIds: ["ictv-hepadnaviridae-report"] },
+      { id: "capsid", type: "capsid", layer: "interior", labelSimple: "Nucleocapsid", labelDetailed: "Icosahedral nucleocapsid (mostly T=4, ~36 nm)", description: "Most cores are about 36 nm with 240 core-protein subunits (T=4); a minority are about 32 nm with 180 (T=3). Reverse transcription happens inside it.", status: "verified", sourceIds: ["ictv-hepadnaviridae-report"] },
+      { id: "genome", type: "genome", layer: "interior", labelSimple: "DNA", labelDetailed: "Relaxed-circular, partially dsDNA (3,182 bp)", description: "A partially double-stranded DNA held in a circular conformation; the gap in one strand is drawn schematically.", status: "simplified", sourceIds: ["ictv-hepadnaviridae-report", "ncbi-v01460"] },
+    ],
+  },
+  {
+    id: "rotavirus-a",
+    virusId: "rotavirus-a",
+    renderer: "rotavirus",
+    caption: "Schematic of a rotavirus triple-layered particle, cut open to show the three protein layers and the segmented dsRNA genome. Spike positions are illustrative.",
+    cannotShow: [
+      "The true icosahedral arrangement of 260 VP6 and 260 VP7 trimers.",
+      "The enzymes inside the core that make mRNA.",
+      "How the eleven segments are packed.",
+    ],
+    components: [
+      { id: "vp4", type: "surface-protein", layer: "exterior", labelSimple: "VP4 spikes", labelDetailed: "VP4 spikes (60 trimers)", description: "Sixty trimeric spikes of VP4 project from the outer VP7 layer.", status: "verified", sourceIds: ["ictv-rotavirus-report"] },
+      { id: "vp7", type: "capsid", layer: "exterior", labelSimple: "Outer layer", labelDetailed: "Outer layer: VP7 (260 trimers)", description: "The glycoprotein VP7 makes up the surface of the outermost shell.", status: "verified", sourceIds: ["ictv-rotavirus-report"] },
+      { id: "vp6", type: "capsid", layer: "interior", labelSimple: "Middle layer", labelDetailed: "Intermediate layer: VP6 (260 trimers)", description: "The intermediate protein layer, made of 260 VP6 trimers.", status: "verified", sourceIds: ["ictv-rotavirus-report"] },
+      { id: "vp2", type: "capsid", layer: "interior", labelSimple: "Inner layer", labelDetailed: "Inner layer: VP2 (T=1, 60 dimers)", description: "The innermost VP2 layer surrounds the genomic dsRNAs.", status: "verified", sourceIds: ["ictv-rotavirus-report"] },
+      { id: "genome", type: "genome", layer: "interior", labelSimple: "11 dsRNA segments", labelDetailed: "11 dsRNA segments (18,562 bp in SA11)", description: "Eleven linear double-stranded RNA segments, 667 to 3,302 bp each in the reference strain.", status: "verified", sourceIds: ["ictv-rotavirus-report", "ncbi-rva-sa11"] },
+    ],
+  },
+  {
+    id: "poliovirus-1",
+    virusId: "poliovirus-1",
+    renderer: "picornavirus",
+    caption: "Schematic of a poliovirus particle: a small icosahedral protein shell around one positive-sense RNA genome. Protein positions are illustrative.",
+    cannotShow: [
+      "Where each of VP1–VP4 sits within the shell.",
+      "Surface features of the shell.",
+      "How the RNA is folded inside the shell.",
+    ],
+    components: [
+      { id: "capsid", type: "capsid", layer: "exterior", labelSimple: "Capsid", labelDetailed: "Capsid: 60 protomers (VP1–VP4), pseudo T=3", description: "Sixty identical protomers, each made of VP1–VP4, pack with T=1, pseudo T=3 icosahedral symmetry into a 30–32 nm shell.", status: "verified", sourceIds: ["ictv-picornaviridae-2017"] },
+      { id: "genome", type: "genome", layer: "interior", labelSimple: "RNA", labelDetailed: "+ssRNA with 5′ VPg and 3′ poly(A) (7,440 nt)", description: "A single positive-sense RNA with the small protein VPg linked to its 5′ end and a poly(A) tail.", status: "verified", sourceIds: ["ictv-picornaviridae-2017", "ncbi-v01149"] },
+    ],
+  },
+  {
+    id: "tmv",
+    virusId: "tmv",
+    renderer: "tobamovirus",
+    caption: "Schematic of a short stretch of a tobacco mosaic virus rod (the full rod is about 17 times longer than it is wide). Subunit count per turn is illustrative.",
+    cannotShow: [
+      "The full 300 nm length at this magnification.",
+      "The exact number of coat-protein subunits per helical turn.",
+      "How the RNA binds between subunits.",
+    ],
+    components: [
+      { id: "coat", type: "capsid", layer: "exterior", labelSimple: "Coat protein", labelDetailed: "Coat protein helix (pitch 2.3–2.5 nm)", description: "Coat protein subunits wind into a rigid helical rod, 18 nm wide, with a hollow axial canal.", status: "verified", sourceIds: ["ictv-virgaviridae-2017", "ictv-tobamovirus-report"] },
+      { id: "genome", type: "genome", layer: "interior", labelSimple: "RNA", labelDetailed: "+ssRNA following the helix (6,395 nt)", description: "One positive-sense RNA, drawn following the coat-protein helix inside the rod.", status: "simplified", sourceIds: ["ictv-virgaviridae-2017", "ncbi-v01408"] },
+    ],
+  },
+  {
+    id: "phix174",
+    virusId: "phix174",
+    renderer: "microvirus",
+    caption: "Schematic of phiX174: a tiny T=1 icosahedral capsid with a spike at each vertex and a circular ssDNA genome inside. It has no tail.",
+    cannotShow: [
+      "The internal scaffolding and DNA-binding proteins.",
+      "How the genome enters the host without a tail.",
+      "The 3D arrangement of all 12 spikes (6 appear on the outline).",
+    ],
+    components: [
+      { id: "capsid", type: "capsid", layer: "exterior", labelSimple: "Capsid", labelDetailed: "T=1 icosahedral capsid (25 nm)", description: "A small icosahedral shell with T=1 symmetry, 250 Å across.", status: "verified", sourceIds: ["ictv-microviridae-report"] },
+      { id: "spikes", type: "surface-protein", layer: "exterior", labelSimple: "Spikes", labelDetailed: "Spike-protein pentamers at the fivefold vertices", description: "Pentamers of the major spike protein decorate the fivefold vertices, rising about 3 nm from the surface.", status: "verified", sourceIds: ["ictv-microviridae-report"] },
+      { id: "genome", type: "genome", layer: "interior", labelSimple: "Circular ssDNA", labelDetailed: "Circular +ssDNA (5,386 nt)", description: "A single circular, positive-sense single-stranded DNA.", status: "verified", sourceIds: ["ictv-microviridae-report", "ncbi-j02482"] },
+    ],
+  },
 ];

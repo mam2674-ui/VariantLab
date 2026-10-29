@@ -1,95 +1,68 @@
-/* Hallmark v2.0.0 · direction: custom (by request) — "scientific atlas": warm paper, ink ladder, one semantic palette reserved for structure · genre: editorial/app · signature: six specimens on one true-scale line */
-/* critique: the colour budget belongs to structural components only; chrome stays ink-on-paper so the diagrams carry meaning, not decoration. Labels are sentence case; mono only for measured values. */
-/* waive 9 (mono labels): Geist Mono is used solely for measurements, accessions and IDs — data, not costume. */
+/* Hallmark v2.0.0 · direction: custom (by request) — dark cinematic atlas after the user's reference (colossal.com), electric-blue accent · genre: editorial/app · signature: a rotating molecular-style adenovirus behind a full-width wordmark */
+/* critique: chrome is near-black and ink; blue (#2563eb, 4.5:1+ with its text) is reserved for actions, focus and the statistics band; the structural palette stays semantic and separate from the accent. */
+/* waive section numbers: the user asked for the reference site's numbered sections; labels are a number and one word in the body face, sentence case. */
 @import "tailwindcss";
 
 :root {
-  /* Surface + ink ladder (from DESIGN.md's Geist system, canvas warmed toward paper) */
-  --canvas: #f6f4ee;
-  --canvas-elevated: #fdfcf8;
-  --canvas-sunk: #efece4;
-  --ink: #171717;
-  --body: #45433e;
-  --mute: #66635b;
-  --hairline: #e1ddd2;
-  --hairline-strong: #cdc8bb;
-  --link: #0761d1;
-  --focus: #0761d1;
-  --selection: #d3e5ff;
-  --danger: #b42318;
-  --warn-ink: #8a4b08;
-  --warn-soft: #fbeed5;
+  /* Surfaces: near-black, cinematic */
+  --canvas: #07090d;
+  --canvas-elevated: #0e1117;
+  --canvas-sunk: #14181f;
+  --ink: #f2f4f8;
+  --body: #c3c8d2;
+  --mute: #8a92a1;
+  --hairline: #1c222c;
+  --hairline-strong: #2e3644;
+  /* Accent: electric blue */
+  --accent: #2563eb;
+  --accent-strong: #7ea8ff;
+  --accent-deep: #0b2a7a;
+  --on-accent: #f5f8ff;
+  --link: #7ea8ff;
+  --focus: #7ea8ff;
+  --selection: #1d3f9a;
+  --danger: #ff8a7a;
+  --warn-ink: #f2c27a;
+  --warn-soft: #3a2c14;
+  --shadow-float: 0 2px 2px rgb(0 0 0 / 0.3), 0 12px 32px -6px rgb(0 0 0 / 0.6);
+  --shadow-press: 0 1px 2px rgb(0 0 0 / 0.4);
+  --radius-control: 2px;
+  --radius-panel: 4px;
 
-  /* Semantic structural palette: one hue per component type, used identically in every diagram */
-  --c-envelope: #b7791f;
-  --c-surface: #be2f5b;
-  --c-matrix: #7c6aa6;
-  --c-tegument: #9a8a5c;
-  --c-capsid: #2563a8;
-  --c-nucleocapsid: #0f7f86;
-  --c-genome: #3f3f46;
-  --c-portal: #6b7280;
-  --c-tail: #57534e;
-  --c-fibre: #8b5e3c;
-  --c-envelope-soft: #f3e3c4;
-  --c-capsid-soft: #dbe6f3;
+  /* Semantic structural palette (kept distinct from the accent) */
+  --c-envelope: #e0a84a;
+  --c-surface: #f0789c;
+  --c-matrix: #ab9bd6;
+  --c-tegument: #c4b68a;
+  --c-capsid: #7cc8f5;
+  --c-nucleocapsid: #45c7a4;
+  --c-genome: #e4e6eb;
+  --c-portal: #a1a7b3;
+  --c-tail: #b5afa8;
+  --c-fibre: #d19a6c;
+  --c-envelope-soft: #2e2413;
+  --c-capsid-soft: #0f2533;
+
+  /* Protein chains: accent blue first, then contrasting hues */
+  --p1: #4a86ff;
+  --p2: #f2b84b;
+  --p3: #45d0b0;
+  --p4: #f07aa0;
+  --p5: #b9a6ff;
+  --p6: #9cd65c;
 
   /* Evidence status */
-  --s-verified: #1d6b3a;
-  --s-simplified: #5b4ba0;
-  --s-variable: #8a4b08;
-  --s-unverified: #b42318;
-  --s-na: #66635b;
+  --s-verified: #6fd391;
+  --s-simplified: #b7a8f5;
+  --s-variable: #f2c27a;
+  --s-unverified: #ff8a7a;
+  --s-na: #8a92a1;
 
-  --font-display: var(--font-newsreader), Georgia, serif;
-  --font-text: var(--font-geist-sans), system-ui, sans-serif;
-  --font-data: var(--font-geist-mono), ui-monospace, Menlo, monospace;
-
-  --shadow-float: 0 2px 2px rgb(0 0 0 / 0.04), 0 8px 16px -4px rgb(0 0 0 / 0.12);
-  --shadow-press: 0 1px 2px rgb(0 0 0 / 0.08);
-  --radius-control: 6px;
-  --radius-panel: 12px;
+  --font-display: var(--font-plex), "Arial Narrow", sans-serif;
+  --font-text: var(--font-plex), system-ui, sans-serif;
+  --font-data: var(--font-plex-mono), ui-monospace, Menlo, monospace;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  color-scheme: light;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --canvas: #121211;
-    --canvas-elevated: #1a1a18;
-    --canvas-sunk: #0d0d0c;
-    --ink: #eeede8;
-    --body: #c9c6bd;
-    --mute: #a29f95;
-    --hairline: #2c2b28;
-    --hairline-strong: #403e39;
-    --link: #79b0ff;
-    --focus: #79b0ff;
-    --selection: #1f3a66;
-    --danger: #ff8a7a;
-    --warn-ink: #f2c27a;
-    --warn-soft: #3a2c14;
-
-    --c-envelope: #e0a84a;
-    --c-surface: #f0789c;
-    --c-matrix: #ab9bd6;
-    --c-tegument: #c4b68a;
-    --c-capsid: #6fa6e6;
-    --c-nucleocapsid: #45c2c4;
-    --c-genome: #d4d4d8;
-    --c-portal: #a1a7b3;
-    --c-tail: #b5afa8;
-    --c-fibre: #d19a6c;
-    --c-envelope-soft: #3b2e17;
-    --c-capsid-soft: #182a40;
-
-    --s-verified: #6fd391;
-    --s-simplified: #b7a8f5;
-    --s-variable: #f2c27a;
-    --s-unverified: #ff8a7a;
-    --s-na: #a29f95;
-    color-scheme: dark;
-  }
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -101,6 +74,8 @@
   --color-mute: var(--mute);
   --color-hairline: var(--hairline);
   --color-link: var(--link);
+  --color-accent: var(--accent);
+  --color-accent-deep: var(--accent-deep);
   --font-display: var(--font-display);
   --font-sans: var(--font-text);
   --font-mono: var(--font-data);
@@ -154,9 +129,33 @@ a {
 
 .display {
   font-family: var(--font-display);
+  font-weight: 600;
+  font-stretch: 75%;
+  text-transform: uppercase;
+  letter-spacing: -0.005em;
+  line-height: 1;
+}
+/* Mono index labels after the reference site, e.g. "Section 01". */
+.index-label {
+  font-family: var(--font-text);
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--mute);
+  font-variant-numeric: tabular-nums;
+}
+.index-label b {
+  color: var(--ink);
   font-weight: 500;
-  letter-spacing: -0.02em;
-  line-height: 1.05;
+}
+/* Scroll-staged reveal: hidden only after JS marks it pending, so content shows without JS. */
+[data-reveal="pending"] {
+  opacity: 0.001;
+  transform: translateY(28px);
+}
+[data-reveal="shown"] {
+  opacity: 1;
+  transform: none;
+  transition: opacity 700ms var(--ease-out), transform 900ms var(--ease-out);
 }
 .measure {
   max-width: 68ch;
@@ -190,7 +189,7 @@ a {
   transition: background-color 150ms var(--ease-out), border-color 150ms var(--ease-out), color 150ms var(--ease-out);
 }
 .btn:hover {
-  border-color: var(--ink);
+  border-color: var(--accent-strong);
 }
 .btn:active {
   transform: translateY(1px);
@@ -202,12 +201,14 @@ a {
   transform: none;
 }
 .btn-primary {
-  background: var(--ink);
-  color: var(--canvas);
-  border-color: var(--ink);
+  background: var(--accent);
+  color: var(--on-accent);
+  border-color: var(--accent);
 }
 .btn-primary:hover {
-  background: var(--body);
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
+  color: var(--canvas);
 }
 
 .chip {
@@ -216,7 +217,7 @@ a {
   gap: 8px;
   min-height: 36px;
   padding: 0 12px;
-  border-radius: 999px;
+  border-radius: 2px;
   border: 1px solid var(--hairline-strong);
   background: transparent;
   color: var(--body);
@@ -231,9 +232,9 @@ a {
 .chip[aria-pressed="true"],
 .chip[aria-checked="true"],
 .chip:has(input:checked) {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: var(--canvas);
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
 }
 .chip input {
   position: absolute;
@@ -361,10 +362,10 @@ a {
   stroke: transparent;
 }
 .marker-badge circle {
-  fill: var(--ink);
+  fill: var(--accent);
 }
 .marker-badge text {
-  fill: var(--canvas);
+  fill: var(--on-accent);
   font: 600 13px var(--font-text);
 }
 

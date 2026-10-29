@@ -19,37 +19,222 @@
     "ictvId": "ICTV20041458",
     "vmrId": "VMR1006985",
     "exemplar": true,
-    "sourceIds": ["ictv-vmr-msl41"],
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ],
     "note": "MSL41 places papillomaviruses in the realm Floreoviria; older sources (before MSL41) list a different realm. The species name has not been converted to binomial format in MSL41. HPV16 is a papillomavirus 'type', a level below species."
   },
-  "referenceSequence": { "value": "K02718.1", "status": "verified", "scope": "virus", "sourceIds": ["ncbi-k02718", "ictv-vmr-msl41"] },
-  "hostCategory": { "value": "vertebrates", "status": "verified", "scope": "species", "sourceIds": ["ictv-vmr-msl41"] },
-  "hostDetail": { "value": "Vertebrates (ICTV host-source category); infects epithelial cells", "status": "verified", "scope": "family", "sourceIds": ["ictv-vmr-msl41", "ictv-papillomaviridae-2018"] },
-  "genome": {
-    "nucleicAcid": { "value": "DNA", "status": "verified", "scope": "family", "sourceIds": ["ictv-papillomaviridae-2018"] },
-    "strandedness": { "value": "double", "status": "verified", "scope": "family", "sourceIds": ["ictv-papillomaviridae-2018"] },
-    "sense": { "value": null, "status": "not_applicable", "scope": "family", "sourceIds": [], "note": "Sense applies to single-stranded RNA genomes; a dsDNA genome has two complementary template strands." },
-    "segmented": { "value": false, "status": "verified", "scope": "virus", "sourceIds": ["ncbi-k02718"] },
-    "segmentCount": { "value": 1, "status": "verified", "scope": "virus", "sourceIds": ["ncbi-k02718"] },
-    "topology": { "value": "circular", "status": "verified", "scope": "family", "sourceIds": ["ictv-papillomaviridae-2018"] },
-    "lengthKb": { "value": { "min": 7.9, "max": 7.9 }, "status": "verified", "scope": "virus", "sourceIds": ["ncbi-k02718"], "note": "Papillomavirus genomes span 5,748–8,607 bp across the family (ICTV)." },
-    "referenceLengthNt": { "value": 7904, "status": "verified", "scope": "virus", "sourceIds": ["ncbi-k02718"] }
+  "referenceSequence": {
+    "value": "K02718.1",
+    "status": "verified",
+    "scope": "virus",
+    "sourceIds": [
+      "ncbi-k02718",
+      "ictv-vmr-msl41"
+    ]
   },
-  "baltimore": { "value": "I", "status": "verified", "scope": "family", "sourceIds": ["viralzone-baltimore", "ictv-vmr-msl41"] },
-  "envelope": { "value": false, "status": "verified", "scope": "family", "sourceIds": ["ictv-papillomaviridae-2018"] },
-  "capsid": { "value": "Icosahedral capsid of 72 pentameric L1 capsomers in a T=7 arrangement (360 L1 copies), with the minor protein L2.", "status": "verified", "scope": "family", "sourceIds": ["ictv-papillomaviridae-report", "ictv-papillomaviridae-2018"] },
-  "morphology": { "value": "icosahedral-nonenveloped", "status": "verified", "scope": "family", "sourceIds": ["ictv-papillomaviridae-2018"] },
+  "hostCategory": {
+    "value": "vertebrates",
+    "status": "verified",
+    "scope": "species",
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostDetail": {
+    "value": "Vertebrates (ICTV host-source category); infects epithelial cells",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-vmr-msl41",
+      "ictv-papillomaviridae-2018"
+    ]
+  },
+  "genome": {
+    "nucleicAcid": {
+      "value": "DNA",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-papillomaviridae-2018"
+      ]
+    },
+    "ictvLabel": {
+      "value": "dsDNA",
+      "status": "verified",
+      "scope": "species",
+      "sourceIds": [
+        "ictv-vmr-msl41"
+      ]
+    },
+    "strandedness": {
+      "value": "double",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-papillomaviridae-2018"
+      ]
+    },
+    "sense": {
+      "value": null,
+      "status": "not_applicable",
+      "scope": "family",
+      "sourceIds": [],
+      "note": "Sense applies to single-stranded RNA genomes; a dsDNA genome has two complementary template strands."
+    },
+    "segmented": {
+      "value": false,
+      "status": "verified",
+      "scope": "virus",
+      "sourceIds": [
+        "ncbi-k02718"
+      ]
+    },
+    "segmentCount": {
+      "value": 1,
+      "status": "verified",
+      "scope": "virus",
+      "sourceIds": [
+        "ncbi-k02718"
+      ]
+    },
+    "topology": {
+      "value": "circular",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-papillomaviridae-2018"
+      ]
+    },
+    "lengthKb": {
+      "value": {
+        "min": 7.9,
+        "max": 7.9
+      },
+      "status": "verified",
+      "scope": "virus",
+      "sourceIds": [
+        "ncbi-k02718"
+      ],
+      "note": "Papillomavirus genomes span 5,748–8,607 bp across the family (ICTV)."
+    },
+    "referenceLengthNt": {
+      "value": 7904,
+      "status": "verified",
+      "scope": "virus",
+      "sourceIds": [
+        "ncbi-k02718"
+      ]
+    }
+  },
+  "baltimore": {
+    "value": "I",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "viralzone-baltimore",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "envelope": {
+    "value": false,
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-papillomaviridae-2018"
+    ]
+  },
+  "capsid": {
+    "value": "Icosahedral capsid of 72 pentameric L1 capsomers in a T=7 arrangement (360 L1 copies), with the minor protein L2.",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-papillomaviridae-report",
+      "ictv-papillomaviridae-2018"
+    ]
+  },
+  "morphology": {
+    "value": "icosahedral-nonenveloped",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-papillomaviridae-2018"
+    ]
+  },
   "dimensions": [
-    { "id": "capsid-diameter", "part": "capsid", "measure": "diameter", "label": "Capsid diameter", "min": 55, "max": 60, "unit": "nm", "approximate": true, "status": "variable", "scope": "family", "sourceIds": ["ictv-papillomaviridae-2018", "ictv-papillomaviridae-report"], "note": "The ICTV profile table gives 55 nm; the ICTV Report text gives ~600 Å (60 nm)." }
+    {
+      "id": "capsid-diameter",
+      "part": "capsid",
+      "measure": "diameter",
+      "label": "Capsid diameter",
+      "min": 55,
+      "max": 60,
+      "unit": "nm",
+      "approximate": true,
+      "status": "variable",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-papillomaviridae-2018",
+        "ictv-papillomaviridae-report"
+      ],
+      "note": "The ICTV profile table gives 55 nm; the ICTV Report text gives ~600 Å (60 nm)."
+    }
   ],
   "replication": {
-    "site": { "value": "Nucleus of epithelial cells", "status": "not_verified", "scope": "family", "sourceIds": [], "note": "Our ICTV sources describe epithelial replication but the fetched text did not state the compartment explicitly; nuclear replication is standard teaching and is flagged for verification." },
-    "mRNARoute": { "value": "As a dsDNA virus, the genome is transcribed directly into mRNA.", "status": "simplified", "scope": "family", "sourceIds": ["viralzone-baltimore"] },
+    "site": {
+      "value": "Nucleus of epithelial cells",
+      "status": "not_verified",
+      "scope": "family",
+      "sourceIds": [],
+      "note": "Our ICTV sources describe epithelial replication but the fetched text did not state the compartment explicitly; nuclear replication is standard teaching and is flagged for verification."
+    },
+    "mRNARoute": {
+      "value": "As a dsDNA virus, the genome is transcribed directly into mRNA.",
+      "status": "simplified",
+      "scope": "family",
+      "sourceIds": [
+        "viralzone-baltimore"
+      ]
+    },
     "steps": [
-      { "id": "amplification", "title": "Initial amplification", "text": "After entry, the genome is amplified with the viral E1 helicase (the only viral enzyme) and E2.", "status": "verified", "sourceIds": ["ictv-papillomaviridae-2018", "ictv-papillomaviridae-report"] },
-      { "id": "maintenance", "title": "Maintenance", "text": "The genome is maintained at low copy number in dividing cells, associated with host chromosomes during mitosis.", "status": "verified", "sourceIds": ["ictv-papillomaviridae-2018"] },
-      { "id": "differentiation", "title": "Differentiation-dependent amplification", "text": "As cells differentiate in the upper epithelium, viral DNA is amplified to high copy number; E6 and E7 help the virus replicate in these cells.", "status": "verified", "sourceIds": ["ictv-papillomaviridae-2018"] },
-      { "id": "assembly", "title": "Assembly and release", "text": "Capsid proteins L1 and L2 assemble around the DNA; virions are released as cells slough off.", "status": "verified", "sourceIds": ["ictv-papillomaviridae-2018", "ictv-papillomaviridae-report"] }
+      {
+        "id": "amplification",
+        "title": "Initial amplification",
+        "text": "After entry, the genome is amplified with the viral E1 helicase (the only viral enzyme) and E2.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-papillomaviridae-2018",
+          "ictv-papillomaviridae-report"
+        ]
+      },
+      {
+        "id": "maintenance",
+        "title": "Maintenance",
+        "text": "The genome is maintained at low copy number in dividing cells, associated with host chromosomes during mitosis.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-papillomaviridae-2018"
+        ]
+      },
+      {
+        "id": "differentiation",
+        "title": "Differentiation-dependent amplification",
+        "text": "As cells differentiate in the upper epithelium, viral DNA is amplified to high copy number; E6 and E7 help the virus replicate in these cells.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-papillomaviridae-2018"
+        ]
+      },
+      {
+        "id": "assembly",
+        "title": "Assembly and release",
+        "text": "Capsid proteins L1 and L2 assemble around the DNA; virions are released as cells slough off.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-papillomaviridae-2018",
+          "ictv-papillomaviridae-report"
+        ]
+      }
     ]
   },
   "diagramId": "hpv-16"

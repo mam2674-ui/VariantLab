@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 
 test("opens a profile from the atlas", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Viruses");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Virus Atlas");
   await page.getByRole("link", { name: "Bacteriophage T4" }).click();
   await expect(page).toHaveURL(/\/virus\/phage-t4$/);
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Bacteriophage T4");
@@ -38,7 +38,7 @@ test("exterior view hides interior layers; layers toggle", async ({ page }) => {
 
 test("compares viruses and restores the selection from the URL", async ({ page }) => {
   await page.goto("/compare?v=influenza-a,sars-cov-2");
-  await expect(page.getByRole("heading", { name: "Property by property" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Property by property" })).toBeAttached();
   await expect(page.getByText(/Different genome classes/)).toBeVisible();
   await page.locator("label.chip", { hasText: "Bacteriophage T4" }).click();
   await expect(page).toHaveURL(/v=influenza-a,sars-cov-2,phage-t4/);
@@ -50,7 +50,7 @@ test("compares viruses and restores the selection from the URL", async ({ page }
 test("uses filters, shows an empty state and resets", async ({ page }) => {
   await page.goto("/#atlas");
   await page.locator("label.chip", { hasText: /^Enveloped/ }).click();
-  await expect(page.getByText(/3 of 6 viruses/)).toBeVisible();
+  await expect(page.getByText(/5 of 12 viruses/)).toBeVisible();
   await expect(page).toHaveURL(/envelope=enveloped/);
   await page.locator("label.chip", { hasText: "Bacteria" }).click();
   await expect(page.getByRole("heading", { name: /No virus matches/ })).toBeVisible();
@@ -83,12 +83,47 @@ test("size explorer separates linear and log views", async ({ page }) => {
 test("navigates on mobile without horizontal page scroll", async ({ page, isMobile }) => {
   test.skip(!isMobile, "mobile only");
   await page.goto("/");
-  await page.getByText("Menu").click();
-  await page.getByRole("navigation", { name: "Primary mobile" }).getByRole("link", { name: "Compare" }).click();
+  await page.getByRole("button", { name: /Index/ }).click();
+  await page.getByRole("navigation", { name: "Pages" }).getByRole("link", { name: /Compare/ }).click();
   await expect(page).toHaveURL(/\/compare/);
-  for (const path of ["/", "/virus/phage-t4", "/compare?v=hsv-1,hpv-16", "/size", "/genomes", "/sources"]) {
+  for (const path of ["/", "/virus/phage-t4", "/virus/rotavirus-a", "/compare?v=hsv-1,hpv-16", "/size", "/genomes", "/sources", "/proteins", "/proteins/6VSB"]) {
     await page.goto(path);
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
     expect(overflow, path).toBeLessThanOrEqual(0);
   }
+});
+
+test("opens a protein structure from a diagram component and switches views", async ({ page }) => {
+  await page.goto("/virus/sars-cov-2");
+  await page.getByRole("list", { name: "Structural components" }).getByRole("button", { name: /Spike/ }).click();
+  await page.getByRole("link", { name: /PDB 6VSB/ }).click();
+  await expect(page).toHaveURL(/\/proteins\/6VSB/);
+  await expect(page.getByText(/Chain A: Spike protomer/)).toBeVisible();
+  await page.getByRole("button", { name: /Chain B/ }).click();
+  await expect(page.getByRole("img", { name: /chain B highlighted/ })).toBeVisible();
+});
+
+test("genome map: selecting a gene shows its coordinates", async ({ page }) => {
+  await page.goto("/virus/hpv-16");
+  await page.getByRole("list", { name: "All annotated genes" }).getByRole("button").first().click();
+  await expect(page.getByText("Coding length")).toBeVisible();
+  await expect(page.getByText(/amino acids/)).toBeVisible();
+});
+
+test("cell map follows replication stages; phages have no nucleus", async ({ page }) => {
+  await page.goto("/genomes?v=influenza-a");
+  await page.getByRole("button", { name: "Nuclear import" }).click();
+  await expect(page.getByRole("img", { name: /Current stage location: Nucleus/ })).toBeVisible();
+  await page.goto("/genomes?v=phage-t4");
+  await expect(page.getByRole("img", { name: /Bacterial host cell/ })).toBeVisible();
+});
+
+test("3D model loads or falls back without errors", async ({ page }) => {
+  const errors: string[] = [];
+  page.on("pageerror", (e) => errors.push(e.message));
+  await page.goto("/virus/human-adenovirus-5");
+  await page.getByRole("radio", { name: "3D model" }).click();
+  await expect(page.locator("canvas, svg.diagram").first()).toBeVisible({ timeout: 20000 });
+  await page.getByRole("button", { name: "Separate layers" }).click();
+  expect(errors).toEqual([]);
 });

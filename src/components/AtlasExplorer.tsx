@@ -15,13 +15,15 @@ const GENOME_OPTS = [
   { v: "-ssRNA", l: "−ssRNA" },
   { v: "ssDNA", l: "ssDNA" },
   { v: "dsRNA", l: "dsRNA" },
+  { v: "ssRNA-RT", l: "ssRNA-RT" },
+  { v: "dsDNA-RT", l: "dsDNA-RT" },
 ] as const;
 const SIZE_OPTS = [
   { v: "small", l: "Under 70 nm" },
   { v: "medium", l: "70–130 nm" },
   { v: "large", l: "Over 130 nm" },
 ] as const;
-const HOST_LABEL: Record<string, string> = { vertebrates: "Vertebrates", bacteria: "Bacteria" };
+const HOST_LABEL: Record<string, string> = { vertebrates: "Vertebrates", bacteria: "Bacteria", plants: "Plants" };
 
 export function AtlasExplorer({ viruses }: { viruses: Virus[] }) {
   const router = useRouter();

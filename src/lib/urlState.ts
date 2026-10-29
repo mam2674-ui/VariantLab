@@ -1,4 +1,4 @@
-import { emptyFilters, type AtlasFilters, type GenomeClass, type SizeBand } from "./filter";
+import { emptyFilters, GENOME_CLASSES, type AtlasFilters, type GenomeClass, type SizeBand } from "./filter";
 import { MAX_COMPARE } from "./compare";
 
 type Params = URLSearchParams | Record<string, string | string[] | undefined>;
@@ -23,7 +23,7 @@ export function compareHref(ids: string[]) {
   return ids.length ? `/compare?v=${ids.map(encodeURIComponent).join(",")}` : "/compare";
 }
 
-const GENOME: GenomeClass[] = ["dsDNA", "ssDNA", "dsRNA", "+ssRNA", "-ssRNA"];
+const GENOME: GenomeClass[] = GENOME_CLASSES;
 const SIZE: SizeBand[] = ["small", "medium", "large"];
 const ENVELOPE = ["enveloped", "non-enveloped"] as const;
 

@@ -6,6 +6,7 @@ const CLASS: Record<string, string> = {
   "icosahedral-nonenveloped": "stroke-capsid",
   "pleomorphic-enveloped": "stroke-envelope",
   "enveloped-icosahedral-core": "stroke-envelope",
+  "enveloped-conical-core": "stroke-envelope",
 };
 
 /**
@@ -33,7 +34,12 @@ export function SilhouetteShapes({ v, k, x = 0, y = 0 }: { v: Virus; k: number; 
             />
           );
         if (sh.kind === "hexagon") return <polygon key={i} points={hexPoints(sh, k)} fill="none" className="stroke-capsid" strokeWidth={2} strokeLinejoin="round" />;
-        if (sh.kind === "rect") return <rect key={i} x={sh.x * k} y={sh.y * k} width={Math.max(sh.w * k, 2)} height={sh.h * k} className="fill-tail" />;
+        if (sh.kind === "rect")
+          return sh.style === "rod" ? (
+            <rect key={i} x={sh.x * k} y={sh.y * k} width={sh.w * k} height={Math.max(sh.h * k, 2)} fill="none" className="stroke-capsid" strokeWidth={1.5} />
+          ) : (
+            <rect key={i} x={sh.x * k} y={sh.y * k} width={Math.max(sh.w * k, 2)} height={sh.h * k} className="fill-tail" />
+          );
         return (
           <line
             key={i}

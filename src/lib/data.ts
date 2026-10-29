@@ -6,10 +6,29 @@ import phageT4 from "@/data/viruses/phage-t4.json";
 import adenovirus5 from "@/data/viruses/human-adenovirus-5.json";
 import hsv1 from "@/data/viruses/hsv-1.json";
 import hpv16 from "@/data/viruses/hpv-16.json";
+import hiv1 from "@/data/viruses/hiv-1.json";
+import hepatitisB from "@/data/viruses/hepatitis-b.json";
+import rotavirusA from "@/data/viruses/rotavirus-a.json";
+import poliovirus1 from "@/data/viruses/poliovirus-1.json";
+import tmv from "@/data/viruses/tmv.json";
+import phix174 from "@/data/viruses/phix174.json";
 import { diagramSpecs } from "@/data/diagrams";
 
 /** Raw records in display order. Adding a virus = add its JSON here + a diagram spec. */
-export const rawViruses: unknown[] = [influenzaA, sarsCov2, hsv1, adenovirus5, hpv16, phageT4];
+export const rawViruses: unknown[] = [
+  influenzaA,
+  sarsCov2,
+  hiv1,
+  hepatitisB,
+  hsv1,
+  adenovirus5,
+  hpv16,
+  poliovirus1,
+  rotavirusA,
+  tmv,
+  phageT4,
+  phix174,
+];
 
 /**
  * Parse and cross-check the whole dataset. Throws on any schema violation or

@@ -19,40 +19,273 @@
     "ictvId": "ICTV20040588",
     "vmrId": "VMR1011389",
     "exemplar": false,
-    "sourceIds": ["ictv-vmr-msl41"],
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ],
     "note": "SARS-CoV-2 is an additional isolate of the species Betacoronavirus pandemicum (formerly Severe acute respiratory syndrome-related coronavirus); it is not the species exemplar. The suborder Cornidovirineae is omitted from the rank list."
   },
-  "referenceSequence": { "value": "NC_045512.2 (Wuhan-Hu-1)", "status": "verified", "scope": "isolate", "sourceIds": ["ncbi-nc045512", "ictv-vmr-msl41"] },
-  "hostCategory": { "value": "vertebrates", "status": "verified", "scope": "species", "sourceIds": ["ictv-vmr-msl41"] },
-  "hostDetail": { "value": "Vertebrates (ICTV host-source category)", "status": "verified", "scope": "species", "sourceIds": ["ictv-vmr-msl41"] },
-  "genome": {
-    "nucleicAcid": { "value": "RNA", "status": "verified", "scope": "genus", "sourceIds": ["viralzone-betacoronavirus", "ictv-coronaviridae-2023"] },
-    "strandedness": { "value": "single", "status": "verified", "scope": "family", "sourceIds": ["ictv-coronaviridae-2023"] },
-    "sense": { "value": "positive", "status": "verified", "scope": "family", "sourceIds": ["ictv-coronaviridae-2023", "ictv-vmr-msl41"] },
-    "segmented": { "value": false, "status": "verified", "scope": "genus", "sourceIds": ["viralzone-betacoronavirus"] },
-    "segmentCount": { "value": 1, "status": "verified", "scope": "genus", "sourceIds": ["viralzone-betacoronavirus"], "note": "Monopartite genome." },
-    "topology": { "value": "linear", "status": "verified", "scope": "family", "sourceIds": ["ictv-coronaviridae-2023"] },
-    "lengthKb": { "value": { "min": 29.9, "max": 29.9 }, "status": "verified", "scope": "isolate", "sourceIds": ["ncbi-nc045512"], "note": "Betacoronavirus genomes span 27–32 kb (ViralZone); coronaviruses overall ~22–36 kb (ICTV 2023)." },
-    "referenceLengthNt": { "value": 29903, "status": "verified", "scope": "isolate", "sourceIds": ["ncbi-nc045512"] }
+  "referenceSequence": {
+    "value": "NC_045512.2 (Wuhan-Hu-1)",
+    "status": "verified",
+    "scope": "isolate",
+    "sourceIds": [
+      "ncbi-nc045512",
+      "ictv-vmr-msl41"
+    ]
   },
-  "baltimore": { "value": "IV", "status": "verified", "scope": "family", "sourceIds": ["viralzone-baltimore", "ictv-coronaviridae-2023"] },
-  "envelope": { "value": true, "status": "verified", "scope": "family", "sourceIds": ["ictv-coronaviridae-2023", "ictv-coronaviridae-report"] },
-  "capsid": { "value": "No icosahedral capsid. The genome is bound by nucleocapsid protein in short helical units that are arranged loosely inside the envelope.", "status": "verified", "scope": "family", "sourceIds": ["ictv-coronaviridae-report"] },
-  "morphology": { "value": "pleomorphic-enveloped", "status": "verified", "scope": "family", "sourceIds": ["ictv-coronaviridae-2023", "ke2020-sarscov2-spikes"], "note": "Roughly spherical but pleomorphic." },
+  "hostCategory": {
+    "value": "vertebrates",
+    "status": "verified",
+    "scope": "species",
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostDetail": {
+    "value": "Vertebrates (ICTV host-source category)",
+    "status": "verified",
+    "scope": "species",
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ]
+  },
+  "genome": {
+    "nucleicAcid": {
+      "value": "RNA",
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "viralzone-betacoronavirus",
+        "ictv-coronaviridae-2023"
+      ]
+    },
+    "ictvLabel": {
+      "value": "ssRNA(+)",
+      "status": "verified",
+      "scope": "species",
+      "sourceIds": [
+        "ictv-vmr-msl41"
+      ]
+    },
+    "strandedness": {
+      "value": "single",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-coronaviridae-2023"
+      ]
+    },
+    "sense": {
+      "value": "positive",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-coronaviridae-2023",
+        "ictv-vmr-msl41"
+      ]
+    },
+    "segmented": {
+      "value": false,
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "viralzone-betacoronavirus"
+      ]
+    },
+    "segmentCount": {
+      "value": 1,
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "viralzone-betacoronavirus"
+      ],
+      "note": "Monopartite genome."
+    },
+    "topology": {
+      "value": "linear",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-coronaviridae-2023"
+      ]
+    },
+    "lengthKb": {
+      "value": {
+        "min": 29.9,
+        "max": 29.9
+      },
+      "status": "verified",
+      "scope": "isolate",
+      "sourceIds": [
+        "ncbi-nc045512"
+      ],
+      "note": "Betacoronavirus genomes span 27–32 kb (ViralZone); coronaviruses overall ~22–36 kb (ICTV 2023)."
+    },
+    "referenceLengthNt": {
+      "value": 29903,
+      "status": "verified",
+      "scope": "isolate",
+      "sourceIds": [
+        "ncbi-nc045512"
+      ]
+    }
+  },
+  "baltimore": {
+    "value": "IV",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "viralzone-baltimore",
+      "ictv-coronaviridae-2023"
+    ]
+  },
+  "envelope": {
+    "value": true,
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-coronaviridae-2023",
+      "ictv-coronaviridae-report"
+    ]
+  },
+  "capsid": {
+    "value": "No icosahedral capsid. The genome is bound by nucleocapsid protein in short helical units that are arranged loosely inside the envelope.",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-coronaviridae-report"
+    ]
+  },
+  "morphology": {
+    "value": "pleomorphic-enveloped",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-coronaviridae-2023",
+      "ke2020-sarscov2-spikes"
+    ],
+    "note": "Roughly spherical but pleomorphic."
+  },
   "dimensions": [
-    { "id": "virion-diameter", "part": "virion", "measure": "diameter", "label": "Virion diameter (outside of membrane, excluding spikes)", "min": 80, "max": 102, "unit": "nm", "central": { "value": 91, "sd": 11, "n": 179 }, "approximate": false, "status": "verified", "scope": "virus", "sourceIds": ["ke2020-sarscov2-spikes"], "note": "Mean ± SD of fixed virions; the bar spans one SD either side, not the full observed range." },
-    { "id": "family-diameter", "part": "virion", "measure": "diameter", "label": "Coronaviridae family range", "min": 80, "max": 160, "unit": "nm", "approximate": false, "status": "variable", "scope": "family", "sourceIds": ["ictv-coronaviridae-report"], "note": "Family-level range across coronaviruses; shown for context only." }
+    {
+      "id": "virion-diameter",
+      "part": "virion",
+      "measure": "diameter",
+      "label": "Virion diameter (outside of membrane, excluding spikes)",
+      "min": 80,
+      "max": 102,
+      "unit": "nm",
+      "central": {
+        "value": 91,
+        "sd": 11,
+        "n": 179
+      },
+      "approximate": false,
+      "status": "verified",
+      "scope": "virus",
+      "sourceIds": [
+        "ke2020-sarscov2-spikes"
+      ],
+      "note": "Mean ± SD of fixed virions; the bar spans one SD either side, not the full observed range."
+    },
+    {
+      "id": "family-diameter",
+      "part": "virion",
+      "measure": "diameter",
+      "label": "Coronaviridae family range",
+      "min": 80,
+      "max": 160,
+      "unit": "nm",
+      "approximate": false,
+      "status": "variable",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-coronaviridae-report"
+      ],
+      "note": "Family-level range across coronaviruses; shown for context only."
+    }
   ],
   "replication": {
-    "site": { "value": "Cytoplasm, on modified membranes and double-membrane vesicles", "status": "verified", "scope": "family", "sourceIds": ["ictv-coronaviridae-report"] },
-    "mRNARoute": { "value": "The positive-sense genome is translated directly into replicase polyproteins. Negative-sense copies then serve as templates for new genomes and for a nested set of subgenomic mRNAs that share a 5′ leader.", "status": "verified", "scope": "family", "sourceIds": ["ictv-coronaviridae-2023", "viralzone-betacoronavirus"] },
+    "site": {
+      "value": "Cytoplasm, on modified membranes and double-membrane vesicles",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-coronaviridae-report"
+      ]
+    },
+    "mRNARoute": {
+      "value": "The positive-sense genome is translated directly into replicase polyproteins. Negative-sense copies then serve as templates for new genomes and for a nested set of subgenomic mRNAs that share a 5′ leader.",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-coronaviridae-2023",
+        "viralzone-betacoronavirus"
+      ]
+    },
     "steps": [
-      { "id": "attach", "title": "Attachment and entry", "text": "The spike (S) protein binds host receptors and the particle enters by endocytosis.", "status": "simplified", "sourceIds": ["viralzone-betacoronavirus"] },
-      { "id": "release", "title": "Genome release", "text": "Viral and endosomal membranes fuse, releasing the genome into the cytoplasm.", "status": "verified", "sourceIds": ["viralzone-betacoronavirus"] },
-      { "id": "translation", "title": "Replicase translation", "text": "The genome is translated into a replicase polyprotein that is cleaved into the replication machinery.", "status": "verified", "sourceIds": ["viralzone-betacoronavirus"] },
-      { "id": "replication", "title": "Replication organelles", "text": "Replication and transcription take place on modified membranes and double-membrane vesicles, producing new genomes and subgenomic mRNAs.", "status": "verified", "sourceIds": ["ictv-coronaviridae-report", "ictv-coronaviridae-2023"] },
-      { "id": "assembly", "title": "Assembly", "text": "Structural proteins made from subgenomic mRNAs assemble with new genomes; particles bud into ER, intermediate-compartment or Golgi membranes.", "status": "verified", "sourceIds": ["viralzone-betacoronavirus", "ictv-coronaviridae-report"] },
-      { "id": "exit", "title": "Release", "text": "Virions leave the cell by exocytosis.", "status": "verified", "sourceIds": ["viralzone-betacoronavirus"] }
+      {
+        "id": "attach",
+        "location": "membrane",
+        "title": "Attachment and entry",
+        "text": "The spike (S) protein binds host receptors and the particle enters by endocytosis.",
+        "status": "simplified",
+        "sourceIds": [
+          "viralzone-betacoronavirus"
+        ]
+      },
+      {
+        "id": "release",
+        "location": "endosome",
+        "title": "Genome release",
+        "text": "Viral and endosomal membranes fuse, releasing the genome into the cytoplasm.",
+        "status": "verified",
+        "sourceIds": [
+          "viralzone-betacoronavirus"
+        ]
+      },
+      {
+        "id": "translation",
+        "location": "cytoplasm",
+        "title": "Replicase translation",
+        "text": "The genome is translated into a replicase polyprotein that is cleaved into the replication machinery.",
+        "status": "verified",
+        "sourceIds": [
+          "viralzone-betacoronavirus"
+        ]
+      },
+      {
+        "id": "replication",
+        "location": "cytoplasm",
+        "title": "Replication organelles",
+        "text": "Replication and transcription take place on modified membranes and double-membrane vesicles, producing new genomes and subgenomic mRNAs.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-coronaviridae-report",
+          "ictv-coronaviridae-2023"
+        ]
+      },
+      {
+        "id": "assembly",
+        "location": "er-golgi",
+        "title": "Assembly",
+        "text": "Structural proteins made from subgenomic mRNAs assemble with new genomes; particles bud into ER, intermediate-compartment or Golgi membranes.",
+        "status": "verified",
+        "sourceIds": [
+          "viralzone-betacoronavirus",
+          "ictv-coronaviridae-report"
+        ]
+      },
+      {
+        "id": "exit",
+        "location": "membrane",
+        "title": "Release",
+        "text": "Virions leave the cell by exocytosis.",
+        "status": "verified",
+        "sourceIds": [
+          "viralzone-betacoronavirus"
+        ]
+      }
     ]
   },
   "diagramId": "sars-cov-2"

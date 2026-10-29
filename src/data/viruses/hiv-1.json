@@ -1,0 +1,267 @@
+{
+  "id": "hiv-1",
+  "commonName": "Human immunodeficiency virus 1",
+  "abbreviation": "HIV-1",
+  "representative": "Virus-level profile; sequence length from the ICTV exemplar sequence AF033819. Particle size and core shape are family- and genus-level ICTV values.",
+  "summary": "An enveloped retrovirus. Each particle carries two copies of a positive-sense RNA genome, which is copied into DNA by reverse transcription and then integrated into the host's chromosomes as a provirus.",
+  "taxonomy": {
+    "msl": "MSL41 (VMR v1, 2026-07-29)",
+    "subfamily": "Orthoretrovirinae",
+    "subgenus": null,
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ],
+    "realm": "Riboviria",
+    "kingdom": "Pararnavirae",
+    "phylum": "Artverviricota",
+    "class": "Revtraviricetes",
+    "order": "Ortervirales",
+    "family": "Retroviridae",
+    "genus": "Lentivirus",
+    "species": "Lentivirus humimdef1",
+    "ictvId": "ICTV19911441",
+    "vmrId": "VMR1004107",
+    "exemplar": true
+  },
+  "referenceSequence": {
+    "value": "AF033819.3",
+    "status": "verified",
+    "scope": "virus",
+    "sourceIds": [
+      "ncbi-af033819",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostCategory": {
+    "value": "vertebrates",
+    "status": "verified",
+    "scope": "species",
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostDetail": {
+    "value": "Vertebrates (ICTV host-source category)",
+    "status": "verified",
+    "scope": "species",
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ]
+  },
+  "genome": {
+    "nucleicAcid": {
+      "value": "RNA",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-retroviridae-report",
+        "ictv-vmr-msl41"
+      ]
+    },
+    "ictvLabel": {
+      "value": "ssRNA-RT",
+      "status": "verified",
+      "scope": "species",
+      "sourceIds": [
+        "ictv-vmr-msl41"
+      ]
+    },
+    "strandedness": {
+      "value": "single",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-retroviridae-report"
+      ]
+    },
+    "sense": {
+      "value": "positive",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-retroviridae-report"
+      ]
+    },
+    "segmented": {
+      "value": false,
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-retroviridae-report"
+      ],
+      "note": "Not segmented, but each particle packages two identical copies (a homodimer) of the genome."
+    },
+    "segmentCount": {
+      "value": 1,
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-retroviridae-report"
+      ],
+      "note": "One genome molecule, present as two copies."
+    },
+    "topology": {
+      "value": "linear",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-retroviridae-report"
+      ]
+    },
+    "lengthKb": {
+      "value": {
+        "min": 9.2,
+        "max": 9.2
+      },
+      "status": "verified",
+      "scope": "virus",
+      "sourceIds": [
+        "ncbi-af033819"
+      ],
+      "note": "Retrovirus genomes are 7–13 kb per monomer (ICTV)."
+    },
+    "referenceLengthNt": {
+      "value": 9181,
+      "status": "verified",
+      "scope": "virus",
+      "sourceIds": [
+        "ncbi-af033819"
+      ]
+    }
+  },
+  "baltimore": {
+    "value": "VI",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "viralzone-baltimore",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "envelope": {
+    "value": true,
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-retroviridae-report",
+      "ictv-retroviridae-2021"
+    ]
+  },
+  "capsid": {
+    "value": "A capsid core inside the envelope that is rod or truncated-cone shaped in lentiviruses, containing the genome and the replicative enzymes.",
+    "status": "verified",
+    "scope": "genus",
+    "sourceIds": [
+      "ictv-retroviridae-report",
+      "ictv-retroviridae-2021"
+    ]
+  },
+  "morphology": {
+    "value": "enveloped-conical-core",
+    "status": "verified",
+    "scope": "genus",
+    "sourceIds": [
+      "ictv-retroviridae-report"
+    ]
+  },
+  "dimensions": [
+    {
+      "id": "virion-diameter",
+      "part": "virion",
+      "measure": "diameter",
+      "label": "Enveloped particle diameter (family range)",
+      "min": 80,
+      "max": 100,
+      "unit": "nm",
+      "approximate": false,
+      "status": "variable",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-retroviridae-report",
+        "ictv-retroviridae-2021"
+      ],
+      "note": "Family-level range for spherical retrovirus particles."
+    }
+  ],
+  "replication": {
+    "site": {
+      "value": "Cytoplasm (reverse transcription) and nucleus (integration and transcription)",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-retroviridae-report"
+      ]
+    },
+    "mRNARoute": {
+      "value": "The RNA genome is reverse-transcribed into double-stranded DNA, which integrates into host DNA as a provirus. Host RNA polymerase II then transcribes the provirus into mRNAs and new genomes.",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-retroviridae-report"
+      ]
+    },
+    "steps": [
+      {
+        "id": "entry",
+        "location": "membrane",
+        "title": "Attachment and fusion",
+        "text": "The envelope (SU) glycoprotein binds specific receptors; the envelope then fuses with a cell membrane, directly or after endocytosis.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-retroviridae-report"
+        ]
+      },
+      {
+        "id": "rt",
+        "location": "cytoplasm",
+        "title": "Reverse transcription",
+        "text": "Early post-entry events take place in the capsid core delivered to the cytoplasm; reverse transcription copies the RNA genome into double-stranded DNA with long terminal repeats.",
+        "status": "simplified",
+        "sourceIds": [
+          "ictv-retroviridae-report"
+        ]
+      },
+      {
+        "id": "integration",
+        "location": "nucleus",
+        "title": "Integration",
+        "text": "The viral DNA integrates into the host's chromosomal DNA, forming a provirus.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-retroviridae-report"
+        ]
+      },
+      {
+        "id": "transcription",
+        "location": "nucleus",
+        "title": "Transcription",
+        "text": "Cellular RNA polymerase II transcribes the provirus into mRNAs and new genomic RNA.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-retroviridae-report"
+        ]
+      },
+      {
+        "id": "assembly",
+        "location": "membrane",
+        "title": "Assembly and budding",
+        "text": "For most retroviruses, capsids assemble at the plasma membrane and bud, preferentially at lipid rafts.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-retroviridae-report"
+        ]
+      },
+      {
+        "id": "maturation",
+        "location": "outside",
+        "title": "Maturation",
+        "text": "The polyprotein precursor is processed during or just after budding, maturing the particle.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-retroviridae-report"
+        ]
+      }
+    ]
+  },
+  "diagramId": "hiv-1"
+}

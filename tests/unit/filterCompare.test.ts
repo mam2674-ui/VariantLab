@@ -5,7 +5,7 @@ import { compareInsights, compareRows } from "@/lib/compare";
 import { compareHref, parseCompareIds, parseFilters, serializeFilters } from "@/lib/urlState";
 
 const byId = (id: string) => viruses.find((v) => v.id === id)!;
-const allowed = { host: ["vertebrates", "bacteria"], morphology: ["pleomorphic-enveloped", "enveloped-icosahedral-core", "icosahedral-nonenveloped", "head-tail"] };
+const allowed = { host: ["vertebrates", "bacteria", "plants"], morphology: ["pleomorphic-enveloped", "enveloped-icosahedral-core", "enveloped-conical-core", "icosahedral-nonenveloped", "head-tail", "helical-rod"] };
 
 describe("filtering", () => {
   it("derives genome classes", () => {
@@ -14,23 +14,26 @@ describe("filtering", () => {
     expect(genomeClass(byId("hpv-16"))).toBe("dsDNA");
   });
   it("no filters returns everything", () => {
-    expect(filterViruses(viruses, emptyFilters)).toHaveLength(6);
+    expect(filterViruses(viruses, emptyFilters)).toHaveLength(12);
     expect(isFiltered(emptyFilters)).toBe(false);
   });
   it("combines groups with AND and options with OR", () => {
     const env = filterViruses(viruses, { ...emptyFilters, envelope: ["enveloped"] }).map((v) => v.id).sort();
-    expect(env).toEqual(["hsv-1", "influenza-a", "sars-cov-2"]);
+    expect(env).toEqual(["hepatitis-b", "hiv-1", "hsv-1", "influenza-a", "sars-cov-2"]);
     const dnaEnv = filterViruses(viruses, { ...emptyFilters, envelope: ["enveloped"], genome: ["dsDNA"] }).map((v) => v.id);
     expect(dnaEnv).toEqual(["hsv-1"]);
-    const rna = filterViruses(viruses, { ...emptyFilters, genome: ["+ssRNA", "-ssRNA"] });
-    expect(rna).toHaveLength(2);
+    const rna = filterViruses(viruses, { ...emptyFilters, genome: ["+ssRNA", "-ssRNA"] }).map((v) => v.id).sort();
+    expect(rna).toEqual(["influenza-a", "poliovirus-1", "sars-cov-2", "tmv"]);
+    // reverse-transcribing viruses keep their own classes
+    expect(filterViruses(viruses, { ...emptyFilters, genome: ["ssRNA-RT"] }).map((v) => v.id)).toEqual(["hiv-1"]);
+    expect(filterViruses(viruses, { ...emptyFilters, genome: ["dsDNA-RT"] }).map((v) => v.id)).toEqual(["hepatitis-b"]);
   });
   it("supports search across names and taxonomy", () => {
     expect(filterViruses(viruses, { ...emptyFilters, q: "straboviridae" }).map((v) => v.id)).toEqual(["phage-t4"]);
     expect(filterViruses(viruses, { ...emptyFilters, q: "herpes" }).map((v) => v.id)).toEqual(["hsv-1"]);
   });
   it("returns empty for impossible combinations", () => {
-    expect(filterViruses(viruses, { ...emptyFilters, genome: ["dsRNA"] })).toHaveLength(0);
+    expect(filterViruses(viruses, { ...emptyFilters, host: ["plants"], envelope: ["enveloped"] })).toHaveLength(0);
     expect(filterViruses(viruses, { ...emptyFilters, host: ["bacteria"], envelope: ["enveloped"] })).toHaveLength(0);
   });
   it("sizes by body, not appendages", () => {

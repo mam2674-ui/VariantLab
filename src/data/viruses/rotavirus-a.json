@@ -1,0 +1,246 @@
+{
+  "id": "rotavirus-a",
+  "commonName": "Rotavirus A",
+  "abbreviation": "RVA",
+  "representative": "Species-level profile; segment lengths from the ICTV exemplar, simian rotavirus SA11-H96. Structure from the ICTV Rotavirus genus chapter.",
+  "summary": "A non-enveloped virus with three concentric protein layers and a genome of eleven double-stranded RNA segments. Its mRNAs are made by enzymes built into the particle itself.",
+  "taxonomy": {
+    "msl": "MSL41 (VMR v1, 2026-07-29)",
+    "subfamily": null,
+    "subgenus": null,
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ],
+    "realm": "Riboviria",
+    "kingdom": "Orthornavirae",
+    "phylum": "Duplornaviricota",
+    "class": "Resentoviricetes",
+    "order": "Reovirales",
+    "family": "Sedoreoviridae",
+    "genus": "Rotavirus",
+    "species": "Rotavirus alphagastroenteritidis",
+    "ictvId": "ICTV19780598",
+    "vmrId": "VMR1008449",
+    "exemplar": true,
+    "note": "Rotaviruses were formerly in the family Reoviridae, which ICTV split into Sedoreoviridae and Spinareoviridae."
+  },
+  "referenceSequence": {
+    "value": "DQ838599–DQ841262 (SA11-H96, 11 segments)",
+    "status": "verified",
+    "scope": "isolate",
+    "sourceIds": [
+      "ncbi-rva-sa11",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostCategory": {
+    "value": "vertebrates",
+    "status": "verified",
+    "scope": "species",
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostDetail": {
+    "value": "Vertebrates (ICTV host-source category)",
+    "status": "verified",
+    "scope": "species",
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ]
+  },
+  "genome": {
+    "nucleicAcid": {
+      "value": "RNA",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-sedoreoviridae-2022",
+        "ictv-vmr-msl41"
+      ]
+    },
+    "ictvLabel": {
+      "value": "dsRNA",
+      "status": "verified",
+      "scope": "species",
+      "sourceIds": [
+        "ictv-vmr-msl41"
+      ]
+    },
+    "strandedness": {
+      "value": "double",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-sedoreoviridae-2022"
+      ]
+    },
+    "sense": {
+      "value": null,
+      "status": "not_applicable",
+      "scope": "family",
+      "sourceIds": [],
+      "note": "Sense applies to single-stranded RNA; this genome is double-stranded RNA."
+    },
+    "segmented": {
+      "value": true,
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-rotavirus-report"
+      ]
+    },
+    "segmentCount": {
+      "value": 11,
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-rotavirus-report",
+        "ncbi-rva-sa11"
+      ]
+    },
+    "topology": {
+      "value": "linear",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-sedoreoviridae-2022"
+      ]
+    },
+    "lengthKb": {
+      "value": {
+        "min": 18.6,
+        "max": 18.6
+      },
+      "status": "verified",
+      "scope": "isolate",
+      "sourceIds": [
+        "ncbi-rva-sa11"
+      ],
+      "note": "Sum of the eleven SA11 segments (667–3,302 bp each). The family spans 18–26 kbp (ICTV)."
+    },
+    "referenceLengthNt": {
+      "value": 18562,
+      "status": "verified",
+      "scope": "isolate",
+      "sourceIds": [
+        "ncbi-rva-sa11"
+      ]
+    }
+  },
+  "baltimore": {
+    "value": "III",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "viralzone-baltimore",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "envelope": {
+    "value": false,
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-sedoreoviridae-2022"
+    ],
+    "note": "Usually regarded as non-enveloped; double-layered particles transiently acquire a lipid envelope while budding into the ER during assembly."
+  },
+  "capsid": {
+    "value": "Triple-layered icosahedral capsid: an inner VP2 layer (T=1), an intermediate layer of 260 VP6 trimers and an outer layer of 260 VP7 trimers, with 60 trimeric VP4 spikes.",
+    "status": "verified",
+    "scope": "genus",
+    "sourceIds": [
+      "ictv-rotavirus-report"
+    ]
+  },
+  "morphology": {
+    "value": "icosahedral-nonenveloped",
+    "status": "verified",
+    "scope": "genus",
+    "sourceIds": [
+      "ictv-rotavirus-report"
+    ]
+  },
+  "dimensions": [
+    {
+      "id": "virion-diameter",
+      "part": "virion",
+      "measure": "diameter",
+      "label": "Triple-layered particle diameter",
+      "min": 100,
+      "max": 100,
+      "unit": "nm",
+      "approximate": true,
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-rotavirus-report"
+      ],
+      "note": "“About 100 nm”; the family spans 60–100 nm."
+    }
+  ],
+  "replication": {
+    "site": {
+      "value": "Cytoplasm (viroplasms)",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-sedoreoviridae-2022",
+        "ictv-rotavirus-report"
+      ]
+    },
+    "mRNARoute": {
+      "value": "Enzymes built into the particle transcribe each dsRNA segment into a capped mRNA, which leaves through pores at the vertices.",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-sedoreoviridae-2022"
+      ]
+    },
+    "steps": [
+      {
+        "id": "transcription",
+        "location": "cytoplasm",
+        "title": "Particle transcription",
+        "text": "Inside the cell, structural enzymes of the particle synthesise 5′-capped mRNAs from the genome segments.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-sedoreoviridae-2022"
+        ]
+      },
+      {
+        "id": "viroplasm",
+        "location": "cytoplasm",
+        "title": "Viroplasm assembly",
+        "text": "Virion assembly begins in cytoplasmic inclusions called viroplasms.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-rotavirus-report",
+          "ictv-sedoreoviridae-2022"
+        ]
+      },
+      {
+        "id": "er",
+        "location": "er-golgi",
+        "title": "Budding into the ER",
+        "text": "Double-layered particles bud into the ER, transiently acquiring a lipid envelope, as the outer layer is added.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-rotavirus-report"
+        ]
+      },
+      {
+        "id": "release",
+        "location": "membrane",
+        "title": "Release",
+        "text": "New triple-layered particles leave by cell lysis or exocytosis.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-rotavirus-report"
+        ]
+      }
+    ]
+  },
+  "diagramId": "rotavirus-a"
+}

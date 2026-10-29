@@ -1,12 +1,14 @@
 "use client";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Source, Virus } from "@/lib/schema";
 import type { BaltimoreClass } from "@/data/baltimore";
 import { genomeClass } from "@/lib/filter";
 import { formatNt, rowLayout } from "@/lib/units";
 import { SourceRefs, StatusMark } from "./Evidence";
+import { CellMap } from "./CellMap";
+import { useReducedMotion } from "@/lib/clientEnv";
 
 // Influenza A/PR/8/34 segment lengths (NCBI RefSeq), used only for the segmented glyph.
 const PR8_SEGMENTS = [2341, 2341, 2233, 1778, 1565, 1413, 1027, 890];
@@ -122,9 +124,23 @@ export function GenomeExplorer({ viruses, sources, classes }: { viruses: Virus[]
   const b = classes.find((c) => c.id === current.baltimore.value);
   const steps = current.replication.steps;
   const s = steps[Math.min(step, steps.length - 1)];
+  const prev = step > 0 ? steps[step - 1] : undefined;
+  const [playing, setPlaying] = useState(false);
+  const reduced = useReducedMotion();
+
+  // Autoplay advances one stage every 2.4 s and stops at the end.
+  useEffect(() => {
+    if (!playing) return;
+    const t = setTimeout(() => {
+      if (step >= steps.length - 1) setPlaying(false);
+      else setStep((n) => n + 1);
+    }, 2400);
+    return () => clearTimeout(t);
+  }, [playing, step, steps.length]);
 
   const choose = (id: string) => {
     setStep(0);
+    setPlaying(false);
     router.replace(`${pathname}?v=${id}`, { scroll: false });
   };
 
@@ -132,7 +148,7 @@ export function GenomeExplorer({ viruses, sources, classes }: { viruses: Virus[]
     <div className="flex flex-col gap-14">
       <section aria-labelledby="g-compare">
         <h2 id="g-compare" className="display text-[30px] mb-2">
-          Six genomes, one scale
+          {viruses.length} genomes, one scale
         </h2>
         <p className="text-[15px] text-mute measure mb-6">
           Double line: double-stranded. Single line: single-stranded. Separate pieces: a segmented genome. Lengths share one linear scale, from the
@@ -186,13 +202,39 @@ export function GenomeExplorer({ viruses, sources, classes }: { viruses: Virus[]
           </div>
         )}
 
+        <div className="panel p-6 mb-6">
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <p className="index-label">
+              Where it happens in the {current.hostCategory.value === "bacteria" ? "bacterial" : current.hostCategory.value === "plants" ? "plant" : "host"} cell
+            </p>
+            <button
+              type="button"
+              className="btn"
+              aria-pressed={playing}
+              onClick={() => {
+                if (!playing && step >= steps.length - 1) setStep(0);
+                setPlaying((p) => !p);
+              }}
+            >
+              {playing ? "Pause" : reduced ? "Step through automatically" : "Play the sequence"}
+            </button>
+          </div>
+          <CellMap host={current.hostCategory.value ?? "vertebrates"} location={s.location} previous={prev?.location} stepKey={`${current.id}-${step}`} />
+          <p className="mt-3 text-[13px] text-mute measure">
+            A schematic cell, not to scale. Compartments are only marked where a cited source places the stage; the marker dims when it does not.
+          </p>
+        </div>
+
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]">
           <ol className="flex flex-col gap-1" aria-label={`${current.commonName} replication stages`}>
             {steps.map((st, i) => (
               <li key={st.id}>
                 <button
                   type="button"
-                  onClick={() => setStep(i)}
+                  onClick={() => {
+                    setPlaying(false);
+                    setStep(i);
+                  }}
                   aria-current={i === step ? "step" : undefined}
                   className="w-full min-h-10 text-left px-3 rounded-md flex gap-3 items-center text-[15px] text-body hover:bg-sunk aria-[current=step]:bg-sunk aria-[current=step]:text-ink aria-[current=step]:font-semibold"
                 >

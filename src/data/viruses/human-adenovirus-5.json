@@ -19,40 +19,263 @@
     "ictvId": "ICTV19990516",
     "vmrId": "VMR1012083",
     "exemplar": false,
-    "sourceIds": ["ictv-vmr-msl41"],
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ],
     "note": "The species was formerly named Human mastadenovirus C. MSL41 lists the subphylum Polisuviricotina, omitted here; older sources give a different phylum and class for adenoviruses."
   },
-  "referenceSequence": { "value": "AC_000008.1", "status": "verified", "scope": "virus", "sourceIds": ["ncbi-ac000008", "ictv-vmr-msl41"] },
-  "hostCategory": { "value": "vertebrates", "status": "verified", "scope": "species", "sourceIds": ["ictv-vmr-msl41"] },
-  "hostDetail": { "value": "Vertebrates (ICTV host-source category)", "status": "verified", "scope": "species", "sourceIds": ["ictv-vmr-msl41"] },
-  "genome": {
-    "nucleicAcid": { "value": "DNA", "status": "verified", "scope": "genus", "sourceIds": ["viralzone-mastadenovirus", "ictv-adenoviridae-2022"] },
-    "strandedness": { "value": "double", "status": "verified", "scope": "family", "sourceIds": ["ictv-adenoviridae-2022"] },
-    "sense": { "value": null, "status": "not_applicable", "scope": "family", "sourceIds": [], "note": "Sense applies to single-stranded RNA genomes; a dsDNA genome has two complementary template strands." },
-    "segmented": { "value": false, "status": "verified", "scope": "genus", "sourceIds": ["viralzone-mastadenovirus"] },
-    "segmentCount": { "value": 1, "status": "verified", "scope": "genus", "sourceIds": ["viralzone-mastadenovirus"], "note": "Monopartite genome." },
-    "topology": { "value": "linear", "status": "verified", "scope": "family", "sourceIds": ["ictv-adenoviridae-2022"] },
-    "lengthKb": { "value": { "min": 35.9, "max": 35.9 }, "status": "verified", "scope": "virus", "sourceIds": ["ncbi-ac000008"], "note": "Mastadenoviruses: 35–36 kb (ViralZone); the family spans ~25–48 kb (ICTV)." },
-    "referenceLengthNt": { "value": 35938, "status": "verified", "scope": "virus", "sourceIds": ["ncbi-ac000008"] }
+  "referenceSequence": {
+    "value": "AC_000008.1",
+    "status": "verified",
+    "scope": "virus",
+    "sourceIds": [
+      "ncbi-ac000008",
+      "ictv-vmr-msl41"
+    ]
   },
-  "baltimore": { "value": "I", "status": "verified", "scope": "family", "sourceIds": ["viralzone-baltimore", "ictv-vmr-msl41"] },
-  "envelope": { "value": false, "status": "verified", "scope": "family", "sourceIds": ["ictv-adenoviridae-report", "viralzone-mastadenovirus"] },
-  "capsid": { "value": "Icosahedral capsid with pseudo T=25 symmetry: 240 hexon capsomers on the faces and 12 penton bases at the vertices, each penton carrying a projecting fibre.", "status": "verified", "scope": "family", "sourceIds": ["ictv-adenoviridae-report", "viralzone-mastadenovirus", "ictv-adenoviridae-2022"] },
-  "morphology": { "value": "icosahedral-nonenveloped", "status": "verified", "scope": "family", "sourceIds": ["ictv-adenoviridae-report"] },
+  "hostCategory": {
+    "value": "vertebrates",
+    "status": "verified",
+    "scope": "species",
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostDetail": {
+    "value": "Vertebrates (ICTV host-source category)",
+    "status": "verified",
+    "scope": "species",
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ]
+  },
+  "genome": {
+    "nucleicAcid": {
+      "value": "DNA",
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "viralzone-mastadenovirus",
+        "ictv-adenoviridae-2022"
+      ]
+    },
+    "ictvLabel": {
+      "value": "dsDNA",
+      "status": "verified",
+      "scope": "species",
+      "sourceIds": [
+        "ictv-vmr-msl41"
+      ]
+    },
+    "strandedness": {
+      "value": "double",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-adenoviridae-2022"
+      ]
+    },
+    "sense": {
+      "value": null,
+      "status": "not_applicable",
+      "scope": "family",
+      "sourceIds": [],
+      "note": "Sense applies to single-stranded RNA genomes; a dsDNA genome has two complementary template strands."
+    },
+    "segmented": {
+      "value": false,
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "viralzone-mastadenovirus"
+      ]
+    },
+    "segmentCount": {
+      "value": 1,
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "viralzone-mastadenovirus"
+      ],
+      "note": "Monopartite genome."
+    },
+    "topology": {
+      "value": "linear",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-adenoviridae-2022"
+      ]
+    },
+    "lengthKb": {
+      "value": {
+        "min": 35.9,
+        "max": 35.9
+      },
+      "status": "verified",
+      "scope": "virus",
+      "sourceIds": [
+        "ncbi-ac000008"
+      ],
+      "note": "Mastadenoviruses: 35–36 kb (ViralZone); the family spans ~25–48 kb (ICTV)."
+    },
+    "referenceLengthNt": {
+      "value": 35938,
+      "status": "verified",
+      "scope": "virus",
+      "sourceIds": [
+        "ncbi-ac000008"
+      ]
+    }
+  },
+  "baltimore": {
+    "value": "I",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "viralzone-baltimore",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "envelope": {
+    "value": false,
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-adenoviridae-report",
+      "viralzone-mastadenovirus"
+    ]
+  },
+  "capsid": {
+    "value": "Icosahedral capsid with pseudo T=25 symmetry: 240 hexon capsomers on the faces and 12 penton bases at the vertices, each penton carrying a projecting fibre.",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-adenoviridae-report",
+      "viralzone-mastadenovirus",
+      "ictv-adenoviridae-2022"
+    ]
+  },
+  "morphology": {
+    "value": "icosahedral-nonenveloped",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-adenoviridae-report"
+    ]
+  },
   "dimensions": [
-    { "id": "capsid-diameter", "part": "capsid", "measure": "diameter", "label": "Capsid diameter (excluding fibres)", "min": 90, "max": 90, "unit": "nm", "approximate": true, "status": "verified", "scope": "family", "sourceIds": ["ictv-adenoviridae-report", "viralzone-mastadenovirus"] },
-    { "id": "fibre-length", "part": "fibre", "measure": "length", "label": "Fibre length (range across adenoviruses examined)", "min": 9, "max": 77.5, "unit": "nm", "approximate": false, "status": "variable", "scope": "family", "sourceIds": ["ictv-adenoviridae-report"], "note": "Family-wide range; the HAdV-5 fibre length specifically was not verified for this atlas." }
+    {
+      "id": "capsid-diameter",
+      "part": "capsid",
+      "measure": "diameter",
+      "label": "Capsid diameter (excluding fibres)",
+      "min": 90,
+      "max": 90,
+      "unit": "nm",
+      "approximate": true,
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-adenoviridae-report",
+        "viralzone-mastadenovirus"
+      ]
+    },
+    {
+      "id": "fibre-length",
+      "part": "fibre",
+      "measure": "length",
+      "label": "Fibre length (range across adenoviruses examined)",
+      "min": 9,
+      "max": 77.5,
+      "unit": "nm",
+      "approximate": false,
+      "status": "variable",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-adenoviridae-report"
+      ],
+      "note": "Family-wide range; the HAdV-5 fibre length specifically was not verified for this atlas."
+    }
   ],
   "replication": {
-    "site": { "value": "Nucleus", "status": "verified", "scope": "genus", "sourceIds": ["viralzone-mastadenovirus"] },
-    "mRNARoute": { "value": "The dsDNA genome is transcribed in the nucleus by the host's RNA polymerase II: early genes first, then late (mostly structural) genes after replication begins.", "status": "verified", "scope": "genus", "sourceIds": ["viralzone-mastadenovirus"] },
+    "site": {
+      "value": "Nucleus",
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "viralzone-mastadenovirus"
+      ]
+    },
+    "mRNARoute": {
+      "value": "The dsDNA genome is transcribed in the nucleus by the host's RNA polymerase II: early genes first, then late (mostly structural) genes after replication begins.",
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "viralzone-mastadenovirus"
+      ]
+    },
     "steps": [
-      { "id": "attach", "title": "Attachment", "text": "Fibres attach to the host CAR receptor; the penton base binds integrins, triggering clathrin-mediated endocytosis.", "status": "verified", "sourceIds": ["viralzone-mastadenovirus"] },
-      { "id": "escape", "title": "Endosome escape", "text": "Protein VI disrupts the endosomal membrane, releasing the capsid into the cytosol.", "status": "verified", "sourceIds": ["viralzone-mastadenovirus"] },
-      { "id": "nucleus", "title": "Delivery to the nucleus", "text": "The capsid travels along microtubules, docks at a nuclear pore and the genome is imported.", "status": "verified", "sourceIds": ["viralzone-mastadenovirus"] },
-      { "id": "early", "title": "Early transcription", "text": "Early genes, transcribed by host RNA polymerase II, prepare the cell for viral replication.", "status": "verified", "sourceIds": ["viralzone-mastadenovirus"] },
-      { "id": "replication", "title": "Genome replication", "text": "The genome is copied by strand displacement; late genes are then expressed.", "status": "verified", "sourceIds": ["viralzone-mastadenovirus"] },
-      { "id": "assembly", "title": "Assembly and release", "text": "Virions assemble in the nucleus, are released by cell lysis and mature through the viral protease.", "status": "verified", "sourceIds": ["viralzone-mastadenovirus"] }
+      {
+        "id": "attach",
+        "location": "membrane",
+        "title": "Attachment",
+        "text": "Fibres attach to the host CAR receptor; the penton base binds integrins, triggering clathrin-mediated endocytosis.",
+        "status": "verified",
+        "sourceIds": [
+          "viralzone-mastadenovirus"
+        ]
+      },
+      {
+        "id": "escape",
+        "location": "endosome",
+        "title": "Endosome escape",
+        "text": "Protein VI disrupts the endosomal membrane, releasing the capsid into the cytosol.",
+        "status": "verified",
+        "sourceIds": [
+          "viralzone-mastadenovirus"
+        ]
+      },
+      {
+        "id": "nucleus",
+        "location": "nucleus",
+        "title": "Delivery to the nucleus",
+        "text": "The capsid travels along microtubules, docks at a nuclear pore and the genome is imported.",
+        "status": "verified",
+        "sourceIds": [
+          "viralzone-mastadenovirus"
+        ]
+      },
+      {
+        "id": "early",
+        "location": "nucleus",
+        "title": "Early transcription",
+        "text": "Early genes, transcribed by host RNA polymerase II, prepare the cell for viral replication.",
+        "status": "verified",
+        "sourceIds": [
+          "viralzone-mastadenovirus"
+        ]
+      },
+      {
+        "id": "replication",
+        "location": "nucleus",
+        "title": "Genome replication",
+        "text": "The genome is copied by strand displacement; late genes are then expressed.",
+        "status": "verified",
+        "sourceIds": [
+          "viralzone-mastadenovirus"
+        ]
+      },
+      {
+        "id": "assembly",
+        "location": "nucleus",
+        "title": "Assembly and release",
+        "text": "Virions assemble in the nucleus, are released by cell lysis and mature through the viral protease.",
+        "status": "verified",
+        "sourceIds": [
+          "viralzone-mastadenovirus"
+        ]
+      }
     ]
   },
   "diagramId": "human-adenovirus-5"

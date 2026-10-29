@@ -1,0 +1,249 @@
+{
+  "id": "poliovirus-1",
+  "commonName": "Poliovirus 1",
+  "abbreviation": "PV1",
+  "representative": "Virus-level profile of the ICTV exemplar, poliovirus 1 strain Mahoney (V01149). Particle size and capsid architecture are family-level ICTV values.",
+  "summary": "One of the smallest and simplest viruses here: a 30 nm protein shell around a positive-sense RNA genome that is translated as one long polyprotein and then cut into its parts.",
+  "taxonomy": {
+    "msl": "MSL41 (VMR v1, 2026-07-29)",
+    "subfamily": "Ensavirinae",
+    "subgenus": null,
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ],
+    "realm": "Riboviria",
+    "kingdom": "Orthornavirae",
+    "phylum": "Pisuviricota",
+    "class": "Pisoniviricetes",
+    "order": "Picornavirales",
+    "family": "Picornaviridae",
+    "genus": "Enterovirus",
+    "species": "Enterovirus coxsackiepol",
+    "ictvId": "ICTV20083305",
+    "vmrId": "VMR1001829",
+    "exemplar": true,
+    "note": "Formerly species Enterovirus C."
+  },
+  "referenceSequence": {
+    "value": "V01149.1 (Mahoney)",
+    "status": "verified",
+    "scope": "isolate",
+    "sourceIds": [
+      "ncbi-v01149",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostCategory": {
+    "value": "vertebrates",
+    "status": "verified",
+    "scope": "species",
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostDetail": {
+    "value": "Vertebrates (ICTV host-source category)",
+    "status": "verified",
+    "scope": "species",
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ]
+  },
+  "genome": {
+    "nucleicAcid": {
+      "value": "RNA",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-picornaviridae-2017",
+        "ictv-vmr-msl41"
+      ]
+    },
+    "ictvLabel": {
+      "value": "ssRNA(+)",
+      "status": "verified",
+      "scope": "species",
+      "sourceIds": [
+        "ictv-vmr-msl41"
+      ]
+    },
+    "strandedness": {
+      "value": "single",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-picornaviridae-2017"
+      ]
+    },
+    "sense": {
+      "value": "positive",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-picornaviridae-2017"
+      ]
+    },
+    "segmented": {
+      "value": false,
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-picornaviridae-2017"
+      ]
+    },
+    "segmentCount": {
+      "value": 1,
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-picornaviridae-2017"
+      ]
+    },
+    "topology": {
+      "value": "linear",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-picornaviridae-2017"
+      ],
+      "note": "Linear RNA with a protein (VPg) on the 5′ end and a poly(A) tail."
+    },
+    "lengthKb": {
+      "value": {
+        "min": 7.4,
+        "max": 7.4
+      },
+      "status": "verified",
+      "scope": "isolate",
+      "sourceIds": [
+        "ncbi-v01149"
+      ],
+      "note": "Picornavirus genomes are 6.7–10.1 kb (ICTV)."
+    },
+    "referenceLengthNt": {
+      "value": 7440,
+      "status": "verified",
+      "scope": "isolate",
+      "sourceIds": [
+        "ncbi-v01149"
+      ]
+    }
+  },
+  "baltimore": {
+    "value": "IV",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "viralzone-baltimore",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "envelope": {
+    "value": false,
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-picornaviridae-2017"
+    ]
+  },
+  "capsid": {
+    "value": "Icosahedral capsid of 60 identical protomers (each VP1–VP4) with T=1, pseudo T=3 symmetry.",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-picornaviridae-2017"
+    ]
+  },
+  "morphology": {
+    "value": "icosahedral-nonenveloped",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-picornaviridae-2017"
+    ]
+  },
+  "dimensions": [
+    {
+      "id": "capsid-diameter",
+      "part": "capsid",
+      "measure": "diameter",
+      "label": "Particle diameter (from crystal structures)",
+      "min": 30,
+      "max": 32,
+      "unit": "nm",
+      "approximate": false,
+      "status": "variable",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-picornaviridae-2017"
+      ]
+    }
+  ],
+  "replication": {
+    "site": {
+      "value": "Cytoplasm, on reorganised membranes",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-picornaviridae-2017"
+      ]
+    },
+    "mRNARoute": {
+      "value": "The genome is itself mRNA: an internal ribosome entry site (IRES) starts translation of one polyprotein, which is cut into structural and non-structural proteins. VPg primes both negative- and positive-strand synthesis.",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-picornaviridae-2017"
+      ]
+    },
+    "steps": [
+      {
+        "id": "entry",
+        "title": "Attachment and uncoating",
+        "text": "The particle binds a receptor and releases its genome into the cytoplasm.",
+        "status": "not_verified",
+        "sourceIds": []
+      },
+      {
+        "id": "translation",
+        "location": "cytoplasm",
+        "title": "Polyprotein translation",
+        "text": "The IRES drives translation of the genome into a single polyprotein that is cleaved into the viral proteins.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-picornaviridae-2017"
+        ]
+      },
+      {
+        "id": "replication",
+        "location": "cytoplasm",
+        "title": "RNA replication",
+        "text": "RNA is copied in close association with reorganised cytoplasmic membranes, with VPg as the primer.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-picornaviridae-2017"
+        ]
+      },
+      {
+        "id": "assembly",
+        "location": "cytoplasm",
+        "title": "Assembly",
+        "text": "Capsids assemble through pentameric intermediates (five protomers each).",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-picornaviridae-2017"
+        ]
+      },
+      {
+        "id": "release",
+        "title": "Release",
+        "text": "Infection is generally cytolytic, though some picornaviruses persist.",
+        "status": "simplified",
+        "sourceIds": [
+          "ictv-picornaviridae-2017"
+        ]
+      }
+    ]
+  },
+  "diagramId": "poliovirus-1"
+}

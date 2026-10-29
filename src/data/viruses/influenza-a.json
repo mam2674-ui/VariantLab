@@ -60,6 +60,14 @@
         "ictv-vmr-msl41"
       ]
     },
+    "ictvLabel": {
+      "value": "ssRNA(-)",
+      "status": "verified",
+      "scope": "species",
+      "sourceIds": [
+        "ictv-vmr-msl41"
+      ]
+    },
     "strandedness": {
       "value": "single",
       "status": "verified",
@@ -202,6 +210,7 @@
     "steps": [
       {
         "id": "attach",
+        "location": "membrane",
         "title": "Attachment",
         "text": "The haemagglutinin (HA) spike binds sialic-acid receptors on the cell surface.",
         "status": "verified",
@@ -211,6 +220,7 @@
       },
       {
         "id": "entry",
+        "location": "endosome",
         "title": "Entry and fusion",
         "text": "The particle is taken up by clathrin-mediated endocytosis. Endosomal acidification triggers fusion of the viral and endosomal membranes, releasing the RNPs.",
         "status": "verified",
@@ -220,6 +230,7 @@
       },
       {
         "id": "nuclear-import",
+        "location": "nucleus",
         "title": "Nuclear import",
         "text": "RNPs are transported into the nucleus.",
         "status": "verified",
@@ -230,6 +241,7 @@
       },
       {
         "id": "transcription",
+        "location": "nucleus",
         "title": "Transcription",
         "text": "The viral polymerase makes capped, polyadenylated mRNAs in the nucleus.",
         "status": "verified",
@@ -240,6 +252,7 @@
       },
       {
         "id": "replication",
+        "location": "nucleus",
         "title": "Genome replication",
         "text": "Genome segments are copied in the nucleus.",
         "status": "verified",
@@ -249,6 +262,7 @@
       },
       {
         "id": "assembly",
+        "location": "membrane",
         "title": "Assembly and budding",
         "text": "New RNPs are exported from the nucleus (driven by M1 and NEP), and particles assemble and bud at the plasma membrane, taking their envelope from it.",
         "status": "verified",
