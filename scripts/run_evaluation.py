@@ -16,17 +16,15 @@ import numpy as np
 import pandas as pd
 
 from variantlab import SEED
-from variantlab.data_prep import PROCESSED_DIR
 from variantlab.evaluation import position_group_kfold, random_split, spearman_mae
 from variantlab.features import POSITION_IDENTITY_COLUMNS, build_features
 from variantlab.modeling import MeanBaseline, make_random_forest, make_ridge, select_ridge_alpha
+from variantlab.proteins import GB1, PAB1, PROTEINS
 
-RESULTS_PATH = PROCESSED_DIR / "eval_results.json"
 
-
-def load_data():
-    df = pd.read_csv(PROCESSED_DIR / "gb1_single_mutants.csv")
-    feats = build_features(df)
+def load_data(protein=GB1):
+    df = pd.read_csv(protein.processed_csv_path)
+    feats = build_features(df, reference_sequence=protein.reference_sequence)
     y = df["dms_score"]
     return df, feats, y
 
@@ -94,7 +92,9 @@ def run_setting_b(df, feats, y, n_splits: int = 5):
 
 
 def main():
-    df, feats, y = load_data()
+    protein_slug = sys.argv[1] if len(sys.argv) > 1 else "gb1"
+    protein = PROTEINS[protein_slug]
+    df, feats, y = load_data(protein)
 
     print("=" * 70)
     print("SETTING A: held-out substitutions at represented positions")
@@ -127,9 +127,9 @@ def main():
         "setting_a_without_position": setting_a_without_pos,
         "setting_b_position_groupkfold": setting_b,
     }
-    with open(RESULTS_PATH, "w") as f:
+    with open(protein.eval_results_path, "w") as f:
         json.dump(all_results, f, indent=2)
-    print(f"\nSaved full results to {RESULTS_PATH}")
+    print(f"\nSaved full results to {protein.eval_results_path}")
 
 
 if __name__ == "__main__":

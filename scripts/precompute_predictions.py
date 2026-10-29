@@ -21,15 +21,17 @@ import numpy as np
 import pandas as pd
 
 from variantlab import SEED
-from variantlab.data_prep import PROCESSED_DIR
 from variantlab.evaluation import position_group_kfold
 from variantlab.features import build_features
 from variantlab.modeling import make_random_forest
+from variantlab.proteins import PROTEINS
 
 
 def main():
-    df = pd.read_csv(PROCESSED_DIR / "gb1_single_mutants.csv")
-    feats = build_features(df)
+    protein_slug = sys.argv[1] if len(sys.argv) > 1 else "gb1"
+    protein = PROTEINS[protein_slug]
+    df = pd.read_csv(protein.processed_csv_path)
+    feats = build_features(df, reference_sequence=protein.reference_sequence)
     y = df["dms_score"]
 
     oof_pred = np.full(len(df), np.nan)
@@ -50,8 +52,8 @@ def main():
     out["held_out_position_prediction"] = oof_pred
     out["held_out_fold"] = oof_fold
     out["refit_on_all_data_prediction"] = refit_pred
-    out.to_csv(PROCESSED_DIR / "predictions.csv", index=False)
-    print(f"Saved predictions for {len(out)} mutants to {PROCESSED_DIR / 'predictions.csv'}")
+    out.to_csv(protein.predictions_csv_path, index=False)
+    print(f"Saved predictions for {len(out)} mutants to {protein.predictions_csv_path}")
 
 
 if __name__ == "__main__":

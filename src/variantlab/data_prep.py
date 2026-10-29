@@ -59,9 +59,17 @@ def _parse_single_token(token: str) -> tuple[str, int, str] | None:
     return orig, int(pos_str), new
 
 
-def parse_and_validate(df_raw: pd.DataFrame) -> tuple[pd.DataFrame, ParseReport]:
+def parse_and_validate(
+    df_raw: pd.DataFrame,
+    reference_sequence: str = REFERENCE_SEQUENCE,
+    precursor_offset: int = PRECURSOR_OFFSET,
+) -> tuple[pd.DataFrame, ParseReport]:
     """Parse mutation strings, restrict to single substitutions, validate against
     the reference sequence, and record every exclusion with a reason.
+
+    Defaults to GB1's own reference/offset for backward compatibility; pass a
+    different protein's values (see proteins.py) to reuse this same validated
+    logic for another protein.
     """
     report = ParseReport(n_input_rows=len(df_raw))
 
@@ -81,14 +89,14 @@ def parse_and_validate(df_raw: pd.DataFrame) -> tuple[pd.DataFrame, ParseReport]
     df["orig_aa"] = parsed.apply(lambda t: t[0])
     df["precursor_position"] = parsed.apply(lambda t: t[1])
     df["new_aa"] = parsed.apply(lambda t: t[2])
-    df["position"] = df["precursor_position"] - PRECURSOR_OFFSET
+    df["position"] = df["precursor_position"] - precursor_offset
 
     # Step 3: reference-sequence check. Every orig_aa must match the reference
     # sequence at the remapped domain position. This is the check that would have
     # caught a wrong numbering offset or a stale reference sequence.
-    in_domain = df["position"].between(1, len(REFERENCE_SEQUENCE))
+    in_domain = df["position"].between(1, len(reference_sequence))
     expected_aa = df["position"].apply(
-        lambda p: REFERENCE_SEQUENCE[p - 1] if 1 <= p <= len(REFERENCE_SEQUENCE) else None
+        lambda p: reference_sequence[p - 1] if 1 <= p <= len(reference_sequence) else None
     )
     matches_reference = in_domain & (df["orig_aa"] == expected_aa)
     report.n_reference_mismatch_excluded = int((~matches_reference).sum())
@@ -122,7 +130,7 @@ def parse_and_validate(df_raw: pd.DataFrame) -> tuple[pd.DataFrame, ParseReport]
 
     report.n_final_rows = len(df)
     report.notes.append(
-        "No biological replicates exist for SPG1_STRSG_Olson_2014 (single pooled "
+        "No biological replicates exist for this assay (single pooled "
         "selection + sequencing); no aggregation across replicates was performed."
     )
 
@@ -132,12 +140,14 @@ def parse_and_validate(df_raw: pd.DataFrame) -> tuple[pd.DataFrame, ParseReport]
     return df, report
 
 
-def save_processed(df: pd.DataFrame, report: ParseReport) -> None:
+def save_processed(df: pd.DataFrame, report: ParseReport, out_csv_path: Path | None = None) -> None:
     PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
-    df.to_csv(PROCESSED_DIR / "gb1_single_mutants.csv", index=False)
+    out_path = out_csv_path or (PROCESSED_DIR / "gb1_single_mutants.csv")
+    df.to_csv(out_path, index=False)
     import json
 
-    with open(PROCESSED_DIR / "parse_report.json", "w") as f:
+    report_path = out_path.with_name(out_path.stem + "_parse_report.json")
+    with open(report_path, "w") as f:
         json.dump(report.as_dict(), f, indent=2)
 
 

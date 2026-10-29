@@ -46,16 +46,20 @@ AA_LIST = sorted(HYDROPHOBICITY.keys())
 assert set(HYDROPHOBICITY) == set(VOLUME) == set(CHARGE) == set(POLAR) == set("ACDEFGHIKLMNPQRSTVWY")
 
 
-def _neighbor_aa(position: int, offset: int) -> str | None:
+def _neighbor_aa(position: int, offset: int, reference_sequence: str) -> str | None:
     idx = position - 1 + offset
-    if 0 <= idx < len(REFERENCE_SEQUENCE):
-        return REFERENCE_SEQUENCE[idx]
+    if 0 <= idx < len(reference_sequence):
+        return reference_sequence[idx]
     return None
 
 
-def build_features(df: pd.DataFrame) -> pd.DataFrame:
+def build_features(df: pd.DataFrame, reference_sequence: str = REFERENCE_SEQUENCE) -> pd.DataFrame:
     """Given a dataframe with orig_aa, position, new_aa columns, return a new
     dataframe of sequence-derived features (one row per mutation, same order).
+
+    Defaults to GB1's reference sequence for backward compatibility; pass a
+    different protein's sequence (see proteins.py) to reuse this for another
+    protein's neighbor-context features.
     """
     feats = pd.DataFrame(index=df.index)
 
@@ -79,8 +83,8 @@ def build_features(df: pd.DataFrame) -> pd.DataFrame:
 
     # Local sequence context: hydrophobicity of immediate neighbors in the WT
     # sequence. An approximation of local environment, not a structural feature.
-    neighbor_minus1 = df["position"].apply(lambda p: _neighbor_aa(p, -1))
-    neighbor_plus1 = df["position"].apply(lambda p: _neighbor_aa(p, 1))
+    neighbor_minus1 = df["position"].apply(lambda p: _neighbor_aa(p, -1, reference_sequence))
+    neighbor_plus1 = df["position"].apply(lambda p: _neighbor_aa(p, 1, reference_sequence))
     feats["neighbor_hydro_minus1"] = neighbor_minus1.map(HYDROPHOBICITY)
     feats["neighbor_hydro_plus1"] = neighbor_plus1.map(HYDROPHOBICITY)
 

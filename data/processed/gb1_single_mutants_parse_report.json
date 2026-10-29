@@ -7,6 +7,6 @@
   "n_duplicate_rows": 0,
   "n_final_rows": 1045,
   "notes": [
-    "No biological replicates exist for SPG1_STRSG_Olson_2014 (single pooled selection + sequencing); no aggregation across replicates was performed."
+    "No biological replicates exist for this assay (single pooled selection + sequencing); no aggregation across replicates was performed."
   ]
 }
