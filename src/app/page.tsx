@@ -44,7 +44,7 @@ export default function Home() {
           </div>
         </div>
         <div className="relative container-atlas pt-[14vh] flex-1 w-full">
-          <p className="text-[20px] text-ink max-w-[28ch] leading-snug">Eighteen viruses, drawn and measured from the evidence.</p>
+          <p className="text-[20px] text-ink max-w-[28ch] leading-snug">{viruses.length} viruses, drawn and measured from the evidence.</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#atlas" className="btn btn-primary">
               Enter the atlas

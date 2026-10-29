@@ -29,6 +29,30 @@ const pick = (v: Virus, part: Dimension["part"], measure?: Dimension["measure"])
 
 export function silhouette(v: Virus): Silhouette | null {
   const notes: string[] = [];
+  if (v.morphology.value === "lemon" || v.morphology.value === "geminate") {
+    const len=pick(v,"virion","length"),wid=pick(v,"virion","width");
+    if(!len || !wid) return null;
+    const L=nm(len,"max"), W=nm(wid,"max");
+    const d=v.morphology.value === "lemon"
+      ? `M ${W/2} 0 Q ${W*1.5} ${L/2} ${W/2} ${L} Q ${-W/2} ${L/2} ${W/2} 0 Z`
+      : `M ${W/2} 0 L ${W} ${L*.15} L ${W} ${L*.35} L ${W*.8} ${L*.5} L ${W} ${L*.65} L ${W} ${L*.85} L ${W/2} ${L} L 0 ${L*.85} L 0 ${L*.65} L ${W*.2} ${L*.5} L 0 ${L*.35} L 0 ${L*.15} Z`;
+    notes.push("Schematic outline at the recorded dimensions; surface detail omitted.");
+    return {width:W,height:L,shapes:[{kind:"path",d,w:1,style:"outline"}],notes};
+  }
+  if(v.morphology.value === "filamentous-nonenveloped") {
+    const len=pick(v,"filament","length"),dia=pick(v,"virion","diameter");
+    if(!len || !dia) return null;
+    const L=nm(len,"max"),D=nm(dia,"max");
+    notes.push("Straight filament at the maximum reported length and diameter.");
+    return {width:D,height:L,shapes:[{kind:"rect",x:0,y:0,w:D,h:L,style:"rod"}],notes};
+  }
+  if(v.morphology.value === "icosahedral-fibred") {
+    const cap=pick(v,"capsid","diameter"),outer=pick(v,"virion","diameter");
+    if(!cap || !outer) return null;
+    const D=nm(cap,"max"),O=nm(outer,"max"),c=O/2;
+    notes.push("Capsid inside the outer fibre-layer diameter; individual fibres omitted.");
+    return {width:O,height:O,shapes:[{kind:"circle",cx:c,cy:c,r:O/2,style:"range-max"},{kind:"hexagon",cx:c,cy:c,w:D*.866,h:D,cap:D/4,style:"solid"}],notes};
+  }
   if (v.morphology.value === "head-tail") {
     const hl = pick(v, "head", "length"), hw = pick(v, "head", "width"), tl = pick(v, "tail", "length"), fl = pick(v, "tail-fibre", "length");
     if (!hl || !hw || !tl) return null;

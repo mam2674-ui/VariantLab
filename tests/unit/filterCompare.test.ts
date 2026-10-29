@@ -14,16 +14,16 @@ describe("filtering", () => {
     expect(genomeClass(byId("hpv-16"))).toBe("dsDNA");
   });
   it("no filters returns everything", () => {
-    expect(filterViruses(viruses, emptyFilters)).toHaveLength(18);
+    expect(filterViruses(viruses, emptyFilters)).toHaveLength(24);
     expect(isFiltered(emptyFilters)).toBe(false);
   });
   it("combines groups with AND and options with OR", () => {
     const env = filterViruses(viruses, { ...emptyFilters, envelope: ["enveloped"] }).map((v) => v.id).sort();
-    expect(env).toEqual(["ebola", "hepatitis-b", "hiv-1", "hsv-1", "influenza-a", "rabies", "sars-cov-2", "vaccinia", "zika"]);
+    expect(env).toEqual(["ebola", "hdv", "hepatitis-b", "hiv-1", "hsv-1", "influenza-a", "rabies", "sars-cov-2", "vaccinia", "zika"]);
     const dnaEnv = filterViruses(viruses, { ...emptyFilters, envelope: ["enveloped"], genome: ["dsDNA"] }).map((v) => v.id).sort();
     expect(dnaEnv).toEqual(["hsv-1", "vaccinia"]);
     const rna = filterViruses(viruses, { ...emptyFilters, genome: ["+ssRNA", "-ssRNA"] }).map((v) => v.id).sort();
-    expect(rna).toEqual(["ebola", "influenza-a", "ms2", "norwalk", "poliovirus-1", "rabies", "sars-cov-2", "tmv", "zika"]);
+    expect(rna).toEqual(["ebola", "hdv", "influenza-a", "ms2", "norwalk", "poliovirus-1", "rabies", "sars-cov-2", "tmv", "zika"]);
     // reverse-transcribing viruses keep their own classes
     expect(filterViruses(viruses, { ...emptyFilters, genome: ["ssRNA-RT"] }).map((v) => v.id)).toEqual(["hiv-1"]);
     expect(filterViruses(viruses, { ...emptyFilters, genome: ["dsDNA-RT"] }).map((v) => v.id)).toEqual(["hepatitis-b"]);

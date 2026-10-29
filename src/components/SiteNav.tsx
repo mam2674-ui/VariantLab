@@ -21,6 +21,7 @@ export const NAV_GROUPS = [
     { n: "07", href: "/tutor", label: "Tutor" },
     { n: "08", href: "/methods", label: "Methods" },
   ],
+  [{ n: "09", href: "/explore", label: "Explore" }],
 ];
 export const NAV_LINKS = NAV_GROUPS.flat();
 

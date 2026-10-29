@@ -58,10 +58,10 @@
   --s-unverified: #ff8a7a;
   --s-na: #8a92a1;
 
-  --font-display: var(--font-plex), "Arial Narrow", sans-serif;
-  --font-text: var(--font-plex), system-ui, sans-serif;
-  --font-data: var(--font-plex-mono), ui-monospace, Menlo, monospace;
-  --font-body: var(--font-serif), Georgia, serif;
+  --font-display: var(--font-archivo), "Helvetica Neue", Arial, sans-serif;
+  --font-text: var(--font-archivo), "Helvetica Neue", Arial, sans-serif;
+  --font-data: var(--font-text);
+  --font-body: var(--font-text);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   color-scheme: dark;
 }
@@ -139,14 +139,12 @@ a {
 
 .display {
   font-family: var(--font-display);
-  font-weight: 600;
-  font-stretch: 75%;
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: -0.005em;
-  line-height: 1;
+  letter-spacing: -0.035em;
+  line-height: 1.04;
 }
-/* Mono index labels after the reference site, e.g. "Section 01". */
-/* Editorial subheads: serif, sentence case, softer than the caps section heads. */
+/* Colossal-inspired typography: geometric sans text, restrained uppercase headings. */
 .subhead {
   font-family: var(--font-body);
   font-weight: 600;
@@ -293,7 +291,6 @@ a {
 .segmented button[aria-checked="true"] {
   background: var(--canvas-elevated);
   color: var(--ink);
-  box-shadow: var(--shadow-press);
 }
 
 .input {
@@ -595,7 +592,6 @@ html:has(.slides) {
 .tool[aria-checked="true"] {
   background: var(--canvas-elevated);
   color: var(--ink);
-  box-shadow: var(--shadow-press);
 }
 .tool:disabled {
   opacity: 0.45;

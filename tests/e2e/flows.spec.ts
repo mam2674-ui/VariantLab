@@ -50,7 +50,7 @@ test("compares viruses and restores the selection from the URL", async ({ page }
 test("uses filters, shows an empty state and resets", async ({ page }) => {
   await page.goto("/#atlas");
   await page.getByRole("group", { name: "Envelope" }).locator("label.chip", { hasText: /^Enveloped/ }).click();
-  await expect(page.getByText(/9 of 18 viruses/)).toBeVisible();
+  await expect(page.getByText(/10 of 24 viruses/)).toBeVisible();
   await expect(page).toHaveURL(/envelope=enveloped/);
   await page.getByText("More filters").click();
   await page.locator("label.chip", { hasText: "Bacteria" }).click();

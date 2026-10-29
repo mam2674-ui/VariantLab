@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Mono, IBM_Plex_Sans, Source_Serif_4 } from "next/font/google";
+import { Archivo } from "next/font/google";
 import { ViewTransition } from "react";
 import Link from "next/link";
 import { SiteNav } from "@/components/SiteNav";
@@ -8,9 +8,7 @@ import { genomeClass } from "@/lib/filter";
 import { datasetAccessed } from "@/lib/data";
 import "./globals.css";
 
-const plex = IBM_Plex_Sans({ variable: "--font-plex", subsets: ["latin"], axes: ["wdth"] });
-const serif = Source_Serif_4({ variable: "--font-serif", subsets: ["latin"], axes: ["opsz"], style: ["normal", "italic"] });
-const plexMono = IBM_Plex_Mono({ variable: "--font-plex-mono", subsets: ["latin"], weight: ["400", "500"] });
+const archivo = Archivo({ variable: "--font-archivo", subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
   title: { default: "Virus Atlas", template: "%s · Virus Atlas" },
@@ -19,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${plex.variable} ${plexMono.variable} ${serif.variable}`}>
+    <html lang="en" className={archivo.variable}>
       <body className="min-h-dvh flex flex-col">
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 btn">
           Skip to content
@@ -37,7 +35,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               individually, and nothing here is medical advice. Sources accessed {datasetAccessed}; taxonomy from ICTV MSL41.
             </p>
             <p className="text-[14px] text-mute md:col-span-2 italic">
-              Set in Source Serif 4 and IBM Plex. Diagrams drawn in code; protein coordinates from the PDB; gene maps from NCBI.
+              Diagrams drawn in code; protein coordinates from the PDB; gene maps from NCBI.
             </p>
             <nav aria-label="Footer" className="flex gap-6 text-[14px]">
               <Link href="/methods">Methods and limitations</Link>

@@ -169,7 +169,8 @@ export const Virus = z.object({
   replication: z.object({
     site: fact(z.string()),
     mRNARoute: fact(z.string()),
-    steps: z.array(ReplicationStep).min(3),
+    // Some sourced summaries describe only two stages; do not invent steps to fill a quota.
+    steps: z.array(ReplicationStep).min(2),
   }),
   diagramId: z.string(),
 });

@@ -1,3 +1,4 @@
+import { fusellovirusRenderer, mimivirusRenderer, geminivirusRenderer, inovirusRenderer, deltavirusRenderer, totivirusRenderer } from "./v4Renderers";
 import type { DiagramSpec } from "@/lib/schema";
 import type { Renderer } from "./kit";
 import { influenzaRenderer } from "./influenza";
@@ -33,4 +34,11 @@ export const renderers: Record<DiagramSpec["renderer"], Renderer> = {
   flavivirus: flavivirusRenderer,
   calicivirus: calicivirusRenderer,
   levivirus: levivirusRenderer,
+  fusellovirus: fusellovirusRenderer,
+  mimivirus: mimivirusRenderer,
+  geminivirus: geminivirusRenderer,
+  inovirus: inovirusRenderer,
+  deltavirus: deltavirusRenderer,
+  totivirus: totivirusRenderer,
+
 };

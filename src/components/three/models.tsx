@@ -36,6 +36,7 @@ export interface Model3D {
 
 /** Build once per mount (lazy state initialiser). */
 const useOnce = <T,>(f: () => T) => useState(f)[0];
+const FIBRE_CYLINDER = new THREE.CylinderGeometry(1,1,1,5);
 const SPHERE = new THREE.SphereGeometry(1, 16, 12);
 
 function Spheres({ matrices, type, opacity = 1 }: { matrices: THREE.Matrix4[]; type: ComponentType; opacity?: number }) {
@@ -835,6 +836,86 @@ const levivirus: Model3D = {
   },
 };
 
+// New atlas entries use schematic geometry; subunit positions are illustrative.
+const fusellovirus: Model3D = {
+  parts: ["shell", "fibres", "genome"], distance: 4.3,
+  Model() {
+    const profile = useOnce(() => Array.from({length: 41}, (_,i) => {
+      const t = i / 40;
+      return new THREE.Vector2(Math.sin(Math.PI*t)*0.62, (t-0.5)*2.2);
+    }));
+    const dna = useOnce(() => wanderCurve(0.42, 9, 91, true));
+    return <group rotation={[0,0,-0.65]}>
+      <Part3D id="shell" rank={1} shell><mesh><latheGeometry args={[profile,40]}/><Mat type="capsid"/></mesh></Part3D>
+      <Part3D id="fibres" rank={1.3}>{[-1,0,1].map(i=><mesh key={i} position={[i*0.1,1.22,0]} rotation={[0,0,-i*0.35]}><cylinderGeometry args={[0.017,0.025,0.35,8]}/><Mat type="fibre"/></mesh>)}</Part3D>
+      <Part3D id="genome" rank={0}><Strand curve={dna} radius={0.017} double/></Part3D>
+    </group>;
+  },
+};
+const mimivirus: Model3D = {
+  parts: ["fibres","capsid","stargate","core","genome"], distance: 4.8,
+  Model() {
+    const fibres = useOnce(() => fibonacciSphere(360,1).map(p => new THREE.Matrix4().compose(p.clone().multiplyScalar(1.1),new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0,1,0),p.clone().normalize()),new THREE.Vector3(0.009,0.25,0.009))));
+    const dna = useOnce(() => coilCurve(0.4,12,12));
+    return <>
+      <Part3D id="fibres" rank={2}><Instances geometry={FIBRE_CYLINDER} matrices={fibres} type="fibre"/></Part3D>
+      <Part3D id="capsid" rank={1.5} shell><CapsomerShell detail={4} r={0.95}/></Part3D>
+      <Part3D id="stargate" rank={2}>{Array.from({length:5},(_,i)=><mesh key={i} position={[Math.sin(i*Math.PI*2/5)*0.12,0.94,Math.cos(i*Math.PI*2/5)*0.12]} rotation={[0,i*Math.PI*2/5,0]}><boxGeometry args={[0.035,0.04,0.28]}/><Mat type="portal"/></mesh>)}</Part3D>
+      <Part3D id="core" rank={0.8} shell><mesh><sphereGeometry args={[0.65,32,24]}/><Mat type="nucleocapsid"/></mesh><mesh><sphereGeometry args={[0.69,32,24]}/><Mat type="envelope" opacity={0.22}/></mesh><mesh><sphereGeometry args={[0.73,32,24]}/><Mat type="envelope" opacity={0.22}/></mesh></Part3D>
+      <Part3D id="genome" rank={0}><Strand curve={dna} radius={0.012} double/></Part3D>
+    </>;
+  },
+};
+const geminivirus: Model3D = {
+  parts:["coat","genome"], distance:4.8,
+  Model() {
+    // Clip both icosahedra at their shared waist rather than draw two whole overlapping shells.
+    const half = useOnce(() => {
+      const g = new THREE.IcosahedronGeometry(0.78,0);
+      const a = g.getAttribute("position");
+      const out:number[]=[];
+      for(let i=0;i<a.count;i+=3) {
+        let poly=[0,1,2].map(k=>new THREE.Vector3().fromBufferAttribute(a,i+k));
+        const clipped:THREE.Vector3[]=[];
+        for(let k=0;k<poly.length;k++) {
+          const u=poly[k],v=poly[(k+1)%poly.length];
+          if(u.y>=-0.35) clipped.push(u);
+          if((u.y>=-0.35)!==(v.y>=-0.35)) clipped.push(u.clone().lerp(v,(-0.35-u.y)/(v.y-u.y)));
+        }
+        poly=clipped;
+        for(let k=1;k<poly.length-1;k++) for(const v of [poly[0],poly[k],poly[k+1]]) out.push(v.x,v.y+0.35,v.z);
+      }
+      g.dispose();
+      const result=new THREE.BufferGeometry(); result.setAttribute("position",new THREE.Float32BufferAttribute(out,3)); result.computeVertexNormals(); return result;
+    });
+    const dna=useOnce(()=>wanderCurve(0.46,10,8,true));
+    return <><Part3D id="coat" rank={1.5} shell>{[0,Math.PI].map(a=><mesh key={a} geometry={half} rotation={[0,0,a]}><Mat type="capsid" flat/></mesh>)}</Part3D><Part3D id="genome" rank={0}><Strand curve={dna} radius={0.018}/></Part3D></>;
+  },
+};
+const inovirus: Model3D = {
+  parts:["coat","p3","genome"], distance:4,
+  Model() {
+    const coat=useOnce(()=>new THREE.CatmullRomCurve3(helixCurve(2.7,0.13,0.055).points.map(p=>new THREE.Vector3(p.y,p.x,p.z))));
+    const dna=useOnce(()=>new THREE.CatmullRomCurve3([new THREE.Vector3(-0.03,-1.3,0),new THREE.Vector3(-0.03,1.3,0),new THREE.Vector3(0.03,1.3,0),new THREE.Vector3(0.03,-1.3,0)],true));
+    return <group rotation={[0,0,-0.4]}><Part3D id="coat" rank={1} shell><Strand curve={coat} radius={0.028} type="capsid" segments={1000}/></Part3D><Part3D id="p3" rank={1.3}>{[-1,0,1].map(i=><mesh key={i} position={[i*0.08,1.5,0]}><capsuleGeometry args={[0.035,0.2,4,8]}/><Mat type="surface-protein"/></mesh>)}</Part3D><Part3D id="genome" rank={0}><Strand curve={dna} radius={0.012}/></Part3D></group>;
+  },
+};
+const deltavirus: Model3D = {
+  parts:["envelope","dag","genome"],distance:4.3,
+  Model() {
+    const rna=useOnce(()=>new THREE.CatmullRomCurve3([new THREE.Vector3(-0.035,-0.6,0),new THREE.Vector3(-0.035,0.6,0),new THREE.Vector3(0.035,0.6,0),new THREE.Vector3(0.035,-0.6,0)],true));
+    const beads=useOnce(()=>Array.from({length:20},(_,i)=>new THREE.Matrix4().compose(new THREE.Vector3(i%2?0.12:-0.12,-0.5+Math.floor(i/2)*0.11,0),new THREE.Quaternion(),new THREE.Vector3(0.07,0.07,0.07))));
+    return <><Part3D id="envelope" rank={2} shell><Membrane/><Blobs n={40} r={1} kind="trimer" length={0.045} head={0.035}/></Part3D><Part3D id="dag" rank={0.8}><Spheres matrices={beads} type="nucleocapsid"/></Part3D><Part3D id="genome" rank={0}><Strand curve={rna} radius={0.015}/></Part3D></>;
+  },
+};
+const totivirus: Model3D = {
+  parts:["capsid","genome"],distance:4.1,
+  Model() {
+    const rna=useOnce(()=>wanderCurve(0.6,14,51));
+    return <><Part3D id="capsid" rank={1.5} shell><CapsomerShell detail={1} r={1}/></Part3D><Part3D id="genome" rank={0}><Strand curve={rna} radius={0.018} double/></Part3D></>;
+  },
+};
+
 export const models3d: Record<DiagramSpec["renderer"], Model3D> = {
   influenza,
   coronavirus,
@@ -854,4 +935,5 @@ export const models3d: Record<DiagramSpec["renderer"], Model3D> = {
   flavivirus,
   calicivirus,
   levivirus,
+  fusellovirus, mimivirus, geminivirus, inovirus, deltavirus, totivirus,
 };
