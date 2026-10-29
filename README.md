@@ -1,8 +1,8 @@
 # Virus Atlas
 
-An interactive, source-cited atlas for comparing virus structure, size, genomes and replication strategies. Built for undergraduate biology students. Local only; not deployed.
+An interactive, source-cited atlas for comparing virus structure, size, genomes and replication strategies. Built for undergraduate biology students. Ready for deployment; see [deployment instructions](docs/deployment.md).
 
-Eighteen representative viruses, chosen so every Baltimore class is covered, hosts span vertebrates, invertebrates, plants and bacteria, and shapes range from 25 nm shells to filaments and bricks:
+Twenty-four representative viruses, chosen so every Baltimore class is covered, hosts span vertebrates, invertebrates, plants, bacteria, archaea, protists and fungi, and shapes range from 25 nm shells to filaments and bricks:
 
 | Virus | ICTV genome | Baltimore | Envelope | Structure | Host |
 |---|---|---|---|---|---|
@@ -27,7 +27,7 @@ Eighteen representative viruses, chosen so every Baltimore class is covered, hos
 
 ## What is in it
 
-- **Design**: dark editorial layout; IBM Plex for interface and headings, Source Serif 4 for body text; animated page transitions (React ViewTransition) with thumbnail-to-profile morphs; the home page runs as full-screen slides with scroll-linked entrances. All motion is disabled under reduced-motion settings.
+- **Design**: dark editorial layout; Archivo throughout, with geometric sans headings and plain-text evidence labels; animated page transitions (React ViewTransition) with thumbnail-to-profile morphs; the home page runs as full-screen slides with scroll-linked entrances. All motion is disabled under reduced-motion settings.
 - **Atlas** with search and filters (genome class incl. reverse-transcribing classes, envelope, host, morphology, size), URL-synced.
 - **Structure viewer** per virus, controlled from one toolbar (2D/3D, Show inside, Full names, Pull apart): 2D schematic or 3D model (React Three Fiber, lazy-loaded, WebGL fallback to 2D), exterior/cutaway, layer toggles, "separate layers" exploded view, numbered components with cited descriptions. 3D uses a molecular-graphics look: ambient occlusion (N8AO), depth-edge silhouettes, subunit lattices.
 - **Protein structures**: 36 experimental structures from the PDB (particle components, enzymes, and complexes with host receptors), linked from the matching diagram component, shown as a 2D Cα trace with a secondary-structure map, and in 3D as cartoon, approximate surface or trace. Each page lists what the experiment did and did not capture.
