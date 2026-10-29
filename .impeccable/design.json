@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-28T22:00:00Z",
+  "title": "Design System: VariantLab",
+  "extensions": {
+    "colorMeta": {
+      "structural-blue-deep": { "role": "primary", "displayName": "Structural Blue Deep", "canonical": "#0d1f3c", "tonalRamp": ["#040a16", "#0d1f3c", "#1c3f6e", "#2d5a8c", "#3f6ea8", "#7a9cc4", "#aebedb", "#eef3fa"] },
+      "structural-blue": { "role": "primary", "displayName": "Structural Blue", "canonical": "#1c3f6e" },
+      "verified-teal": { "role": "secondary", "displayName": "Verified Teal", "canonical": "#0b6e62", "tonalRamp": ["#032823", "#0b6e62", "#128d7e", "#2fae9d", "#6ccabd", "#a7e0d6", "#d4f0ea", "#eaf4f2"] },
+      "caution-amber": { "role": "tertiary", "displayName": "Caution Amber", "canonical": "#9a5b12", "tonalRamp": ["#3a2206", "#9a5b12", "#b56f1c", "#d4914a", "#e3ac78", "#f0cba8", "#f8e2cc", "#faf2e6"] },
+      "paper": { "role": "neutral", "displayName": "Paper", "canonical": "#ffffff" },
+      "paper-subtle": { "role": "neutral", "displayName": "Paper Subtle", "canonical": "#f6f4f1" },
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#14171a" },
+      "ink-secondary": { "role": "neutral", "displayName": "Ink Secondary", "canonical": "#52585e" },
+      "on-blue": { "role": "neutral", "displayName": "On Blue", "canonical": "#eef3fa" },
+      "hairline": { "role": "neutral", "displayName": "Hairline", "canonical": "#d9d4cb" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Hero Display", "purpose": "The single H1 sentence-led claim, centered over the structural-blue hero." },
+      "sectionHeading": { "displayName": "Section Heading", "purpose": "One per major section (Standard, Science, Structure, Explore)." },
+      "body": { "displayName": "Body", "purpose": "Running copy, captions, card body text." },
+      "tagline": { "displayName": "Tagline", "purpose": "The mono parenthetical line above the hero headline — a typographic quotation mark, not a data value." },
+      "measurement": { "displayName": "Measurement", "purpose": "Any measured/computed numeric value — scores, mutation codes, feature numbers." }
+    },
+    "shadows": [],
+    "motion": [],
+    "breakpoints": [
+      { "name": "card-stack", "value": "700px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Pill Nav",
+      "kind": "nav",
+      "refersTo": "pill-nav",
+      "description": "Sticky, full-pill, translucent structural-blue-deep nav with backdrop blur — the signature chrome element, one of the few patterns kept near-literal from the pinned reference.",
+      "html": "<div class=\"ds-nav\"><div class=\"ds-nav-logo\">VariantLab</div><div class=\"ds-nav-links\"><a href=\"#principles\">Standard</a><a href=\"#concepts\">Science</a><a href=\"#structure\">Structure</a><a href=\"#explore\">Explore</a></div></div>",
+      "css": ".ds-nav { position: sticky; top: 0.9rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; max-width: 980px; margin: 0.9rem auto 0 auto; background: rgba(13,31,60,0.82); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.12); border-radius: 999px; padding: 0.6rem 0.6rem 0.6rem 1.1rem; box-shadow: 0 10px 30px rgba(13,31,60,0.25); font-family: 'Space Grotesk', sans-serif; } .ds-nav-logo { color: #eef3fa; font-weight: 700; font-size: 0.95rem; } .ds-nav-links { display: flex; gap: 1.1rem; } .ds-nav-links a { color: #aebedb; text-decoration: none; font-size: 0.82rem; font-weight: 500; font-family: 'IBM Plex Sans', sans-serif; }"
+    },
+    {
+      "name": "Principle / Concept Tile",
+      "kind": "card",
+      "refersTo": "tile",
+      "description": "The signature content card: bold Space Grotesk statement with no label above it (The No-Kicker Rule), body text below. Used for both the five Product Principles and the six biology/stats concept explainers.",
+      "html": "<div class=\"ds-tile\"><div class=\"ds-tile-statement\">Report the number that hurts.</div><p>Every evaluation shows the easy split next to the hard one — never the flattering result alone.</p></div>",
+      "css": ".ds-tile { background: #f6f4f1; border: 1px solid #d9d4cb; border-radius: 10px; padding: 1.2rem 1.3rem; } .ds-tile-statement { font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: #14171a; font-size: 1.05rem; line-height: 1.3; margin-bottom: 0.5rem; } .ds-tile p { color: #52585e; font-size: 0.9rem; line-height: 1.55; margin: 0; }"
+    },
+    {
+      "name": "Evidence Card — Observed",
+      "kind": "card",
+      "refersTo": "evidence-card-observed",
+      "description": "Unchanged from the prior system. Default, unmarked state for a ground-truth measurement — needs no evidentiary flag.",
+      "html": "<div class=\"ds-card ds-card--observed\"><div class=\"ds-card-label\">Observed DMS score</div><div class=\"ds-card-value\">0.965</div><div class=\"ds-card-note\">Measured directly in the Olson et al. assay.</div></div>",
+      "css": ".ds-card { flex: 1 1 220px; padding: 0.9rem 1.05rem; border-radius: 10px; font-family: 'IBM Plex Sans', sans-serif; } .ds-card-label { font-size: 0.78rem; color: #52585e; margin-bottom: 0.35rem; } .ds-card-value { font-family: 'IBM Plex Mono', monospace; font-size: 1.5rem; font-weight: 600; } .ds-card-note { font-size: 0.78rem; color: #52585e; margin-top: 0.4rem; line-height: 1.45; } .ds-card--observed { background: #f6f4f1; border: 1px solid #d9d4cb; } .ds-card--observed .ds-card-value { color: #14171a; }"
+    },
+    {
+      "name": "Evidence Card — Verified",
+      "kind": "card",
+      "refersTo": "evidence-card-verified",
+      "description": "Unchanged from the prior system. Marks a value as genuine held-out-position evidence.",
+      "html": "<div class=\"ds-card ds-card--verified\"><div class=\"ds-card-label\">Held-out-position prediction</div><div class=\"ds-card-value\">0.598</div><div class=\"ds-card-note\">Genuine generalization evidence — trained with this mutation's entire position excluded.</div></div>",
+      "css": ".ds-card--verified { background: #eaf4f2; border: 1px solid #0b6e62; } .ds-card--verified .ds-card-value { color: #0b6e62; }"
+    },
+    {
+      "name": "Evidence Card — Caution",
+      "kind": "card",
+      "refersTo": "evidence-card-caution",
+      "description": "Unchanged from the prior system. Marks a value as NOT test evidence via a dashed border — the one component in the system that uses a dashed border.",
+      "html": "<div class=\"ds-card ds-card--caution\"><div class=\"ds-card-label\">Refit-on-all-data prediction</div><div class=\"ds-card-value\">0.706</div><div class=\"ds-card-note\">Not test evidence — trained on every row including this one.</div></div>",
+      "css": ".ds-card--caution { background: #faf2e6; border: 1px dashed #9a5b12; } .ds-card--caution .ds-card-value { color: #9a5b12; } .ds-card--caution .ds-card-note { font-weight: 500; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Standard, Stated Plainly",
+    "overview": "VariantLab's interface now opens the way a serious biotech company opens its culture page — with atmosphere, a stated standard, and confidence — then immediately substitutes what a solo technical project actually has in place of a team: verified data, a verified structure, and an honestly reported performance gap. This is a redesign, not a refinement: it replaces the prior Lab Notebook system rather than polishing it, per a user-pinned reference (untillabs.com/our-team). Every borrowed pattern was re-grounded in VariantLab's own real content: the team-photo grid became five real Product Principles; the value-statement cards became the same pattern with real principles as content; the dark 'we value X' banner became 'We report the harder number.' One deliberate deviation from the pinned reference: its category-label-above-statement pattern is dropped, since a kicker/eyebrow above a heading is Impeccable's one hard-banned pattern regardless of what the brief pins.",
+    "keyCharacteristics": [
+      "Committed structural blue at page scale (hero + banner + nav) — a color strategy earned by Persuade-mode permission.",
+      "Space Grotesk for every display/heading voice; IBM Plex Sans for body; IBM Plex Mono still exclusively for measured values.",
+      "The evidentiary evidence-card system (neutral / verified-teal / dashed-caution-amber) is unchanged and remains load-bearing.",
+      "No label ever sits above a heading or bold statement — the statement always carries its own weight."
+    ],
+    "rules": [
+      { "name": "The Semantic Color Rule", "body": "Verified Teal and Caution Amber never appear decoratively — unchanged across the world replacement.", "section": "colors" },
+      { "name": "The Committed-Blue Rule", "body": "Structural blue owns whole regions at page scale (hero, banner, nav) — never a scattered accent on paper sections.", "section": "colors" },
+      { "name": "The Dashed-Border Rule", "body": "A dashed border means, specifically and only, 'not test evidence.'", "section": "shapes" },
+      { "name": "The Measurement-Mono Rule", "body": "IBM Plex Mono renders only measured/computed values.", "section": "typography" },
+      { "name": "The No-Kicker Rule", "body": "No label, tag, or eyebrow sits above any heading or bold statement, even where the pinned reference used one.", "section": "typography" },
+      { "name": "The Flat-By-Design Rule", "body": "If an element needs to stand out, it earns a background tint or a border — never a shadow.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep the structural blue committed at page scale, never scattered.",
+      "Do keep every accent color tied to evidentiary meaning.",
+      "Do state a finding in a real sentence with inline Measurement-weight numbers before reaching for a stat-card grid.",
+      "Do let a bold statement carry its own weight — no label above it."
+    ],
+    "donts": [
+      "Don't add a kicker/eyebrow label above any heading or card statement.",
+      "Don't add a shadow anywhere.",
+      "Don't use a dashed border for anything except 'not test evidence.'",
+      "Don't fabricate a structural render when the real one isn't available — degrade to an honest text instruction.",
+      "Don't put Verified Teal, Caution Amber, or the committed blue on an element that isn't doing one of their specific jobs."
+    ]
+  }
+}

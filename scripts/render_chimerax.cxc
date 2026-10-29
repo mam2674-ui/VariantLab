@@ -1,0 +1,68 @@
+open data/raw/structure/1PGB.pdb
+hide atoms
+cartoon
+cartoon style width 1.6 thickness 0.6
+color white
+lighting soft
+set bgColor white
+graphics silhouettes true
+color /A:3 #fcdcc8
+color /A:4 #ce5146
+color /A:5 #f8f2ee
+color /A:6 #c6403e
+color /A:7 #f7b799
+color /A:8 #bf3237
+color /A:9 #faceb6
+color /A:10 #b92732
+color /A:11 #f19e7c
+color /A:12 #fbd4be
+color /A:13 #be3036
+color /A:14 #fcdecc
+color /A:15 #b41c2d
+color /A:16 #dd7059
+color /A:17 #b92732
+color /A:18 #d05447
+color /A:19 #8a0b24
+color /A:20 #d45d4b
+color /A:21 #b41c2d
+color /A:22 #930e26
+color /A:23 #f7f3f0
+color /A:24 #67001f
+color /A:25 #a41328
+color /A:26 #bad9e9
+color /A:27 #053061
+color /A:28 #dbe9f1
+color /A:29 #b82431
+color /A:30 #f7f3f0
+color /A:31 #0f457e
+color /A:32 #e58368
+color /A:33 #fbd2bc
+color /A:34 #90c4dd
+color /A:35 #3c8abe
+color /A:36 #b0172a
+color /A:37 #fddbc7
+color /A:38 #eb9072
+color /A:39 #c7dfed
+color /A:40 #930e26
+color /A:41 #2064aa
+color /A:42 #7e0722
+color /A:43 #073466
+color /A:44 #c53e3c
+color /A:45 #e5eef3
+color /A:46 #b51f2e
+color /A:47 #750421
+color /A:48 #9b1027
+color /A:49 #a11228
+color /A:50 #b92732
+color /A:51 #a71429
+color /A:52 #3783ba
+color /A:53 #ce5146
+color /A:54 #f9ebe3
+color /A:55 #d96853
+color /A:56 #facab1
+view
+save data/processed/structure_renders/gb1_3d_view.png width 1200 height 1200 supersample 3 transparentBackground false
+turn y 90
+view
+save data/processed/structure_renders/gb1_2d_flat_view.png width 1200 height 1200 supersample 3 transparentBackground false
+exit

@@ -1,0 +1,12 @@
+{
+  "n_input_rows": 536962,
+  "n_multi_mutation_excluded": 535917,
+  "n_unparseable_excluded": 0,
+  "n_reference_mismatch_excluded": 0,
+  "n_missing_score_excluded": 0,
+  "n_duplicate_rows": 0,
+  "n_final_rows": 1045,
+  "notes": [
+    "No biological replicates exist for SPG1_STRSG_Olson_2014 (single pooled selection + sequencing); no aggregation across replicates was performed."
+  ]
+}
