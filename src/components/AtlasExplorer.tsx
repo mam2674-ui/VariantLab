@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useMemo, useState, ViewTransition } from "react";
 import type { Virus } from "@/lib/schema";
 import { emptyFilters, filterViruses, genomeClass, isFiltered, sizeBand, type AtlasFilters } from "@/lib/filter";
-import { morphologyLabel, MAX_COMPARE } from "@/lib/compare";
+import { HOST_LABEL, morphologyLabel, MAX_COMPARE } from "@/lib/compare";
 import { compareHref, parseFilters, serializeFilters } from "@/lib/urlState";
 import { SilhouetteThumb } from "./Silhouette";
 
@@ -23,7 +23,7 @@ const SIZE_OPTS = [
   { v: "medium", l: "70–130 nm" },
   { v: "large", l: "Over 130 nm" },
 ] as const;
-const HOST_LABEL: Record<string, string> = { vertebrates: "Vertebrates", bacteria: "Bacteria", plants: "Plants" };
+
 
 export function AtlasExplorer({ viruses }: { viruses: Virus[] }) {
   const router = useRouter();
@@ -61,7 +61,7 @@ export function AtlasExplorer({ viruses }: { viruses: Virus[] }) {
             <label key={o.v} className="chip relative">
               <input type="checkbox" checked={on} onChange={() => toggle(k, o.v)} />
               {o.l}
-              <span className="num opacity-70" aria-label={`${n} matching`}>
+              <span className="num opacity-60 text-[12px]" aria-label={`${n} matching`}>
                 {n}
               </span>
             </label>
@@ -90,11 +90,24 @@ export function AtlasExplorer({ viruses }: { viruses: Virus[] }) {
             }}
           />
         </div>
-        {group("Genome class", "genome", GENOME_OPTS)}
+        {group("Genome", "genome", GENOME_OPTS)}
         {group("Envelope", "envelope", [{ v: "enveloped", l: "Enveloped" }, { v: "non-enveloped", l: "Non-enveloped" }])}
-        {group("Host category", "host", hosts.map((h) => ({ v: h, l: HOST_LABEL[h] ?? h })))}
-        {group("Morphology", "morphology", morphs.map((m) => ({ v: m, l: morphologyLabel(m) })))}
-        {group("Main body size", "size", SIZE_OPTS)}
+        <details className="group border-t border-hairline pt-4" open={filters.host.length + filters.morphology.length + filters.size.length > 0 || undefined}>
+          <summary className="cursor-pointer list-none flex items-center justify-between text-[14px] font-semibold text-ink [&::-webkit-details-marker]:hidden">
+            <span>
+              More filters
+              {filters.host.length + filters.morphology.length + filters.size.length > 0 && (
+                <span className="ml-2 num text-mute font-normal">{filters.host.length + filters.morphology.length + filters.size.length} on</span>
+              )}
+            </span>
+            <span aria-hidden="true" className="text-mute transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div className="mt-5 flex flex-col gap-6">
+            {group("Host", "host", hosts.map((h) => ({ v: h, l: HOST_LABEL[h] ?? h })))}
+            {group("Shape", "morphology", morphs.map((m) => ({ v: m, l: morphologyLabel(m) })))}
+            {group("Size of the main body", "size", SIZE_OPTS)}
+          </div>
+        </details>
         <button type="button" className="btn self-start" onClick={() => {
             setQ("");
             update(emptyFilters);
@@ -142,7 +155,11 @@ export function AtlasExplorer({ viruses }: { viruses: Virus[] }) {
               const full = !chosen && picked.length >= MAX_COMPARE;
               return (
                 <li key={v.id} className="border-b border-hairline py-5 grid grid-cols-[64px_minmax(0,1fr)] sm:grid-cols-[72px_minmax(0,1fr)_auto] gap-x-5 gap-y-3 items-center">
-                  <SilhouetteThumb v={v} size={64} />
+                  <ViewTransition name={`virus-${v.id}`} share="morph" default="none">
+                    <div className="w-16 h-16">
+                      <SilhouetteThumb v={v} size={64} />
+                    </div>
+                  </ViewTransition>
                   <div className="min-w-0">
                     <h3 className="text-[19px] font-semibold leading-tight">
                       <Link href={`/virus/${v.id}`} className="text-ink no-underline hover:underline">

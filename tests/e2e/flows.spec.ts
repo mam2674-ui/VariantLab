@@ -26,13 +26,13 @@ test("selects a structural component by click and keyboard", async ({ page }) =>
 
 test("exterior view hides interior layers; layers toggle", async ({ page }) => {
   await page.goto("/virus/hsv-1");
-  await page.getByRole("radio", { name: "Exterior" }).click();
+  await page.getByRole("button", { name: "Show inside" }).click(); // starts in cutaway: turn it off
   await expect(page.locator('[data-part="capsid"]')).toHaveCount(0);
-  await page.getByRole("radio", { name: "Cutaway" }).click();
+  await page.getByRole("button", { name: "Show inside" }).click();
   await expect(page.locator('[data-part="capsid"]')).toHaveCount(1);
   await page.getByRole("checkbox", { name: "Show Tegument" }).uncheck();
   await expect(page.locator('[data-part="tegument"]')).toHaveCount(0);
-  await page.getByRole("radio", { name: "Detailed labels" }).click();
+  await page.getByRole("button", { name: "Full names" }).click();
   await expect(page.getByRole("button", { name: /T=16 icosahedral capsid/ }).first()).toBeVisible();
 });
 
@@ -49,9 +49,10 @@ test("compares viruses and restores the selection from the URL", async ({ page }
 
 test("uses filters, shows an empty state and resets", async ({ page }) => {
   await page.goto("/#atlas");
-  await page.locator("label.chip", { hasText: /^Enveloped/ }).click();
-  await expect(page.getByText(/5 of 12 viruses/)).toBeVisible();
+  await page.getByRole("group", { name: "Envelope" }).locator("label.chip", { hasText: /^Enveloped/ }).click();
+  await expect(page.getByText(/9 of 18 viruses/)).toBeVisible();
   await expect(page).toHaveURL(/envelope=enveloped/);
+  await page.getByText("More filters").click();
   await page.locator("label.chip", { hasText: "Bacteria" }).click();
   await expect(page.getByRole("heading", { name: /No virus matches/ })).toBeVisible();
   await page.getByRole("button", { name: "Reset filters" }).first().click();
@@ -86,7 +87,7 @@ test("navigates on mobile without horizontal page scroll", async ({ page, isMobi
   await page.getByRole("button", { name: /Index/ }).click();
   await page.getByRole("navigation", { name: "Pages" }).getByRole("link", { name: /Compare/ }).click();
   await expect(page).toHaveURL(/\/compare/);
-  for (const path of ["/", "/virus/phage-t4", "/virus/rotavirus-a", "/compare?v=hsv-1,hpv-16", "/size", "/genomes", "/sources", "/proteins", "/proteins/6VSB"]) {
+  for (const path of ["/", "/virus/phage-t4", "/virus/rotavirus-a", "/virus/ebola", "/virus/vaccinia", "/compare?v=hsv-1,hpv-16", "/size", "/genomes", "/sources", "/proteins", "/proteins/6VSB"]) {
     await page.goto(path);
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
     expect(overflow, path).toBeLessThanOrEqual(0);
@@ -122,8 +123,16 @@ test("3D model loads or falls back without errors", async ({ page }) => {
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
   await page.goto("/virus/human-adenovirus-5");
-  await page.getByRole("radio", { name: "3D model" }).click();
+  await page.getByRole("radio", { name: "3D", exact: true }).click();
   await expect(page.locator("canvas, svg.diagram").first()).toBeVisible({ timeout: 20000 });
-  await page.getByRole("button", { name: "Separate layers" }).click();
+  await page.getByRole("button", { name: "Pull apart" }).click();
   expect(errors).toEqual([]);
+});
+
+test("new viruses: Ebola profile, structure and genome map", async ({ page }) => {
+  await page.goto("/virus/ebola");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Ebola virus");
+  await page.getByRole("list", { name: "Structural components" }).getByRole("button", { name: /GP spikes/ }).click();
+  await expect(page.getByRole("link", { name: /PDB 5JQ3/ })).toBeVisible();
+  await expect(page.getByText(/18,959 nt, 9 coding sequences/)).toBeVisible();
 });

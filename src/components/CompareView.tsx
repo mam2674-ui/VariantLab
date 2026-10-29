@@ -104,7 +104,7 @@ export function CompareView({ viruses, sources, diagrams }: { viruses: Virus[]; 
       ) : (
         <>
           <section aria-labelledby="cmp-structure">
-            <h2 id="cmp-structure" className="display text-[30px] mb-4">
+            <h2 id="cmp-structure" className="subhead text-[30px] mb-4">
               Side by side
             </h2>
             <div className={`grid gap-6 ${chosen.length === 3 ? "md:grid-cols-3" : "md:grid-cols-2"}`}>
@@ -136,7 +136,7 @@ export function CompareView({ viruses, sources, diagrams }: { viruses: Virus[]; 
           </section>
 
           <section aria-labelledby="cmp-insights">
-            <h2 id="cmp-insights" className="display text-[30px] mb-4">
+            <h2 id="cmp-insights" className="subhead text-[30px] mb-4">
               What the comparison shows
             </h2>
             <ul className="flex flex-col gap-4 measure">
@@ -152,7 +152,7 @@ export function CompareView({ viruses, sources, diagrams }: { viruses: Virus[]; 
           </section>
 
           <section aria-labelledby="cmp-table">
-            <h2 id="cmp-table" className="display text-[30px] mb-4">
+            <h2 id="cmp-table" className="subhead text-[30px] mb-4">
               Property by property
             </h2>
             <table className="compare-table">

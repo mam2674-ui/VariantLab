@@ -45,7 +45,12 @@ const MORPHOLOGY_LABEL: Record<string, string> = {
   "head-tail": "Head–tail (tailed phage)",
   "enveloped-conical-core": "Envelope around a cone-shaped core",
   "helical-rod": "Rigid helical rod",
+  "filamentous-enveloped": "Enveloped filament",
+  "bullet-enveloped": "Bullet-shaped, enveloped",
+  "brick-complex": "Brick-shaped, complex",
+  "spherical-enveloped": "Small sphere, enveloped",
 };
+export const HOST_LABEL: Record<string, string> = { vertebrates: "Vertebrates", bacteria: "Bacteria", plants: "Plants", "vertebrates-invertebrates": "Vertebrates and invertebrates" };
 export const morphologyLabel = (m: string | null) => (m ? MORPHOLOGY_LABEL[m] ?? m : "Not verified");
 
 export function compareRows(vs: Virus[]): CompareRow[] {
@@ -77,7 +82,7 @@ export function compareRows(vs: Virus[]): CompareRow[] {
     { id: "baltimore", group: "Classification", label: "Baltimore class", cells: vs.map((v) => cell(v.baltimore, v.baltimore.value ? `Class ${v.baltimore.value}` : undefined)) },
     { id: "realm", group: "Classification", label: "ICTV realm", cells: vs.map((v) => ({ text: v.taxonomy.realm, status: "verified", scope: "species", sourceIds: v.taxonomy.sourceIds })) },
     { id: "family", group: "Classification", label: "ICTV family", cells: vs.map((v) => ({ text: v.taxonomy.family, status: "verified", scope: "species", sourceIds: v.taxonomy.sourceIds })) },
-    { id: "host", group: "Host", label: "Host category", cells: vs.map((v) => cell(v.hostCategory, v.hostCategory.value ? v.hostCategory.value.charAt(0).toUpperCase() + v.hostCategory.value.slice(1) : undefined)) },
+    { id: "host", group: "Host", label: "Host category", cells: vs.map((v) => cell(v.hostCategory, v.hostCategory.value ? HOST_LABEL[v.hostCategory.value] : undefined)) },
     { id: "site", group: "Replication", label: "Replication site", cells: vs.map((v) => cell(v.replication.site)) },
     { id: "mrna", group: "Replication", label: "Route to mRNA", cells: vs.map((v) => cell(v.replication.mRNARoute)) },
   ];

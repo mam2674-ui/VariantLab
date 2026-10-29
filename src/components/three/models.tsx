@@ -563,6 +563,278 @@ const microvirus: Model3D = {
   },
 };
 
+/** Points along a U-bent filament (legs along -y, joined by a half-circle), with tangents. */
+function uFilament(legs: number, r: number, n: number) {
+  const pts: THREE.Vector3[] = [];
+  for (let i = 0; i <= n; i++) {
+    const total = 2 * legs + Math.PI * r;
+    const d = (i / n) * total;
+    if (d < legs) pts.push(new THREE.Vector3(-r, legs / 2 - d, 0));
+    else if (d < legs + Math.PI * r) {
+      const a = Math.PI + (d - legs) / r;
+      pts.push(new THREE.Vector3(Math.cos(a) * r, -legs / 2 + Math.sin(a) * r, 0));
+    } else pts.push(new THREE.Vector3(r, -legs / 2 + (d - legs - Math.PI * r), 0));
+  }
+  return new THREE.CatmullRomCurve3(pts);
+}
+
+/** Instance matrices for spheres placed on a tube of radius `rad` around a curve. */
+function onTube(curve: THREE.Curve<THREE.Vector3>, rad: number, along: number, around: number, size: number, lift = 0) {
+  const out: THREE.Matrix4[] = [];
+  const frames = curve.computeFrenetFrames(along, false);
+  for (let i = 0; i <= along; i++) {
+    const p = curve.getPointAt(i / along);
+    const nI = frames.normals[Math.min(i, along - 1)], bI = frames.binormals[Math.min(i, along - 1)];
+    for (let k = 0; k < around; k++) {
+      const a = (k / around) * Math.PI * 2 + (i % 2) * (Math.PI / around);
+      const off = nI.clone().multiplyScalar(Math.cos(a) * (rad + lift)).add(bI.clone().multiplyScalar(Math.sin(a) * (rad + lift)));
+      out.push(new THREE.Matrix4().compose(p.clone().add(off), new THREE.Quaternion(), new THREE.Vector3(size, size, size)));
+    }
+  }
+  return out;
+}
+
+const filovirus: Model3D = {
+  // Units: 1 = 100 nm. Diameter ~0.97; a ~8 nm-long U-bent stretch is drawn (real filaments vary, beyond 20 µm).
+  parts: ["envelope", "gp", "rnp"],
+  distance: 6.2,
+  Model() {
+    const curve = useOnce(() => uFilament(2.2, 0.9, 200));
+    const env = useOnce(() => new THREE.TubeGeometry(curve, 300, 0.485, 36, false));
+    const gp = useOnce(() => onTube(curve, 0.485, 260, 26, 0.035, 0.03));
+    const rnp = useOnce(() => onTube(curve, 0.13, 420, 10, 0.05));
+    return (
+      <>
+        <Part3D id="envelope" rank={2} shell>
+          <mesh geometry={env}>
+            <Mat type="envelope" />
+          </mesh>
+        </Part3D>
+        <Part3D id="gp" rank={2.4}>
+          <Spheres matrices={gp} type="surface-protein" />
+        </Part3D>
+        <Part3D id="rnp" rank={0}>
+          <Spheres matrices={rnp} type="nucleocapsid" />
+        </Part3D>
+      </>
+    );
+  },
+};
+
+/** Bullet: cylinder along x with a hemispherical dome at +x. */
+function bulletPoints(len: number, r: number, nAlong: number, nAround: number, size: number, lift = 0) {
+  const out: THREE.Matrix4[] = [];
+  const body = len - r;
+  for (let i = 0; i <= nAlong; i++) {
+    const x = -len / 2 + (i / nAlong) * body;
+    for (let k = 0; k < nAround; k++) {
+      const a = (k / nAround) * Math.PI * 2 + (i % 2) * (Math.PI / nAround);
+      out.push(new THREE.Matrix4().compose(new THREE.Vector3(x, Math.cos(a) * (r + lift), Math.sin(a) * (r + lift)), new THREE.Quaternion(), new THREE.Vector3(size, size, size)));
+    }
+  }
+  fibonacciSphere(160, r + lift).forEach((p) => {
+    if (p.x > 0) out.push(new THREE.Matrix4().compose(p.clone().add(new THREE.Vector3(-len / 2 + body, 0, 0)), new THREE.Quaternion(), new THREE.Vector3(size, size, size)));
+  });
+  return out;
+}
+
+const rhabdovirus: Model3D = {
+  // Bullet ~180 × 75 nm drawn within the 130–250 × 60–110 nm lyssavirus range.
+  parts: ["envelope", "g", "matrix", "nucleocapsid"],
+  distance: 4.4,
+  Model() {
+    const L = 1.8, R = 0.38;
+    const shape = useOnce(() => {
+      const g = new THREE.CapsuleGeometry(R, L - 2 * R, 12, 40).rotateZ(Math.PI / 2);
+      // flatten the -x end into a flat base
+      const pos = g.getAttribute("position");
+      for (let i = 0; i < pos.count; i++) if (pos.getX(i) < -L / 2 + R) pos.setX(i, Math.max(pos.getX(i), -L / 2 + R * 0.92));
+      g.computeVertexNormals();
+      return g;
+    });
+    const g = useOnce(() => bulletPoints(L, R, 26, 22, 0.03, 0.05));
+    const coil = useOnce(() => {
+      const pts: THREE.Vector3[] = [];
+      for (let i = 0; i <= 900; i++) {
+        const t = i / 900, a = t * Math.PI * 2 * 30;
+        const x = -L / 2 + 0.1 + t * (L - R - 0.1);
+        pts.push(new THREE.Vector3(x, Math.cos(a) * 0.24, Math.sin(a) * 0.24));
+      }
+      return new THREE.CatmullRomCurve3(pts);
+    });
+    return (
+      <>
+        <Part3D id="envelope" rank={2} shell>
+          <mesh geometry={shape}>
+            <Mat type="envelope" />
+          </mesh>
+        </Part3D>
+        <Part3D id="g" rank={2.4}>
+          <Spheres matrices={g} type="surface-protein" />
+        </Part3D>
+        <Part3D id="matrix" rank={1.2} shell>
+          <mesh geometry={shape} scale={0.9}>
+            <Mat type="matrix" />
+          </mesh>
+        </Part3D>
+        <Part3D id="nucleocapsid" rank={0}>
+          <Strand curve={coil} radius={0.03} segments={1800} type="nucleocapsid" />
+        </Part3D>
+      </>
+    );
+  },
+};
+
+const poxvirus: Model3D = {
+  // Brick ~360 × 240 × 200 nm, inside the 220–450 × 140–260 × 140–260 nm family range.
+  parts: ["membrane", "tubules", "lateral", "core", "genome"],
+  distance: 6.4,
+  Model() {
+    const tub = useOnce(() => {
+      const out: THREE.Matrix4[] = [];
+      const rand = seeded(31);
+      for (let i = 0; i < 520; i++) {
+        const face = i % 6;
+        const u = rand() - 0.5, v = rand() - 0.5;
+        const p = face < 2 ? new THREE.Vector3(u * 3.4, v * 2.2, face ? 1.02 : -1.02) : face < 4 ? new THREE.Vector3(u * 3.4, face === 2 ? 1.22 : -1.22, v * 1.8) : new THREE.Vector3(face === 4 ? 1.82 : -1.82, u * 2.2, v * 1.8);
+        out.push(new THREE.Matrix4().compose(p, new THREE.Quaternion().setFromEuler(new THREE.Euler(rand() * 3, rand() * 3, rand() * 3)), new THREE.Vector3(0.05, 0.05, 0.16)));
+      }
+      return out;
+    });
+    const coil = useOnce(() => coilCurve(0.55, 10, 12));
+    return (
+      <>
+        <Part3D id="membrane" rank={2} shell>
+          <mesh>
+            <boxGeometry args={[3.6, 2.4, 2.0, 8, 8, 8]} />
+            <Mat type="envelope" />
+          </mesh>
+        </Part3D>
+        <Part3D id="tubules" rank={2.3}>
+          <Spheres matrices={tub} type="surface-protein" />
+        </Part3D>
+        <Part3D id="lateral" rank={1}>
+          {[1, -1].map((s) => (
+            <mesh key={s} position={[0, s * 0.82, 0]} scale={[1.1, 0.28, 0.6]}>
+              <sphereGeometry args={[1, 24, 16]} />
+              <Mat type="matrix" />
+            </mesh>
+          ))}
+        </Part3D>
+        <Part3D id="core" rank={0.6} shell>
+          <mesh scale={[1.25, 0.62, 0.62]}>
+            <sphereGeometry args={[1, 32, 24]} />
+            <Mat type="capsid" />
+          </mesh>
+        </Part3D>
+        <Part3D id="genome" rank={0}>
+          <group scale={[1.8, 0.8, 0.8]}>
+            <Strand curve={coil} radius={0.012} segments={500} double />
+          </group>
+        </Part3D>
+      </>
+    );
+  },
+};
+
+const flavivirus: Model3D = {
+  parts: ["envelope", "eprot", "capsid", "genome"],
+  distance: 4.1,
+  Model() {
+    // Envelope proteins drawn as flat paired rods lying on the surface (illustrative).
+    const e = useOnce(() =>
+      fibonacciSphere(90, 1.02).flatMap((p, i) => {
+        const n = p.clone().normalize();
+        const t = new THREE.Vector3(0, 1, 0).cross(n).normalize().applyAxisAngle(n, i * 0.7);
+        return [-1, 0, 1].map((k) => new THREE.Matrix4().compose(p.clone().add(t.clone().multiplyScalar(k * 0.055)), new THREE.Quaternion(), new THREE.Vector3(0.045, 0.045, 0.045)));
+      }),
+    );
+    const rna = useOnce(() => wanderCurve(0.45, 12, 19));
+    return (
+      <>
+        <Part3D id="envelope" rank={2} shell>
+          <Membrane />
+        </Part3D>
+        <Part3D id="eprot" rank={2.3}>
+          <Spheres matrices={e} type="surface-protein" />
+        </Part3D>
+        <Part3D id="capsid" rank={1} shell>
+          <mesh>
+            <icosahedronGeometry args={[0.55, 3]} />
+            <Mat type="nucleocapsid" opacity={0.85} />
+          </mesh>
+        </Part3D>
+        <Part3D id="genome" rank={0}>
+          <Strand curve={rna} radius={0.018} segments={300} />
+        </Part3D>
+      </>
+    );
+  },
+};
+
+const calicivirus: Model3D = {
+  parts: ["vp1", "vp2", "genome"],
+  distance: 3.9,
+  Model() {
+    // 90 VP1 dimers drawn as paired lobes on a detail-2 geodesic lattice (92 points: illustrative), cups visible between them.
+    const shell = useOnce(() => {
+      const { five, rest } = geodesicPoints(2, 1);
+      return [...five, ...rest].slice(0, 90).flatMap((p) => ringMatrices(p, 2, 0.07, 0.085, 0.4, 0.05));
+    });
+    const rna = useOnce(() => wanderCurve(0.6, 14, 81));
+    return (
+      <>
+        <Part3D id="vp1" rank={1.5} shell>
+          <Spheres matrices={shell} type="capsid" />
+          <mesh>
+            <icosahedronGeometry args={[0.92, 3]} />
+            <Mat type="capsid" />
+          </mesh>
+        </Part3D>
+        <Part3D id="vp2" rank={0.8}>
+          <mesh position={[0.3, 0.4, 0]}>
+            <octahedronGeometry args={[0.07]} />
+            <Mat type="capsid" />
+          </mesh>
+        </Part3D>
+        <Part3D id="genome" rank={0}>
+          <Strand curve={rna} radius={0.02} segments={300} />
+        </Part3D>
+      </>
+    );
+  },
+};
+
+const levivirus: Model3D = {
+  parts: ["coat", "aprotein", "genome"],
+  distance: 3.9,
+  Model() {
+    // 180 coat proteins: 60 trimer-like triplets on a detail-1 lattice (42 points) + face centres (illustrative packing).
+    const shell = useOnce(() => [...icosaFaceCentres(1), ...geodesicPoints(1, 1).rest].flatMap((p) => ringMatrices(p, 3, 0.11, 0.1, 0.2, 0)));
+    const rna = useOnce(() => wanderCurve(0.6, 14, 55));
+    return (
+      <>
+        <Part3D id="coat" rank={1.5} shell>
+          <Spheres matrices={shell} type="capsid" />
+          <mesh>
+            <icosahedronGeometry args={[0.92, 2]} />
+            <Mat type="capsid" />
+          </mesh>
+        </Part3D>
+        <Part3D id="aprotein" rank={2}>
+          <mesh position={new THREE.Vector3(-0.6, 0.6, 0.55).normalize().multiplyScalar(1.08)}>
+            <sphereGeometry args={[0.13, 16, 12]} />
+            <Mat type="surface-protein" />
+          </mesh>
+        </Part3D>
+        <Part3D id="genome" rank={0}>
+          <Strand curve={rna} radius={0.022} segments={300} />
+        </Part3D>
+      </>
+    );
+  },
+};
+
 export const models3d: Record<DiagramSpec["renderer"], Model3D> = {
   influenza,
   coronavirus,
@@ -576,4 +848,10 @@ export const models3d: Record<DiagramSpec["renderer"], Model3D> = {
   picornavirus,
   tobamovirus,
   microvirus,
+  filovirus,
+  rhabdovirus,
+  poxvirus,
+  flavivirus,
+  calicivirus,
+  levivirus,
 };

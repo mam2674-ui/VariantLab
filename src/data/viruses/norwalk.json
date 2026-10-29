@@ -1,0 +1,231 @@
+{
+  "id": "norwalk",
+  "commonName": "Norwalk virus",
+  "abbreviation": "NV",
+  "representative": "Virus-level profile of the ICTV exemplar, US/1968 (M87661), the prototype norovirus. Particle size and architecture are family-level ICTV values.",
+  "summary": "A small non-enveloped virus whose capsid is built from 90 dimers of one protein, VP1, leaving 32 cup-shaped depressions on its surface (the 'calix' in calicivirus).",
+  "taxonomy": {
+    "msl": "MSL41 (VMR v1, 2026-07-29)",
+    "subfamily": null,
+    "subgenus": null,
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ],
+    "realm": "Riboviria",
+    "kingdom": "Orthornavirae",
+    "phylum": "Pisuviricota",
+    "class": "Pisoniviricetes",
+    "order": "Picornavirales",
+    "family": "Caliciviridae",
+    "genus": "Norovirus",
+    "species": "Norovirus norwalkense",
+    "ictvId": "ICTV19950817",
+    "vmrId": "VMR1001725",
+    "exemplar": true,
+    "note": "Formerly species Norwalk virus."
+  },
+  "referenceSequence": {
+    "value": "M87661.2 (US/1968)",
+    "status": "verified",
+    "scope": "isolate",
+    "sourceIds": [
+      "ncbi-m87661",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostCategory": {
+    "value": "vertebrates",
+    "status": "verified",
+    "scope": "species",
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostDetail": {
+    "value": "Vertebrates (ICTV host-source category)",
+    "status": "verified",
+    "scope": "species",
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ]
+  },
+  "genome": {
+    "nucleicAcid": {
+      "value": "RNA",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-caliciviridae-report",
+        "ictv-vmr-msl41"
+      ]
+    },
+    "ictvLabel": {
+      "value": "ssRNA(+)",
+      "status": "verified",
+      "scope": "species",
+      "sourceIds": [
+        "ictv-vmr-msl41"
+      ]
+    },
+    "strandedness": {
+      "value": "single",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-caliciviridae-report"
+      ]
+    },
+    "sense": {
+      "value": "positive",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-caliciviridae-report"
+      ]
+    },
+    "segmented": {
+      "value": false,
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-caliciviridae-report"
+      ]
+    },
+    "segmentCount": {
+      "value": 1,
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-caliciviridae-report"
+      ]
+    },
+    "topology": {
+      "value": "linear",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-caliciviridae-report"
+      ]
+    },
+    "lengthKb": {
+      "value": {
+        "min": 7.7,
+        "max": 7.7
+      },
+      "status": "verified",
+      "scope": "isolate",
+      "sourceIds": [
+        "ncbi-m87661"
+      ],
+      "note": "Calicivirus genomes are 7.4–8.3 kb, with VPg at the 5′ end and a poly(A) tail; noroviruses have three ORFs (ICTV)."
+    },
+    "referenceLengthNt": {
+      "value": 7654,
+      "status": "verified",
+      "scope": "isolate",
+      "sourceIds": [
+        "ncbi-m87661"
+      ]
+    }
+  },
+  "baltimore": {
+    "value": "IV",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "viralzone-baltimore",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "envelope": {
+    "value": false,
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-caliciviridae-report"
+    ]
+  },
+  "capsid": {
+    "value": "T=3 icosahedral capsid of 90 VP1 dimers, with 32 cup-shaped depressions at the five- and threefold axes; one or two copies of VP2.",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-caliciviridae-report"
+    ]
+  },
+  "morphology": {
+    "value": "icosahedral-nonenveloped",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-caliciviridae-report"
+    ]
+  },
+  "dimensions": [
+    {
+      "id": "capsid-diameter",
+      "part": "capsid",
+      "measure": "diameter",
+      "label": "Particle diameter",
+      "min": 27,
+      "max": 40,
+      "unit": "nm",
+      "approximate": false,
+      "status": "variable",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-caliciviridae-report"
+      ],
+      "note": "ICTV table: 27–40 nm; text: approximately 35–40 nm."
+    }
+  ],
+  "replication": {
+    "site": {
+      "value": "Cytoplasm",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-caliciviridae-report"
+      ]
+    },
+    "mRNARoute": {
+      "value": "The positive-sense genome is itself mRNA, translated from its ORFs.",
+      "status": "simplified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-caliciviridae-report",
+        "viralzone-baltimore"
+      ]
+    },
+    "steps": [
+      {
+        "id": "entry",
+        "title": "Attachment and entry",
+        "text": "The particle binds and enters a host cell.",
+        "status": "not_verified",
+        "sourceIds": []
+      },
+      {
+        "id": "translation",
+        "location": "cytoplasm",
+        "title": "Translation",
+        "text": "The genome, with VPg at its 5′ end, is translated in the cytoplasm.",
+        "status": "simplified",
+        "sourceIds": [
+          "ictv-caliciviridae-report"
+        ]
+      },
+      {
+        "id": "replication",
+        "location": "cytoplasm",
+        "title": "Replication",
+        "text": "Replication is cytoplasmic.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-caliciviridae-report"
+        ]
+      }
+    ]
+  },
+  "diagramId": "norwalk"
+}

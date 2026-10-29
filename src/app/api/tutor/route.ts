@@ -38,7 +38,7 @@ export async function POST(req: Request) {
 
   if (!process.env.ANTHROPIC_API_KEY) return out({ mode: "curated", reason: "no_key", passages: retrieved });
   if (!retrieved.length)
-    return out({ mode: "declined", message: "The atlas's curated sources don't cover this question, so the tutor won't guess. Try asking about structure, size, genomes, classification or replication of the twelve viruses.", passages: [] });
+    return out({ mode: "declined", message: "The atlas's curated sources don't cover this question, so the tutor won't guess. Try asking about structure, size, genomes, classification or replication of the viruses in the atlas.", passages: [] });
   if (limited(req.headers.get("x-forwarded-for") ?? "local")) return Response.json({ error: "Too many questions in a minute; try again shortly." }, { status: 429 });
 
   try {

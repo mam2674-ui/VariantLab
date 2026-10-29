@@ -2,7 +2,7 @@
 
 An interactive, source-cited atlas for comparing virus structure, size, genomes and replication strategies. Built for undergraduate biology students. Local only; not deployed.
 
-Twelve representative viruses, chosen so every Baltimore class is covered and hosts span vertebrates, plants and bacteria:
+Eighteen representative viruses, chosen so every Baltimore class is covered, hosts span vertebrates, invertebrates, plants and bacteria, and shapes range from 25 nm shells to filaments and bricks:
 
 | Virus | ICTV genome | Baltimore | Envelope | Structure | Host |
 |---|---|---|---|---|---|
@@ -18,17 +18,24 @@ Twelve representative viruses, chosen so every Baltimore class is covered and ho
 | Tobacco mosaic virus | ssRNA(+) | IV | no | helical rod | plants |
 | Bacteriophage T4 | dsDNA | I | no | head + contractile tail | bacteria |
 | Bacteriophage phiX174 | ssDNA(+), circular | II | no | T=1 capsid with spikes | bacteria |
+| Ebola virus | ssRNA(−) | V | yes | filament with helical RNP core | vertebrates |
+| Rabies virus | ssRNA(−) | V | yes | bullet with helical nucleocapsid | vertebrates |
+| Vaccinia virus | dsDNA | I | yes (membrane) | brick with core and lateral bodies | vertebrates |
+| Zika virus | ssRNA(+) | IV | yes | small smooth sphere | vertebrates and invertebrates |
+| Norwalk virus | ssRNA(+) | IV | no | T=3 capsid with cup-shaped depressions | vertebrates |
+| Bacteriophage MS2 | ssRNA(+) | IV | no | T=3 shell, one A protein | bacteria |
 
 ## What is in it
 
+- **Design**: dark editorial layout; IBM Plex for interface and headings, Source Serif 4 for body text; animated page transitions (React ViewTransition) with thumbnail-to-profile morphs; the home page runs as full-screen slides with scroll-linked entrances. All motion is disabled under reduced-motion settings.
 - **Atlas** with search and filters (genome class incl. reverse-transcribing classes, envelope, host, morphology, size), URL-synced.
-- **Structure viewer** per virus: 2D schematic or 3D model (React Three Fiber, lazy-loaded, WebGL fallback to 2D), exterior/cutaway, layer toggles, "separate layers" exploded view, numbered components with cited descriptions. 3D uses a molecular-graphics look: ambient occlusion (N8AO), depth-edge silhouettes, subunit lattices.
-- **Protein structures**: 30 experimental structures from the PDB (particle components, enzymes, and complexes with host receptors), linked from the matching diagram component, shown as a 2D Cα trace with a secondary-structure map, and in 3D as cartoon, approximate surface or trace. Each page lists what the experiment did and did not capture.
-- **Genome maps**: 469 coding sequences from the NCBI reference records, drawn as linear tracks by strand, rings for circular genomes and one track per segment, plus a 3D strand view coloured by gene.
+- **Structure viewer** per virus, controlled from one toolbar (2D/3D, Show inside, Full names, Pull apart): 2D schematic or 3D model (React Three Fiber, lazy-loaded, WebGL fallback to 2D), exterior/cutaway, layer toggles, "separate layers" exploded view, numbered components with cited descriptions. 3D uses a molecular-graphics look: ambient occlusion (N8AO), depth-edge silhouettes, subunit lattices.
+- **Protein structures**: 36 experimental structures from the PDB (particle components, enzymes, and complexes with host receptors), linked from the matching diagram component, shown as a 2D Cα trace with a secondary-structure map, and in 3D as cartoon, approximate surface or trace. Each page lists what the experiment did and did not capture.
+- **Genome maps**: 709 coding sequences from the NCBI reference records, drawn as linear tracks by strand, rings for circular genomes and one track per segment, plus a 3D strand view coloured by gene.
 - **Compare** 2–3 viruses (rule-based, cited insights; URL-shareable).
 - **Size explorer**: linear to-scale, logarithmic, and labelled-illustration views; nm/µm table.
 - **Genomes & replication**: genome glyphs, Baltimore routes, and an animated cell map that moves to where each replication stage happens (animal, plant or bacterial cell).
-- **Sources**: 72 sources with reverse index and a "known gaps" list.
+- **Sources**: 90 sources with reverse index and a "known gaps" list.
 - **Tutor**: optional, grounded in curated passages; works without a key.
 
 ## Setup
@@ -85,14 +92,14 @@ E2E_PORT=3218 npm run test:e2e
 
 The e2e suite starts `next start` on the given port (after `npm run build`) with `ANTHROPIC_API_KEY` blanked, so it also proves the site works without credentials.
 
-## Results at the time of writing (2026-10-28, v2)
+## Results at the time of writing (2026-10-28, v3)
 
 - `tsc --noEmit`: 0 errors; `eslint`: 0 problems
-- Vitest: 60 tests passed (6 files), including cross-checks that genome annotations sum to each reference length, that protein chains match their coordinate files, and that all seven Baltimore classes are covered
+- Vitest: 60 tests passed (6 files) over 18 viruses, including cross-checks that genome annotations sum to each reference length, that protein chains match their coordinate files, and that all seven Baltimore classes are covered
 - `next build`: succeeded
-- Playwright: 25 passed, 1 skipped (mobile-only test in the desktop project), desktop Chrome and Pixel 7, with the API key blanked
+- Playwright: 27 passed, 1 skipped (mobile-only test in the desktop project), desktop Chrome and Pixel 7, with the API key blanked
 - Hallmark `sloplint`: see design notes; Impeccable hook: no findings on edited UI files
-- 3D rendering checked headlessly (software WebGL) for all 12 virus models and protein styles; no page errors
+- 3D rendering checked headlessly (software WebGL) for all 18 virus models and protein styles; no page errors
 - Not done: the AI tutor has not been run with a real key; no user testing or expert review
 
 ## Project layout

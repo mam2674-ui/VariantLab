@@ -116,34 +116,28 @@ export function StructureViewer({ spec, sources, title }: { spec: DiagramSpec; s
       </figure>
 
       <div className="min-w-0 flex flex-col gap-6">
-        <div className="flex flex-wrap gap-3">
-          <div className="segmented" role="radiogroup" aria-label="Model type">
-            <button role="radio" aria-checked={mode === "2d"} onClick={() => setMode("2d")}>
-              2D schematic
+        {/* One toolbar: what you look at (2D/3D), then three switches. */}
+        <div className="toolbar self-start" role="toolbar" aria-label="Viewer options">
+          <div role="radiogroup" aria-label="Model type" className="flex">
+            <button className="tool" role="radio" aria-checked={mode === "2d"} onClick={() => setMode("2d")}>
+              2D
             </button>
-            <button role="radio" aria-checked={mode === "3d"} onClick={() => setMode("3d")} disabled={!webgl} title={webgl ? undefined : "3D needs WebGL, which this browser does not provide"}>
-              3D model
+            <button className="tool" role="radio" aria-checked={mode === "3d"} onClick={() => setMode("3d")} disabled={!webgl} title={webgl ? undefined : "3D needs WebGL, which this browser does not provide"}>
+              3D
             </button>
           </div>
+          <span className="sep" aria-hidden="true" />
+          <button className="tool" aria-pressed={view === "cutaway"} onClick={() => setView((v) => (v === "cutaway" ? "exterior" : "cutaway"))}>
+            Show inside
+          </button>
+          <button className="tool" aria-pressed={detail === "detailed"} onClick={() => setDetail((d) => (d === "detailed" ? "simple" : "detailed"))}>
+            Full names
+          </button>
           {mode === "3d" && (
-            <button type="button" className="btn" aria-pressed={exploded} onClick={() => setExploded((x) => !x)}>
-              {exploded ? "Reassemble layers" : "Separate layers"}
+            <button className="tool" aria-pressed={exploded} onClick={() => setExploded((x) => !x)}>
+              Pull apart
             </button>
           )}
-          <div className="segmented" role="radiogroup" aria-label="View">
-            {(["exterior", "cutaway"] as const).map((v) => (
-              <button key={v} role="radio" aria-checked={view === v} onClick={() => setView(v)}>
-                {v === "exterior" ? "Exterior" : "Cutaway"}
-              </button>
-            ))}
-          </div>
-          <div className="segmented" role="radiogroup" aria-label="Label detail">
-            {(["simple", "detailed"] as const).map((v) => (
-              <button key={v} role="radio" aria-checked={detail === v} onClick={() => setDetail(v)}>
-                {v === "simple" ? "Simple labels" : "Detailed labels"}
-              </button>
-            ))}
-          </div>
         </div>
 
         <div>

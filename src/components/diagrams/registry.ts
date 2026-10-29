@@ -12,6 +12,7 @@ import { rotavirusRenderer } from "./rotavirus";
 import { picornavirusRenderer } from "./picornavirus";
 import { tobamovirusRenderer } from "./tobamovirus";
 import { microvirusRenderer } from "./microvirus";
+import { calicivirusRenderer, filovirusRenderer, flavivirusRenderer, levivirusRenderer, poxvirusRenderer, rhabdovirusRenderer } from "./newRenderers";
 
 export const renderers: Record<DiagramSpec["renderer"], Renderer> = {
   influenza: influenzaRenderer,
@@ -26,4 +27,10 @@ export const renderers: Record<DiagramSpec["renderer"], Renderer> = {
   picornavirus: picornavirusRenderer,
   tobamovirus: tobamovirusRenderer,
   microvirus: microvirusRenderer,
+  filovirus: filovirusRenderer,
+  rhabdovirus: rhabdovirusRenderer,
+  poxvirus: poxvirusRenderer,
+  flavivirus: flavivirusRenderer,
+  calicivirus: calicivirusRenderer,
+  levivirus: levivirusRenderer,
 };

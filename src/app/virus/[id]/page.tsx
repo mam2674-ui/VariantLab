@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Suspense } from "react";
+import { Suspense, ViewTransition } from "react";
+import { SilhouetteThumb } from "@/components/Silhouette";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getDiagram, getVirus, sources, viruses } from "@/lib/data";
@@ -52,7 +53,14 @@ async function VirusProfile({ params }: { params: PageProps<"/virus/[id]">["para
         <nav aria-label="Breadcrumb" className="text-[14px] mb-6">
           <Link href="/#atlas">Atlas</Link> <span aria-hidden="true" className="text-mute">/</span> <span className="text-mute">{v.commonName}</span>
         </nav>
-        <SectionHead index={`VA-${String(viruses.indexOf(v) + 1).padStart(3, "0")} ${v.abbreviation}`} title={v.commonName} />
+        <div className="flex items-end justify-between gap-6">
+          <SectionHead index={`No. ${String(viruses.indexOf(v) + 1).padStart(2, "0")} of ${viruses.length}, ${v.abbreviation}`} title={v.commonName} />
+          <ViewTransition name={`virus-${v.id}`} share="morph" default="none">
+            <div className="hidden sm:block w-28 h-28 shrink-0">
+              <SilhouetteThumb v={v} size={112} />
+            </div>
+          </ViewTransition>
+        </div>
         <p className="mt-2 text-[17px]">
           Species <span className="species text-ink">{t.species}</span>, family {t.family}
         </p>
@@ -75,7 +83,7 @@ async function VirusProfile({ params }: { params: PageProps<"/virus/[id]">["para
 
       <section className="container-atlas mt-20" aria-labelledby="genome-title">
         <p className="index-label mb-3">Genetic material</p>
-        <h2 id="genome-title" className="display text-[28px] sm:text-[40px] mb-6">
+        <h2 id="genome-title" className="subhead text-[28px] sm:text-[40px] mb-6">
           Genome map
         </h2>
         <GenomeViewer virus={v} sources={sources} />
@@ -84,7 +92,7 @@ async function VirusProfile({ params }: { params: PageProps<"/virus/[id]">["para
       {proteinsFor(v.id).length > 0 && (
         <section className="container-atlas mt-20" aria-labelledby="prot-title">
           <p className="index-label mb-3">Parts</p>
-          <h2 id="prot-title" className="display text-[28px] sm:text-[40px] mb-4">
+          <h2 id="prot-title" className="subhead text-[28px] sm:text-[40px] mb-4">
             Protein structures
           </h2>
           <ul className="border-t border-hairline">

@@ -92,10 +92,14 @@ export const Morphology = z.enum([
   "head-tail", // tailed phage
   "enveloped-conical-core", // envelope around a cone-shaped core (lentiviruses)
   "helical-rod", // rigid helical rod, no envelope
+  "filamentous-enveloped", // long enveloped filaments (filoviruses)
+  "bullet-enveloped", // bullet-shaped, enveloped (rhabdoviruses)
+  "brick-complex", // large brick-shaped particle with a core and lateral bodies (poxviruses)
+  "spherical-enveloped", // small smooth spherical enveloped particle (flaviviruses)
 ]);
 export type Morphology = z.infer<typeof Morphology>;
 
-export const HostCategory = z.enum(["vertebrates", "bacteria", "plants"]);
+export const HostCategory = z.enum(["vertebrates", "bacteria", "plants", "vertebrates-invertebrates"]);
 export type HostCategory = z.infer<typeof HostCategory>;
 
 export const Baltimore = z.enum(["I", "II", "III", "IV", "V", "VI", "VII"]);
@@ -232,6 +236,12 @@ export const DiagramSpec = z.object({
     "picornavirus",
     "tobamovirus",
     "microvirus",
+    "filovirus",
+    "rhabdovirus",
+    "poxvirus",
+    "flavivirus",
+    "calicivirus",
+    "levivirus",
   ]),
   caption: z.string(),
   cannotShow: z.array(z.string()).min(1),

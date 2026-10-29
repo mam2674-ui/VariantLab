@@ -1,0 +1,254 @@
+{
+  "id": "vaccinia",
+  "commonName": "Vaccinia virus",
+  "abbreviation": "VACV",
+  "representative": "Virus-level profile of the ICTV exemplar, strain Western Reserve (AY243312). Particle dimensions are family-level ICTV values.",
+  "summary": "The largest virus here: a brick-shaped particle with a membrane around a biconcave core and one or two lateral bodies. Unusually for a DNA virus, it replicates entirely in the cytoplasm, carrying its own RNA polymerase.",
+  "taxonomy": {
+    "msl": "MSL41 (VMR v1, 2026-07-29)",
+    "subfamily": "Chordopoxvirinae",
+    "subgenus": null,
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ],
+    "realm": "Varidnaviria",
+    "kingdom": "Bamfordvirae",
+    "phylum": "Nucleocytoviricota",
+    "class": "Pokkesviricetes",
+    "order": "Chitovirales",
+    "family": "Poxviridae",
+    "genus": "Orthopoxvirus",
+    "species": "Orthopoxvirus vaccinia",
+    "ictvId": "ICTV19911346",
+    "vmrId": "VMR1004288",
+    "exemplar": true,
+    "note": "Formerly species Vaccinia virus."
+  },
+  "referenceSequence": {
+    "value": "AY243312.1 (Western Reserve)",
+    "status": "verified",
+    "scope": "isolate",
+    "sourceIds": [
+      "ncbi-ay243312",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostCategory": {
+    "value": "vertebrates",
+    "status": "verified",
+    "scope": "species",
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostDetail": {
+    "value": "Vertebrates (ICTV host-source category)",
+    "status": "verified",
+    "scope": "species",
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ]
+  },
+  "genome": {
+    "nucleicAcid": {
+      "value": "DNA",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-poxviridae-report",
+        "ictv-vmr-msl41"
+      ]
+    },
+    "ictvLabel": {
+      "value": "dsDNA",
+      "status": "verified",
+      "scope": "species",
+      "sourceIds": [
+        "ictv-vmr-msl41"
+      ]
+    },
+    "strandedness": {
+      "value": "double",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-poxviridae-report"
+      ]
+    },
+    "sense": {
+      "value": null,
+      "status": "not_applicable",
+      "scope": "family",
+      "sourceIds": [],
+      "note": "Sense applies to single-stranded genomes; this genome is double-stranded."
+    },
+    "segmented": {
+      "value": false,
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-poxviridae-report"
+      ]
+    },
+    "segmentCount": {
+      "value": 1,
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-poxviridae-report"
+      ]
+    },
+    "topology": {
+      "value": "linear",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-poxviridae-report"
+      ]
+    },
+    "lengthKb": {
+      "value": {
+        "min": 194.7,
+        "max": 194.7
+      },
+      "status": "verified",
+      "scope": "isolate",
+      "sourceIds": [
+        "ncbi-ay243312"
+      ],
+      "note": "Poxvirus genomes are 128–375 kbp, linear with covalently closed hairpin ends (ICTV)."
+    },
+    "referenceLengthNt": {
+      "value": 194711,
+      "status": "verified",
+      "scope": "isolate",
+      "sourceIds": [
+        "ncbi-ay243312"
+      ]
+    }
+  },
+  "baltimore": {
+    "value": "I",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "viralzone-baltimore",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "envelope": {
+    "value": true,
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-poxviridae-report"
+    ],
+    "note": "The mature virion has a surface membrane; extracellular enveloped virions carry an additional envelope with distinct proteins."
+  },
+  "capsid": {
+    "value": "No icosahedral capsid. A biconcave or cylindrical core holds the DNA, with one or two lateral bodies between the core and the membrane.",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-poxviridae-report"
+    ]
+  },
+  "morphology": {
+    "value": "brick-complex",
+    "status": "variable",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-poxviridae-report"
+    ],
+    "note": "Somewhat pleomorphic, generally brick-shaped; some poxviruses are ovoid."
+  },
+  "dimensions": [
+    {
+      "id": "brick-length",
+      "part": "virion",
+      "measure": "length",
+      "label": "Brick length",
+      "min": 220,
+      "max": 450,
+      "unit": "nm",
+      "approximate": false,
+      "status": "variable",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-poxviridae-report"
+      ]
+    },
+    {
+      "id": "brick-width",
+      "part": "virion",
+      "measure": "width",
+      "label": "Brick width (thickness is similar)",
+      "min": 140,
+      "max": 260,
+      "unit": "nm",
+      "approximate": false,
+      "status": "variable",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-poxviridae-report"
+      ]
+    }
+  ],
+  "replication": {
+    "site": {
+      "value": "Cytoplasm (virus factories)",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-poxviridae-report"
+      ]
+    },
+    "mRNARoute": {
+      "value": "A virus-encoded RNA polymerase makes capped, polyadenylated mRNAs from both DNA strands, without using the host nucleus.",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-poxviridae-report"
+      ]
+    },
+    "steps": [
+      {
+        "id": "entry",
+        "title": "Entry",
+        "text": "The particle enters the host cell.",
+        "status": "not_verified",
+        "sourceIds": []
+      },
+      {
+        "id": "transcription",
+        "location": "cytoplasm",
+        "title": "Early transcription",
+        "text": "Virus-encoded RNA polymerase transcribes capped, polyadenylated mRNAs from both DNA strands.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-poxviridae-report"
+        ]
+      },
+      {
+        "id": "factories",
+        "location": "cytoplasm",
+        "title": "Virus factories",
+        "text": "Replication takes place within cytoplasmic virus factories (viroplasms).",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-poxviridae-report"
+        ]
+      },
+      {
+        "id": "forms",
+        "title": "Mature and enveloped forms",
+        "text": "Mature virions form; some gain an extra envelope with distinct proteins (extracellular enveloped virions).",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-poxviridae-report"
+        ]
+      }
+    ]
+  },
+  "diagramId": "vaccinia"
+}

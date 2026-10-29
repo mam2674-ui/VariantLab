@@ -44,7 +44,7 @@ export function SourcesBrowser({
   return (
     <div className="flex flex-col gap-12">
       <section aria-labelledby="legend-title">
-        <h2 id="legend-title" className="display text-[30px] mb-4">
+        <h2 id="legend-title" className="subhead text-[30px] mb-4">
           How to read the evidence
         </h2>
         <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 text-[15px]">
@@ -66,7 +66,7 @@ export function SourcesBrowser({
 
       <section aria-labelledby="src-title">
         <div className="flex flex-wrap items-end justify-between gap-4 mb-6">
-          <h2 id="src-title" className="display text-[30px]">
+          <h2 id="src-title" className="subhead text-[30px]">
             Sources <span className="num text-mute text-[18px]">({shown.length})</span>
           </h2>
           <div className="flex flex-wrap gap-4">
@@ -153,7 +153,7 @@ export function SourcesBrowser({
       </section>
 
       <section aria-labelledby="gaps-title">
-        <h2 id="gaps-title" className="display text-[30px] mb-2">
+        <h2 id="gaps-title" className="subhead text-[30px] mb-2">
           Known gaps
         </h2>
         <p className="text-[15px] text-mute measure mb-4">Items shown in the atlas that we could not verify from the sources above. They are labelled wherever they appear.</p>

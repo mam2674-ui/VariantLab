@@ -1,0 +1,239 @@
+{
+  "id": "zika",
+  "commonName": "Zika virus",
+  "abbreviation": "ZIKV",
+  "representative": "Virus-level profile of the ICTV exemplar, strain MR 766 (AY632535). Particle size and architecture are genus-level ICTV values.",
+  "summary": "A small, spherical enveloped virus with a positive-sense RNA genome that is translated as one long polyprotein. ICTV lists both vertebrate and invertebrate hosts.",
+  "taxonomy": {
+    "msl": "MSL41 (VMR v1, 2026-07-29)",
+    "subfamily": null,
+    "subgenus": "Euflavivirus",
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ],
+    "realm": "Riboviria",
+    "kingdom": "Orthornavirae",
+    "phylum": "Kitrinoviricota",
+    "class": "Flasuviricetes",
+    "order": "Amarillovirales",
+    "family": "Flaviviridae",
+    "genus": "Orthoflavivirus",
+    "species": "Orthoflavivirus zikaense",
+    "ictvId": "ICTV19990862",
+    "vmrId": "VMR1009108",
+    "exemplar": true,
+    "note": "Formerly genus Flavivirus, species Zika virus."
+  },
+  "referenceSequence": {
+    "value": "AY632535.2 (MR 766)",
+    "status": "verified",
+    "scope": "isolate",
+    "sourceIds": [
+      "ncbi-ay632535",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostCategory": {
+    "value": "vertebrates-invertebrates",
+    "status": "verified",
+    "scope": "species",
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostDetail": {
+    "value": "Invertebrates and vertebrates (ICTV host-source category); most orthoflaviviruses are arthropod-borne",
+    "status": "verified",
+    "scope": "genus",
+    "sourceIds": [
+      "ictv-vmr-msl41",
+      "ictv-flaviviridae-report"
+    ]
+  },
+  "genome": {
+    "nucleicAcid": {
+      "value": "RNA",
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-flaviviridae-report",
+        "ictv-vmr-msl41"
+      ]
+    },
+    "ictvLabel": {
+      "value": "ssRNA(+)",
+      "status": "verified",
+      "scope": "species",
+      "sourceIds": [
+        "ictv-vmr-msl41"
+      ]
+    },
+    "strandedness": {
+      "value": "single",
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-flaviviridae-report"
+      ]
+    },
+    "sense": {
+      "value": "positive",
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-flaviviridae-report"
+      ]
+    },
+    "segmented": {
+      "value": false,
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-flaviviridae-report"
+      ]
+    },
+    "segmentCount": {
+      "value": 1,
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-flaviviridae-report"
+      ]
+    },
+    "topology": {
+      "value": "linear",
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-flaviviridae-report"
+      ]
+    },
+    "lengthKb": {
+      "value": {
+        "min": 10.8,
+        "max": 10.8
+      },
+      "status": "verified",
+      "scope": "isolate",
+      "sourceIds": [
+        "ncbi-ay632535"
+      ],
+      "note": "Orthoflavivirus genomes are ~9.2–11.0 kb, with a 5′ type I cap and one long ORF (ICTV)."
+    },
+    "referenceLengthNt": {
+      "value": 10794,
+      "status": "verified",
+      "scope": "isolate",
+      "sourceIds": [
+        "ncbi-ay632535"
+      ]
+    }
+  },
+  "baltimore": {
+    "value": "IV",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "viralzone-baltimore",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "envelope": {
+    "value": true,
+    "status": "verified",
+    "scope": "genus",
+    "sourceIds": [
+      "ictv-flaviviridae-report"
+    ]
+  },
+  "capsid": {
+    "value": "A single small basic capsid protein (C) packages the genome; two membrane-associated envelope proteins sit in the envelope.",
+    "status": "verified",
+    "scope": "genus",
+    "sourceIds": [
+      "ictv-flaviviridae-report"
+    ]
+  },
+  "morphology": {
+    "value": "spherical-enveloped",
+    "status": "verified",
+    "scope": "genus",
+    "sourceIds": [
+      "ictv-flaviviridae-report"
+    ]
+  },
+  "dimensions": [
+    {
+      "id": "virion-diameter",
+      "part": "virion",
+      "measure": "diameter",
+      "label": "Virion diameter",
+      "min": 40,
+      "max": 60,
+      "unit": "nm",
+      "approximate": false,
+      "status": "variable",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-flaviviridae-report"
+      ]
+    }
+  ],
+  "replication": {
+    "site": {
+      "value": "Cytoplasm, in ER-derived membrane vesicles",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-flaviviridae-report"
+      ]
+    },
+    "mRNARoute": {
+      "value": "The capped positive-sense genome is translated as one polyprotein, cleaved by viral and cellular proteases.",
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-flaviviridae-report"
+      ]
+    },
+    "steps": [
+      {
+        "id": "entry",
+        "title": "Attachment and entry",
+        "text": "The particle binds and enters a host cell.",
+        "status": "not_verified",
+        "sourceIds": []
+      },
+      {
+        "id": "translation",
+        "title": "Polyprotein translation",
+        "text": "The genome's single ORF is translated as a polyprotein that is cleaved by viral and cellular proteases.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-flaviviridae-report"
+        ]
+      },
+      {
+        "id": "replication",
+        "location": "er-golgi",
+        "title": "Replication",
+        "text": "RNA is replicated in membrane vesicles derived from the endoplasmic reticulum.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-flaviviridae-report"
+        ]
+      },
+      {
+        "id": "assembly",
+        "location": "er-golgi",
+        "title": "Assembly and secretion",
+        "text": "Virions bud into the ER lumen and are secreted through the vesicle transport pathway.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-flaviviridae-report"
+        ]
+      }
+    ]
+  },
+  "diagramId": "zika"
+}

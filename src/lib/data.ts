@@ -12,22 +12,34 @@ import rotavirusA from "@/data/viruses/rotavirus-a.json";
 import poliovirus1 from "@/data/viruses/poliovirus-1.json";
 import tmv from "@/data/viruses/tmv.json";
 import phix174 from "@/data/viruses/phix174.json";
+import ebola from "@/data/viruses/ebola.json";
+import rabies from "@/data/viruses/rabies.json";
+import vaccinia from "@/data/viruses/vaccinia.json";
+import zika from "@/data/viruses/zika.json";
+import norwalk from "@/data/viruses/norwalk.json";
+import ms2 from "@/data/viruses/ms2.json";
 import { diagramSpecs } from "@/data/diagrams";
 
 /** Raw records in display order. Adding a virus = add its JSON here + a diagram spec. */
 export const rawViruses: unknown[] = [
   influenzaA,
   sarsCov2,
+  zika,
+  ebola,
+  rabies,
   hiv1,
   hepatitisB,
   hsv1,
+  vaccinia,
   adenovirus5,
   hpv16,
   poliovirus1,
+  norwalk,
   rotavirusA,
   tmv,
   phageT4,
   phix174,
+  ms2,
 ];
 
 /**

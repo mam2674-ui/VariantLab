@@ -7,6 +7,10 @@ const CLASS: Record<string, string> = {
   "pleomorphic-enveloped": "stroke-envelope",
   "enveloped-icosahedral-core": "stroke-envelope",
   "enveloped-conical-core": "stroke-envelope",
+  "filamentous-enveloped": "stroke-envelope",
+  "bullet-enveloped": "stroke-envelope",
+  "brick-complex": "stroke-envelope",
+  "spherical-enveloped": "stroke-envelope",
 };
 
 /**
@@ -34,6 +38,19 @@ export function SilhouetteShapes({ v, k, x = 0, y = 0 }: { v: Virus; k: number; 
             />
           );
         if (sh.kind === "hexagon") return <polygon key={i} points={hexPoints(sh, k)} fill="none" className="stroke-capsid" strokeWidth={2} strokeLinejoin="round" />;
+        if (sh.kind === "path")
+          return (
+            <g key={i} transform={`scale(${k})`}>
+              {sh.style === "band" ? (
+                <>
+                  <path d={sh.d} fill="none" className={main} strokeWidth={sh.w} strokeOpacity={0.25} strokeLinecap="round" />
+                  <path d={sh.d} fill="none" className={main} strokeWidth={1.5 / k} strokeLinecap="round" />
+                </>
+              ) : (
+                <path d={sh.d} fill="none" className={main} strokeWidth={1.5 / k} strokeLinejoin="round" />
+              )}
+            </g>
+          );
         if (sh.kind === "rect")
           return sh.style === "rod" ? (
             <rect key={i} x={sh.x * k} y={sh.y * k} width={sh.w * k} height={Math.max(sh.h * k, 2)} fill="none" className="stroke-capsid" strokeWidth={1.5} />

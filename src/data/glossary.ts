@@ -58,7 +58,7 @@ export const glossary: GlossaryEntry[] = [
     id: "g-segmented",
     term: "Segmented genome",
     aliases: ["segments", "segmented", "unsegmented", "monopartite"],
-    text: "A segmented genome is split into several separate nucleic-acid molecules packaged in one particle. Influenza A virus has eight RNA segments and rotavirus A has eleven; the other ten viruses in this atlas each carry a single genome molecule (HIV-1 packages two copies of one).",
+    text: "A segmented genome is split into several separate nucleic-acid molecules packaged in one particle. Influenza A virus has eight RNA segments and rotavirus A has eleven; every other virus in this atlas carries a single genome molecule (HIV-1 packages two copies of one).",
     status: "simplified",
     sourceIds: ["viralzone-alphainfluenzavirus", "ncbi-pr8-segments"],
   },

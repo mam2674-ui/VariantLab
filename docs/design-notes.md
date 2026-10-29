@@ -29,3 +29,12 @@ The user asked for the look and flow of colossal.com with blue accents, then for
 - **3D:** procedural models redrawn in a molecular-graphics style after ChimeraX: N8AO ambient occlusion, a custom depth-edge silhouette shader, matte materials, capsids built from subunit rings on geodesic lattices.
 - **Hero:** the rotating virus changed from SARS-CoV-2 to human adenovirus 5, whose capsomer lattice and fibres read as more realistic.
 - **Waivers recorded in the CSS stamp:** mono labels and section numbers (Hallmark rule 9), by explicit request.
+
+## v3 (2026-10-28)
+
+The user asked for more viruses, a more human-made look, animated transitions between "slides", streamlined options and a different body font.
+
+- **Body font:** Source Serif 4 (optical sizing) for paragraphs, list items and captions; IBM Plex stays for interface, data and the caps section heads. Smaller headings became serif, sentence-case subheads.
+- **Human-made details:** plain numbering ("No. 04 of 18") instead of codes, a colophon in the footer, serif captions, hanging punctuation.
+- **Transitions:** React `<ViewTransition>` on the main region gives every navigation a short exit and a slower rise-in; each virus thumbnail in the atlas morphs into the silhouette on its profile. The home page is a sequence of full-screen slides with gentle scroll-snap and scroll-linked entrances (`animation-timeline: view()` where supported). All of it is off under reduced motion.
+- **Streamlined options:** the structure viewer's four control groups became one toolbar: 2D/3D, then "Show inside", "Full names" and (in 3D) "Pull apart". Atlas filters keep search, genome and envelope visible; host, shape and size sit under "More filters", which shows how many are on.

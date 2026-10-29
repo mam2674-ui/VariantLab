@@ -15,7 +15,7 @@ export default function MethodsPage() {
         <section className="measure">
           <h2 className="text-[21px] font-semibold mb-2">How the data were assembled</h2>
           <p>
-            Twelve viruses were chosen to contrast genome type, envelope, capsid architecture and host, and to cover all seven Baltimore classes. Taxonomy was read directly from the ICTV Virus
+            Eighteen viruses were chosen to contrast genome type, envelope, capsid architecture and host, and to cover all seven Baltimore classes. Taxonomy was read directly from the ICTV Virus
             Metadata Resource for Master Species List 41 (VMR, 29 July 2026). Genome lengths come from NCBI reference sequences. Structure and size
             come from ICTV taxonomy profiles and report chapters, ViralZone, and primary cryo-EM or cryo-ET papers. All {sources.length} sources were
             accessed on {datasetAccessed}.
@@ -52,7 +52,7 @@ export default function MethodsPage() {
         <section className="measure">
           <h2 className="text-[21px] font-semibold mb-2">Limitations</h2>
           <ul className="list-disc pl-5 flex flex-col gap-2">
-            <li>Twelve viruses is a teaching sample, not a survey; each Baltimore class has only one to four examples.</li>
+            <li>Eighteen viruses is a teaching sample, not a survey; some Baltimore classes have only one example.</li>
             <li>3D virus models are procedural schematics in a molecular-graphics style. Capsomer counts match the cited architecture for HSV-1 (162), adenovirus (252) and HPV16 (72); other counts, shapes and positions are illustrative.</li>
             <li>Protein structures are real experimental models from the PDB, but most are fragments, single subunits or related strains; each page lists what was actually solved. Surfaces are approximated from one sphere per residue.</li>
             <li>Genome maps show coding sequences exactly as annotated in the NCBI records; frameshifts, RNA editing and non-coding features are not modelled.</li>

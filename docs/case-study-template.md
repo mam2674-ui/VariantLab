@@ -9,10 +9,10 @@ An interactive atlas that lets undergraduates compare virus structure, size, gen
 [Why existing figures are hard to compare: mixed scales, family vs species values blurred, Baltimore vs taxonomy conflated.]
 
 ## My role and how AI was used
-- **Designed (me):** scope (which twelve viruses and why: one or more per Baltimore class, three host types), evidence model (status + scope per fact), page structure, what to show and what to refuse to show.
+- **Designed (me):** scope (which eighteen viruses and why: one or more per Baltimore class, three host types), evidence model (status + scope per fact), page structure, what to show and what to refuse to show.
 - **Researched (me, with AI assistance):** facts gathered from ICTV MSL41, NCBI, ICTV profiles, ViralZone and primary papers; AI helped locate and extract, and I [describe how you checked them].
 - **Implemented (with an AI coding assistant, Claude Code):** Next.js app, SVG renderers, tests. [Describe what you reviewed, changed or rewrote yourself.]
-- **Evaluated:** automated tests (60 unit, 25 browser). [User test results, if run.] [AI tutor eval results, if run.]
+- **Evaluated:** automated tests (60 unit, 27 browser). [User test results, if run.] [AI tutor eval results, if run.]
 
 ## Key decisions
 1. Facts store scope and evidence status, so a family range never masquerades as a measurement.
@@ -25,4 +25,4 @@ An interactive atlas that lets undergraduates compare virus structure, size, gen
 [Only measured numbers. Example: "In a 6-person think-aloud, 5 of 6 completed task 2…"]
 
 ## Limitations and next steps
-Twelve viruses; several family-level sizes; a few unverified items; 3D virus models are schematic; most protein structures are fragments or related strains; no expert review yet; tutor quality unmeasured.
+Eighteen viruses; several family-level sizes; a few unverified items; 3D virus models are schematic; most protein structures are fragments or related strains; no expert review yet; tutor quality unmeasured.

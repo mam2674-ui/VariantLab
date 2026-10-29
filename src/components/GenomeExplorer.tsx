@@ -147,7 +147,7 @@ export function GenomeExplorer({ viruses, sources, classes }: { viruses: Virus[]
   return (
     <div className="flex flex-col gap-14">
       <section aria-labelledby="g-compare">
-        <h2 id="g-compare" className="display text-[30px] mb-2">
+        <h2 id="g-compare" className="subhead text-[30px] mb-2">
           {viruses.length} genomes, one scale
         </h2>
         <p className="text-[15px] text-mute measure mb-6">
@@ -171,7 +171,7 @@ export function GenomeExplorer({ viruses, sources, classes }: { viruses: Virus[]
       </section>
 
       <section aria-labelledby="g-route">
-        <h2 id="g-route" className="display text-[30px] mb-2">
+        <h2 id="g-route" className="subhead text-[30px] mb-2">
           From genome to mRNA, step by step
         </h2>
         <p className="text-[15px] text-mute measure mb-6">
@@ -269,7 +269,7 @@ export function GenomeExplorer({ viruses, sources, classes }: { viruses: Virus[]
       </section>
 
       <section aria-labelledby="g-classes">
-        <h2 id="g-classes" className="display text-[30px] mb-2">
+        <h2 id="g-classes" className="subhead text-[30px] mb-2">
           All seven Baltimore classes
         </h2>
         <p className="text-[15px] text-mute measure mb-6">

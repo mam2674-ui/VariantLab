@@ -9,7 +9,8 @@ export type Shape =
   | { kind: "circle"; cx: number; cy: number; r: number; style: "solid" | "range-max" | "range-min" }
   | { kind: "hexagon"; cx: number; cy: number; w: number; h: number; cap: number; style: "solid" }
   | { kind: "rect"; x: number; y: number; w: number; h: number; style: "solid" | "rod" }
-  | { kind: "line"; x1: number; y1: number; x2: number; y2: number; style: "illustrative" | "range-max" };
+  | { kind: "line"; x1: number; y1: number; x2: number; y2: number; style: "illustrative" | "range-max" }
+  | { kind: "path"; d: string; w: number; style: "outline" | "band" };
 
 export interface Silhouette {
   width: number;
@@ -50,6 +51,31 @@ export function silhouette(v: Virus): Silhouette | null {
       notes.push("Tail fibres drawn in one illustrative pose; their angle varies.");
     }
     return { width, height: L + T + (F ? F * 0.45 : 0), shapes, notes };
+  }
+
+  if (v.morphology.value === "filamentous-enveloped") {
+    // A U-bent filament whose centre-line length equals the recorded length (true diameter and length).
+    const dia = pick(v, "virion", "diameter"), len = pick(v, "filament", "length");
+    if (!dia || !len) return null;
+    const D = nm(dia, "max"), Lt = nm(len, "max");
+    const r = D * 1.1; // bend radius
+    const leg = (Lt - Math.PI * r) / 2;
+    const x0 = D / 2, x1 = D / 2 + 2 * r;
+    const d = `M ${x0} 0 L ${x0} ${leg} A ${r} ${r} 0 0 0 ${x1} ${leg} L ${x1} 0`;
+    notes.push(`Filament drawn ${Math.round(Lt)} nm long and bent into a U; real lengths vary beyond 20 µm.`);
+    return { width: x1 + D / 2, height: leg + r + D / 2, shapes: [{ kind: "path", d, w: D, style: "band" }], notes };
+  }
+
+  if (v.morphology.value === "bullet-enveloped" || v.morphology.value === "brick-complex") {
+    const len = pick(v, "virion", "length"), wid = pick(v, "virion", "width");
+    if (!len || !wid) return null;
+    const L = nm(len, "max"), W = nm(wid, "max");
+    const d =
+      v.morphology.value === "bullet-enveloped"
+        ? `M 0 ${W} L 0 ${W / 2} A ${W / 2} ${W / 2} 0 0 1 ${W} ${W / 2} L ${W} ${L} Z`
+        : `M ${W * 0.18} 0 L ${W * 0.82} 0 Q ${W} 0 ${W} ${W * 0.18} L ${W} ${L - W * 0.18} Q ${W} ${L} ${W * 0.82} ${L} L ${W * 0.18} ${L} Q 0 ${L} 0 ${L - W * 0.18} L 0 ${W * 0.18} Q 0 0 ${W * 0.18} 0 Z`;
+    notes.push("Drawn at the top of the reported length and width ranges.");
+    return { width: W, height: L, shapes: [{ kind: "path", d, w: 1.5, style: "outline" }], notes };
   }
 
   if (v.morphology.value === "helical-rod") {

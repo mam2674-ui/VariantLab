@@ -61,6 +61,7 @@
   --font-display: var(--font-plex), "Arial Narrow", sans-serif;
   --font-text: var(--font-plex), system-ui, sans-serif;
   --font-data: var(--font-plex-mono), ui-monospace, Menlo, monospace;
+  --font-body: var(--font-serif), Georgia, serif;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   color-scheme: dark;
 }
@@ -78,6 +79,7 @@
   --color-accent-deep: var(--accent-deep);
   --font-display: var(--font-display);
   --font-sans: var(--font-text);
+  --font-serif: var(--font-body);
   --font-mono: var(--font-data);
 }
 
@@ -105,6 +107,14 @@ h3 {
   overflow-wrap: break-word;
   min-width: 0;
   text-wrap: balance;
+}
+p,
+li,
+dd,
+figcaption {
+  font-family: var(--font-body);
+  font-optical-sizing: auto;
+  hanging-punctuation: first;
 }
 a {
   color: var(--link);
@@ -136,6 +146,20 @@ a {
   line-height: 1;
 }
 /* Mono index labels after the reference site, e.g. "Section 01". */
+/* Editorial subheads: serif, sentence case, softer than the caps section heads. */
+.subhead {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-optical-sizing: auto;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  color: var(--ink);
+}
+.fig-label {
+  font-family: var(--font-body);
+  font-style: italic;
+  color: var(--mute);
+}
 .index-label {
   font-family: var(--font-text);
   font-size: 13px;
@@ -481,4 +505,113 @@ a {
 }
 ::-webkit-scrollbar-track {
   background: transparent;
+}
+
+/* ---------- Transitions between pages (React ViewTransition) ---------- */
+::view-transition-old(.page) {
+  animation: 180ms var(--ease-out) both page-out;
+}
+::view-transition-new(.page) {
+  animation: 420ms var(--ease-out) 120ms both page-in;
+}
+@keyframes page-out {
+  to {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+}
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+}
+::view-transition-group(.morph) {
+  animation-duration: 450ms;
+  animation-timing-function: var(--ease-out);
+}
+
+/* ---------- Home as a sequence of slides ---------- */
+html:has(.slides) {
+  scroll-snap-type: y proximity;
+}
+.slide {
+  min-height: calc(100svh - 56px);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+@supports (animation-timeline: view()) {
+  .slide-in {
+    animation: slide-in linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 30%;
+  }
+  @keyframes slide-in {
+    from {
+      opacity: 0.001;
+      transform: translateY(60px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* ---------- Compact toolbar ---------- */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 4px;
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius-panel);
+  background: var(--canvas-sunk);
+}
+.toolbar .sep {
+  width: 1px;
+  align-self: stretch;
+  background: var(--hairline-strong);
+  margin: 4px 2px;
+}
+.tool {
+  min-height: 34px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 2px;
+  background: transparent;
+  color: var(--body);
+  font: 500 14px/1 var(--font-text);
+  cursor: pointer;
+  transition: background-color 150ms var(--ease-out), color 150ms var(--ease-out);
+}
+.tool:hover {
+  color: var(--ink);
+}
+.tool[aria-pressed="true"],
+.tool[aria-checked="true"] {
+  background: var(--canvas-elevated);
+  color: var(--ink);
+  box-shadow: var(--shadow-press);
+}
+.tool:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(.page),
+  ::view-transition-new(.page),
+  ::view-transition-group(.morph) {
+    animation: none !important;
+  }
+  html:has(.slides) {
+    scroll-snap-type: none;
+  }
+  .slide-in {
+    animation: none !important;
+  }
 }

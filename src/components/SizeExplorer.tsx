@@ -203,7 +203,7 @@ export function SizeExplorer({ viruses, sources, diagrams }: { viruses: Virus[];
       </div>
 
       <section aria-labelledby="dims-title">
-        <h2 id="dims-title" className="display text-[30px] mb-4">
+        <h2 id="dims-title" className="subhead text-[30px] mb-4">
           Every dimension, with units
         </h2>
         <table className="compare-table">

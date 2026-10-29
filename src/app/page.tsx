@@ -36,15 +36,15 @@ export default function Home() {
   const classes = new Set(viruses.map((v) => v.baltimore.value)).size;
   const st = stats(viruses);
   return (
-    <>
-      <section className="relative min-h-[calc(100svh-56px)] overflow-hidden border-b border-hairline flex flex-col">
+    <div className="slides">
+      <section className="slide relative overflow-hidden border-b border-hairline">
         <div className="absolute inset-0 flex items-center justify-center lg:justify-end lg:pr-[6vw] pointer-events-none" aria-hidden="true">
           <div className="w-[min(78vw,640px)] aspect-square opacity-35 lg:opacity-95 translate-y-[6vh] lg:translate-y-0">
             <HeroVirus spec={hero} name="Human adenovirus 5" />
           </div>
         </div>
-        <div className="relative container-atlas pt-[14vh] flex-1">
-          <p className="text-[20px] text-ink max-w-[28ch] leading-snug">Twelve viruses, drawn and measured from the evidence.</p>
+        <div className="relative container-atlas pt-[14vh] flex-1 w-full">
+          <p className="text-[20px] text-ink max-w-[28ch] leading-snug">Eighteen viruses, drawn and measured from the evidence.</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#atlas" className="btn btn-primary">
               Enter the atlas
@@ -57,7 +57,7 @@ export default function Home() {
         <h1 className="relative display text-ink whitespace-nowrap text-[15.5vw] leading-[0.82] px-3 sm:px-6 pb-3 select-none">Virus Atlas</h1>
       </section>
 
-      <section className="container-atlas py-24 sm:py-32 grid gap-12 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] items-end">
+      <section className="slide container-atlas py-24 grid gap-12 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] items-end !grid">
         <Reveal>
           <SectionHead as="h2" index="01 Structure" title={`${viruses.length} viruses. ${classes} ways to make mRNA.`} size="xl" />
         </Reveal>
@@ -74,8 +74,8 @@ export default function Home() {
         </Reveal>
       </section>
 
-      <section className="bg-accent-deep text-[var(--on-accent)] py-20 sm:py-28" aria-labelledby="numbers-title">
-        <div className="container-atlas">
+      <section className="slide bg-accent-deep text-[var(--on-accent)] py-20" aria-labelledby="numbers-title">
+        <div className="container-atlas slide-in w-full">
           <p className="index-label !text-[var(--on-accent)]/80 mb-4">02 Numbers</p>
           <h2 id="numbers-title" className="display text-[34px] sm:text-[48px] mb-12">
             From {st[2].value} to {st[3].value} nanometres,
@@ -98,8 +98,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="container-atlas py-24">
-        <Reveal>
+      <section className="slide container-atlas py-24">
+        <Reveal className="slide-in">
           <SectionHead as="h2" index="03 Scale" title="Every particle, one ruler" />
         </Reveal>
         <Reveal className="mt-12">
@@ -116,8 +116,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="container-atlas pt-28">
-        <Reveal className="grid gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] items-end">
+      <section className="slide container-atlas pt-28">
+        <Reveal className="slide-in grid gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] items-end">
           <SectionHead as="h2" index="05 Proteins" title="Down to the measured atoms" />
           <div className="text-[17px] measure">
             <p>
@@ -132,6 +132,6 @@ export default function Home() {
           </div>
         </Reveal>
       </section>
-    </>
+    </div>
   );
 }

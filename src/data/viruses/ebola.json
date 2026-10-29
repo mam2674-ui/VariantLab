@@ -1,0 +1,247 @@
+{
+  "id": "ebola",
+  "commonName": "Ebola virus",
+  "abbreviation": "EBOV",
+  "representative": "Virus-level profile of the ICTV exemplar, Mayinga 1976 (AF086833). Particle dimensions are genus-level ICTV values.",
+  "summary": "An enveloped negative-sense RNA virus that forms long filaments, sometimes branched or curled into U and 6 shapes. A helical ribonucleoprotein runs down the middle of each filament.",
+  "taxonomy": {
+    "msl": "MSL41 (VMR v1, 2026-07-29)",
+    "subfamily": null,
+    "subgenus": null,
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ],
+    "realm": "Riboviria",
+    "kingdom": "Orthornavirae",
+    "phylum": "Negarnaviricota",
+    "class": "Monjiviricetes",
+    "order": "Mononegavirales",
+    "family": "Filoviridae",
+    "genus": "Orthoebolavirus",
+    "species": "Orthoebolavirus zairense",
+    "ictvId": "ICTV19950287",
+    "vmrId": "VMR1010497",
+    "exemplar": true,
+    "note": "Formerly species Zaire ebolavirus in genus Ebolavirus. MSL41 also lists the subphylum Haploviricotina, omitted here."
+  },
+  "referenceSequence": {
+    "value": "AF086833.2 (Mayinga 1976)",
+    "status": "verified",
+    "scope": "isolate",
+    "sourceIds": [
+      "ncbi-af086833",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostCategory": {
+    "value": "vertebrates",
+    "status": "verified",
+    "scope": "species",
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostDetail": {
+    "value": "Vertebrates (ICTV host-source category)",
+    "status": "verified",
+    "scope": "species",
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ]
+  },
+  "genome": {
+    "nucleicAcid": {
+      "value": "RNA",
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-filoviridae-report",
+        "ictv-vmr-msl41"
+      ]
+    },
+    "ictvLabel": {
+      "value": "ssRNA(-)",
+      "status": "verified",
+      "scope": "species",
+      "sourceIds": [
+        "ictv-vmr-msl41"
+      ]
+    },
+    "strandedness": {
+      "value": "single",
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-filoviridae-report"
+      ]
+    },
+    "sense": {
+      "value": "negative",
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-filoviridae-report"
+      ]
+    },
+    "segmented": {
+      "value": false,
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-filoviridae-report"
+      ]
+    },
+    "segmentCount": {
+      "value": 1,
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-filoviridae-report"
+      ]
+    },
+    "topology": {
+      "value": "linear",
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-filoviridae-report"
+      ]
+    },
+    "lengthKb": {
+      "value": {
+        "min": 19.0,
+        "max": 19.0
+      },
+      "status": "verified",
+      "scope": "isolate",
+      "sourceIds": [
+        "ncbi-af086833"
+      ],
+      "note": "Orthoebolavirus genomes are about 18.9 kb (ICTV)."
+    },
+    "referenceLengthNt": {
+      "value": 18959,
+      "status": "verified",
+      "scope": "isolate",
+      "sourceIds": [
+        "ncbi-af086833"
+      ]
+    }
+  },
+  "baltimore": {
+    "value": "V",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "viralzone-baltimore",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "envelope": {
+    "value": true,
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-filoviridae-report"
+    ]
+  },
+  "capsid": {
+    "value": "No icosahedral capsid. A helical ribonucleoprotein (RNP) complex forms the central core of each filament.",
+    "status": "verified",
+    "scope": "genus",
+    "sourceIds": [
+      "ictv-filoviridae-report"
+    ]
+  },
+  "morphology": {
+    "value": "filamentous-enveloped",
+    "status": "variable",
+    "scope": "genus",
+    "sourceIds": [
+      "ictv-filoviridae-report"
+    ],
+    "note": "Predominantly filamentous; also branched, circular, U-shaped or 6-shaped."
+  },
+  "dimensions": [
+    {
+      "id": "filament-diameter",
+      "part": "virion",
+      "measure": "diameter",
+      "label": "Filament diameter",
+      "min": 96,
+      "max": 98,
+      "unit": "nm",
+      "approximate": false,
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-filoviridae-report"
+      ]
+    },
+    {
+      "id": "filament-length",
+      "part": "filament",
+      "measure": "length",
+      "label": "Length of the most infectious particles",
+      "min": 805,
+      "max": 805,
+      "unit": "nm",
+      "approximate": true,
+      "status": "variable",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-filoviridae-report"
+      ],
+      "note": "Lengths vary greatly, beyond 20 µm; ~805 nm is the length linked to peak infectivity."
+    }
+  ],
+  "replication": {
+    "site": {
+      "value": "Cytoplasm",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-filoviridae-report"
+      ]
+    },
+    "mRNARoute": {
+      "value": "The negative-sense genome cannot be read directly; viral polymerase in the RNP transcribes it into mRNAs.",
+      "status": "simplified",
+      "scope": "family",
+      "sourceIds": [
+        "viralzone-baltimore",
+        "ictv-filoviridae-report"
+      ]
+    },
+    "steps": [
+      {
+        "id": "entry",
+        "title": "Attachment and entry",
+        "text": "The particle binds and enters a host cell.",
+        "status": "not_verified",
+        "sourceIds": []
+      },
+      {
+        "id": "assembly",
+        "location": "cytoplasm",
+        "title": "Assembly",
+        "text": "Viral proteins and genomes assemble in the cytoplasm.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-filoviridae-report"
+        ]
+      },
+      {
+        "id": "budding",
+        "location": "membrane",
+        "title": "Budding",
+        "text": "Virions bud and are released at the plasma membrane, taking their envelope from host membranes.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-filoviridae-report"
+        ]
+      }
+    ]
+  },
+  "diagramId": "ebola"
+}

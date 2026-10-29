@@ -1,0 +1,234 @@
+{
+  "id": "ms2",
+  "commonName": "Bacteriophage MS2",
+  "abbreviation": "MS2",
+  "representative": "Virus-level profile of the ICTV exemplar (V00642). Structure from an older (2009) ICTV chapter written when the family was Leviviridae.",
+  "summary": "One of the smallest viruses here: a 26 nm protein shell around a single positive-sense RNA of about 3,600 nucleotides. It infects bacteria by attaching to the sides of their F pili.",
+  "taxonomy": {
+    "msl": "MSL41 (VMR v1, 2026-07-29)",
+    "subfamily": null,
+    "subgenus": null,
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ],
+    "realm": "Riboviria",
+    "kingdom": "Orthornavirae",
+    "phylum": "Lenarviricota",
+    "class": "Leviviricetes",
+    "order": "Norzivirales",
+    "family": "Fiersviridae",
+    "genus": "Emesvirus",
+    "species": "Emesvirus zinderi",
+    "ictvId": "ICTV19991070",
+    "vmrId": "VMR1009537",
+    "exemplar": true,
+    "note": "Textbooks place MS2 in family Leviviridae; MSL41 lists it in Fiersviridae."
+  },
+  "referenceSequence": {
+    "value": "V00642.1",
+    "status": "verified",
+    "scope": "virus",
+    "sourceIds": [
+      "ncbi-v00642",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostCategory": {
+    "value": "bacteria",
+    "status": "verified",
+    "scope": "species",
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostDetail": {
+    "value": "Bacteria; MS2-type phages of E. coli adsorb to the sides of F pili",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-vmr-msl41",
+      "ictv-leviviridae-report"
+    ]
+  },
+  "genome": {
+    "nucleicAcid": {
+      "value": "RNA",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-leviviridae-report",
+        "ictv-vmr-msl41"
+      ]
+    },
+    "ictvLabel": {
+      "value": "ssRNA(+)",
+      "status": "verified",
+      "scope": "species",
+      "sourceIds": [
+        "ictv-vmr-msl41"
+      ]
+    },
+    "strandedness": {
+      "value": "single",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-leviviridae-report"
+      ]
+    },
+    "sense": {
+      "value": "positive",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-leviviridae-report"
+      ]
+    },
+    "segmented": {
+      "value": false,
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-leviviridae-report"
+      ]
+    },
+    "segmentCount": {
+      "value": 1,
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-leviviridae-report"
+      ]
+    },
+    "topology": {
+      "value": "linear",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-leviviridae-report"
+      ]
+    },
+    "lengthKb": {
+      "value": {
+        "min": 3.6,
+        "max": 3.6
+      },
+      "status": "verified",
+      "scope": "isolate",
+      "sourceIds": [
+        "ncbi-v00642"
+      ],
+      "note": "Family genomes are 3,466–4,276 nt (ICTV 2009)."
+    },
+    "referenceLengthNt": {
+      "value": 3569,
+      "status": "verified",
+      "scope": "isolate",
+      "sourceIds": [
+        "ncbi-v00642"
+      ]
+    }
+  },
+  "baltimore": {
+    "value": "IV",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "viralzone-baltimore",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "envelope": {
+    "value": false,
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-leviviridae-report"
+    ]
+  },
+  "capsid": {
+    "value": "T=3 icosahedral capsid of 180 coat-protein copies, plus one maturation (A) protein needed for maturation and pilus attachment.",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-leviviridae-report"
+    ]
+  },
+  "morphology": {
+    "value": "icosahedral-nonenveloped",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-leviviridae-report"
+    ]
+  },
+  "dimensions": [
+    {
+      "id": "capsid-diameter",
+      "part": "capsid",
+      "measure": "diameter",
+      "label": "Particle diameter",
+      "min": 26,
+      "max": 26,
+      "unit": "nm",
+      "approximate": true,
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-leviviridae-report"
+      ]
+    }
+  ],
+  "replication": {
+    "site": {
+      "value": "Bacterial cytoplasm (bacteria have no nucleus)",
+      "status": "simplified",
+      "scope": "virus",
+      "sourceIds": [
+        "ictv-leviviridae-report",
+        "ictv-vmr-msl41"
+      ]
+    },
+    "mRNARoute": {
+      "value": "The positive-sense genome is translated directly; its replicase assembles with three host proteins to copy the RNA.",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-leviviridae-report"
+      ]
+    },
+    "steps": [
+      {
+        "id": "attach",
+        "location": "outside",
+        "title": "Pilus attachment",
+        "text": "The phage adsorbs to the sides of F pili; the A protein is needed for this attachment.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-leviviridae-report"
+        ]
+      },
+      {
+        "id": "replicase",
+        "location": "cytoplasm",
+        "title": "Replicase assembly",
+        "text": "The infecting RNA encodes a replicase that assembles with three host proteins into the active polymerase.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-leviviridae-report"
+        ]
+      },
+      {
+        "id": "lysis",
+        "location": "membrane",
+        "title": "Lysis",
+        "text": "A separate lysis gene leads to cell lysis, releasing thousands of phages per cell.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-leviviridae-report"
+        ]
+      }
+    ]
+  },
+  "diagramId": "ms2"
+}

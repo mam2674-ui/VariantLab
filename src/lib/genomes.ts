@@ -36,6 +36,12 @@ export const ANNOTATION_SOURCE: Record<string, string> = {
   tmv: "ncbi-nc001367",
   "phage-t4": "ncbi-af158101",
   phix174: "ncbi-j02482",
+  ebola: "ncbi-af086833",
+  rabies: "ncbi-m13215",
+  vaccinia: "ncbi-ay243312",
+  zika: "ncbi-ay632535",
+  norwalk: "ncbi-m87661",
+  ms2: "ncbi-v00642",
 };
 
 /** Coding length in nucleotides, summed over intervals. */
