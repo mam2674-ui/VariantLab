@@ -1,0 +1,238 @@
+{
+  "id": "mimivirus",
+  "commonName": "Acanthamoeba polyphaga mimivirus",
+  "abbreviation": "APMV",
+  "representative": "Virus-level profile of the ICTV exemplar (HQ336222). Particle description is from the 2009 ICTV chapter.",
+  "summary": "A giant virus of amoebae: a 0.5 µm icosahedral capsid under a dense fibre layer, with a star-shaped vertex it opens to release its contents. Its genome is by far the largest here, over a million base pairs.",
+  "taxonomy": {
+    "msl": "MSL41 (VMR v1, 2026-07-29)",
+    "subfamily": "Megamimivirinae",
+    "subgenus": null,
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ],
+    "realm": "Varidnaviria",
+    "kingdom": "Bamfordvirae",
+    "phylum": "Nucleocytoviricota",
+    "class": "Megaviricetes",
+    "order": "Imitervirales",
+    "family": "Mimiviridae",
+    "genus": "Mimivirus",
+    "species": "Mimivirus bradfordmassiliense",
+    "ictvId": "ICTV20042222",
+    "vmrId": "VMR1004210",
+    "exemplar": true,
+    "note": "MSL41 also lists the suborder Orthomivirineae, omitted here."
+  },
+  "referenceSequence": {
+    "value": "HQ336222.2",
+    "status": "verified",
+    "scope": "virus",
+    "sourceIds": [
+      "ncbi-hq336222",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostCategory": {
+    "value": "protists",
+    "status": "verified",
+    "scope": "species",
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostDetail": {
+    "value": "Protists; infects Acanthamoeba species",
+    "status": "verified",
+    "scope": "genus",
+    "sourceIds": [
+      "ictv-vmr-msl41",
+      "ictv-mimiviridae-report"
+    ]
+  },
+  "genome": {
+    "nucleicAcid": {
+      "value": "DNA",
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-mimiviridae-report",
+        "ictv-vmr-msl41"
+      ]
+    },
+    "ictvLabel": {
+      "value": "dsDNA",
+      "status": "verified",
+      "scope": "species",
+      "sourceIds": [
+        "ictv-vmr-msl41"
+      ]
+    },
+    "strandedness": {
+      "value": "double",
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-mimiviridae-report"
+      ]
+    },
+    "sense": {
+      "value": null,
+      "status": "not_applicable",
+      "scope": "genus",
+      "sourceIds": [],
+      "note": "Sense applies to single-stranded genomes; this genome is double-stranded."
+    },
+    "segmented": {
+      "value": false,
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-mimiviridae-report"
+      ]
+    },
+    "segmentCount": {
+      "value": 1,
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-mimiviridae-report"
+      ]
+    },
+    "topology": {
+      "value": "linear",
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-mimiviridae-report"
+      ]
+    },
+    "lengthKb": {
+      "value": {
+        "min": 1181.5,
+        "max": 1181.5
+      },
+      "status": "verified",
+      "scope": "virus",
+      "sourceIds": [
+        "ncbi-hq336222",
+        "ictv-mimiviridae-report"
+      ],
+      "note": "A single linear dsDNA molecule of 1,181,549 bp, 72% A+T (ICTV)."
+    },
+    "referenceLengthNt": {
+      "value": 1181549,
+      "status": "verified",
+      "scope": "virus",
+      "sourceIds": [
+        "ncbi-hq336222"
+      ]
+    }
+  },
+  "baltimore": {
+    "value": "I",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "viralzone-baltimore",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "envelope": {
+    "value": false,
+    "status": "verified",
+    "scope": "genus",
+    "sourceIds": [
+      "ictv-mimiviridae-report"
+    ],
+    "note": "Not enveloped, but the nucleocapsid sits inside two 40 Å-thick internal lipid membranes."
+  },
+  "capsid": {
+    "value": "An icosahedral core protein capsid 0.5 µm across, uniformly covered by a 0.125 µm layer of closely packed fibres, with a five-fold star-shaped structure (the stargate) at one vertex.",
+    "status": "verified",
+    "scope": "genus",
+    "sourceIds": [
+      "ictv-mimiviridae-report"
+    ]
+  },
+  "morphology": {
+    "value": "icosahedral-fibred",
+    "status": "verified",
+    "scope": "genus",
+    "sourceIds": [
+      "ictv-mimiviridae-report"
+    ]
+  },
+  "dimensions": [
+    {
+      "id": "capsid-diameter",
+      "part": "capsid",
+      "measure": "diameter",
+      "label": "Core capsid diameter",
+      "min": 500,
+      "max": 500,
+      "unit": "nm",
+      "approximate": true,
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-mimiviridae-report"
+      ]
+    },
+    {
+      "id": "virion-diameter",
+      "part": "virion",
+      "measure": "diameter",
+      "label": "Diameter including the fibre layer",
+      "min": 750,
+      "max": 750,
+      "unit": "nm",
+      "approximate": true,
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-mimiviridae-report"
+      ],
+      "note": "Capsid 0.5 µm plus a 0.125 µm fibre layer on each side."
+    }
+  ],
+  "replication": {
+    "site": {
+      "value": "Cytoplasm (virus factories)",
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-mimiviridae-report"
+      ]
+    },
+    "mRNARoute": {
+      "value": "As a dsDNA genome, it is transcribed into mRNA; replication takes place entirely in the host cytoplasm.",
+      "status": "simplified",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-mimiviridae-report",
+        "viralzone-baltimore"
+      ]
+    },
+    "steps": [
+      {
+        "id": "entry",
+        "title": "Entry",
+        "text": "The virus is taken up by the amoeba.",
+        "status": "not_verified",
+        "sourceIds": []
+      },
+      {
+        "id": "factory",
+        "location": "cytoplasm",
+        "title": "Virus factory",
+        "text": "Replication takes place entirely in the cytoplasm of the host Acanthamoeba cell, in virion factories.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-mimiviridae-report"
+        ]
+      }
+    ]
+  },
+  "diagramId": "mimivirus"
+}

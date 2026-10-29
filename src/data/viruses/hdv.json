@@ -1,0 +1,237 @@
+{
+  "id": "hdv",
+  "commonName": "Hepatitis delta virus",
+  "abbreviation": "HDV",
+  "representative": "Virus-level profile of the ICTV exemplar of Deltavirus italiense, strain TW2667 (AF104263). Particle description is family-level.",
+  "summary": "The smallest genome in this atlas, and the strangest route: a closed circle of RNA that folds into a rod, carries ribozymes, encodes a single protein, and is copied by the host's own DNA-directed RNA polymerase. It needs a helper virus to supply its envelope.",
+  "taxonomy": {
+    "msl": "MSL41 (VMR v1, 2026-07-29)",
+    "subfamily": null,
+    "subgenus": null,
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ],
+    "realm": "Ribozyviria",
+    "kingdom": "Unassigned",
+    "phylum": "Unassigned",
+    "class": "Unassigned",
+    "order": "Unassigned",
+    "family": "Kolmioviridae",
+    "genus": "Deltavirus",
+    "species": "Deltavirus italiense",
+    "ictvId": "ICTV19931851",
+    "vmrId": "VMR1004156",
+    "exemplar": true,
+    "note": "MSL41 assigns no ranks between the realm Ribozyviria and the family Kolmioviridae. Because it depends on a helper virus, HDV is often called a satellite."
+  },
+  "referenceSequence": {
+    "value": "AF104263.1 (strain TW2667)",
+    "status": "verified",
+    "scope": "isolate",
+    "sourceIds": [
+      "ncbi-af104263",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostCategory": {
+    "value": "vertebrates",
+    "status": "verified",
+    "scope": "species",
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostDetail": {
+    "value": "Vertebrates; infectivity is believed to depend on unrelated helper viruses (ICTV names Hepadnaviridae and Arenaviridae)",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-vmr-msl41",
+      "ictv-kolmioviridae-report"
+    ]
+  },
+  "genome": {
+    "nucleicAcid": {
+      "value": "RNA",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-kolmioviridae-report",
+        "ictv-vmr-msl41"
+      ]
+    },
+    "ictvLabel": {
+      "value": "ssRNA(-)",
+      "status": "verified",
+      "scope": "species",
+      "sourceIds": [
+        "ictv-vmr-msl41"
+      ]
+    },
+    "strandedness": {
+      "value": "single",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-kolmioviridae-report"
+      ]
+    },
+    "sense": {
+      "value": "negative",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-kolmioviridae-report"
+      ]
+    },
+    "segmented": {
+      "value": false,
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-kolmioviridae-report"
+      ],
+      "note": "Non-segmented, covalently closed circular RNA."
+    },
+    "segmentCount": {
+      "value": 1,
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-kolmioviridae-report"
+      ]
+    },
+    "topology": {
+      "value": "circular",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-kolmioviridae-report"
+      ],
+      "note": "Covalently closed circular RNA that folds into a rod-like shape."
+    },
+    "lengthKb": {
+      "value": {
+        "min": 1.7,
+        "max": 1.7
+      },
+      "status": "verified",
+      "scope": "isolate",
+      "sourceIds": [
+        "ncbi-af104263"
+      ],
+      "note": "Kolmiovirid genomes are about 1.5–1.7 kb (ICTV)."
+    },
+    "referenceLengthNt": {
+      "value": 1676,
+      "status": "verified",
+      "scope": "isolate",
+      "sourceIds": [
+        "ncbi-af104263"
+      ]
+    }
+  },
+  "baltimore": {
+    "value": "V",
+    "status": "simplified",
+    "scope": "family",
+    "sourceIds": [
+      "viralzone-baltimore",
+      "ictv-vmr-msl41"
+    ],
+    "note": "The ICTV genome label is ssRNA(-), which maps to class V. But HDV does not fit the class description: it carries no RNA-dependent RNA polymerase and is copied by the host's DNA-directed RNA polymerase II."
+  },
+  "envelope": {
+    "value": true,
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-kolmioviridae-report"
+    ],
+    "note": "The envelope proteins are derived from a helper virus, not encoded by HDV."
+  },
+  "capsid": {
+    "value": "No icosahedral capsid. The genome is held as a ribonucleoprotein core with the delta antigen, inside an envelope borrowed from a helper virus.",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-kolmioviridae-report"
+    ]
+  },
+  "morphology": {
+    "value": "spherical-enveloped",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-kolmioviridae-report"
+    ]
+  },
+  "dimensions": [
+    {
+      "id": "virion-diameter",
+      "part": "virion",
+      "measure": "diameter",
+      "label": "Virion diameter",
+      "min": 36,
+      "max": 43,
+      "unit": "nm",
+      "approximate": false,
+      "status": "variable",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-kolmioviridae-report"
+      ]
+    }
+  ],
+  "replication": {
+    "site": {
+      "value": "Nucleus",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-kolmioviridae-report"
+      ]
+    },
+    "mRNARoute": {
+      "value": "Unusually, RNA synthesis is mediated by the host's DNA-directed RNA polymerase II. Ribozymes in the genome and antigenome cut progeny strands, which are re-ligated and recircularised in the nucleus.",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-kolmioviridae-report"
+      ]
+    },
+    "steps": [
+      {
+        "id": "entry",
+        "location": "membrane",
+        "title": "Entry with helper envelope",
+        "text": "Infectivity is believed to depend on envelope proteins from an unrelated helper virus.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-kolmioviridae-report"
+        ]
+      },
+      {
+        "id": "synthesis",
+        "location": "nucleus",
+        "title": "RNA synthesis by host polymerase",
+        "text": "Synthesis is mediated by host-cell DNA-directed RNA polymerase II.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-kolmioviridae-report"
+        ]
+      },
+      {
+        "id": "ribozyme",
+        "location": "nucleus",
+        "title": "Ribozyme cleavage and re-ligation",
+        "text": "Ribozymes cut concatenated progeny strands, which are re-ligated and recircularised in the nucleus.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-kolmioviridae-report"
+        ]
+      }
+    ]
+  },
+  "diagramId": "hdv"
+}

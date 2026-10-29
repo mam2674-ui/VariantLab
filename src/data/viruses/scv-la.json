@@ -1,0 +1,219 @@
+{
+  "id": "scv-la",
+  "commonName": "Saccharomyces cerevisiae virus L-A",
+  "abbreviation": "ScV-L-A",
+  "representative": "Virus-level profile of the ICTV exemplar (J04692). Particle description is family-level.",
+  "summary": "A virus of brewer's yeast with a double-stranded RNA genome. Its polymerase works inside the particle, transcribing RNA from the genome without ever uncoating.",
+  "taxonomy": {
+    "msl": "MSL41 (VMR v1, 2026-07-29)",
+    "subfamily": null,
+    "subgenus": null,
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ],
+    "realm": "Riboviria",
+    "kingdom": "Orthornavirae",
+    "phylum": "Duplornaviricota",
+    "class": "Chrymotiviricetes",
+    "order": "Ghabrivirales",
+    "family": "Orthototiviridae",
+    "genus": "Totivirus",
+    "species": "Totivirus ichi",
+    "ictvId": "ICTV19821337",
+    "vmrId": "VMR1008397",
+    "exemplar": true,
+    "note": "Formerly family Totiviridae, species Saccharomyces cerevisiae virus L-A."
+  },
+  "referenceSequence": {
+    "value": "J04692.1",
+    "status": "verified",
+    "scope": "virus",
+    "sourceIds": [
+      "ncbi-j04692",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostCategory": {
+    "value": "fungi",
+    "status": "verified",
+    "scope": "species",
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostDetail": {
+    "value": "Fungi (ICTV host-source category)",
+    "status": "verified",
+    "scope": "species",
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ]
+  },
+  "genome": {
+    "nucleicAcid": {
+      "value": "RNA",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-orthototiviridae-report",
+        "ictv-vmr-msl41"
+      ]
+    },
+    "ictvLabel": {
+      "value": "dsRNA",
+      "status": "verified",
+      "scope": "species",
+      "sourceIds": [
+        "ictv-vmr-msl41"
+      ]
+    },
+    "strandedness": {
+      "value": "double",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-orthototiviridae-report"
+      ]
+    },
+    "sense": {
+      "value": null,
+      "status": "not_applicable",
+      "scope": "family",
+      "sourceIds": [],
+      "note": "Sense applies to single-stranded RNA; this genome is double-stranded RNA."
+    },
+    "segmented": {
+      "value": false,
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-orthototiviridae-report"
+      ],
+      "note": "A single dsRNA molecule."
+    },
+    "segmentCount": {
+      "value": 1,
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-orthototiviridae-report"
+      ]
+    },
+    "topology": {
+      "value": "linear",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-orthototiviridae-report"
+      ]
+    },
+    "lengthKb": {
+      "value": {
+        "min": 4.6,
+        "max": 4.6
+      },
+      "status": "verified",
+      "scope": "virus",
+      "sourceIds": [
+        "ncbi-j04692"
+      ],
+      "note": "Orthototivirid genomes are a single uncapped dsRNA of 3.9–5.6 kb (ICTV)."
+    },
+    "referenceLengthNt": {
+      "value": 4579,
+      "status": "verified",
+      "scope": "virus",
+      "sourceIds": [
+        "ncbi-j04692"
+      ]
+    }
+  },
+  "baltimore": {
+    "value": "III",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "viralzone-baltimore",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "envelope": {
+    "value": false,
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-orthototiviridae-report"
+    ]
+  },
+  "capsid": {
+    "value": "A non-enveloped icosahedral capsid, 40–49 nm across, that stays intact while transcribing.",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-orthototiviridae-report"
+    ]
+  },
+  "morphology": {
+    "value": "icosahedral-nonenveloped",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-orthototiviridae-report"
+    ]
+  },
+  "dimensions": [
+    {
+      "id": "capsid-diameter",
+      "part": "capsid",
+      "measure": "diameter",
+      "label": "Particle diameter",
+      "min": 40,
+      "max": 49,
+      "unit": "nm",
+      "approximate": false,
+      "status": "variable",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-orthototiviridae-report"
+      ]
+    }
+  ],
+  "replication": {
+    "site": {
+      "value": "Cytoplasm",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-orthototiviridae-report"
+      ]
+    },
+    "mRNARoute": {
+      "value": "Positive- and negative-strand transcription happens from the double-stranded RNA while it stays associated with the virion.",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-orthototiviridae-report"
+      ]
+    },
+    "steps": [
+      {
+        "id": "transcription",
+        "location": "cytoplasm",
+        "title": "Transcription inside the particle",
+        "text": "Positive- and negative-strand synthesis occurs from dsRNA associated with the virion, in the cytoplasm.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-orthototiviridae-report"
+        ]
+      },
+      {
+        "id": "spread",
+        "title": "Spread between cells",
+        "text": "How the virus passes between host cells is not described by our sources.",
+        "status": "not_verified",
+        "sourceIds": []
+      }
+    ]
+  },
+  "diagramId": "scv-la"
+}

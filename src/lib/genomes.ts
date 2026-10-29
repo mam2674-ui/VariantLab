@@ -42,6 +42,12 @@ export const ANNOTATION_SOURCE: Record<string, string> = {
   zika: "ncbi-ay632535",
   norwalk: "ncbi-m87661",
   ms2: "ncbi-v00642",
+  ssv1: "ncbi-x07234",
+  mimivirus: "ncbi-hq336222",
+  tylcv: "ncbi-aj489258",
+  m13: "ncbi-v00604",
+  hdv: "ncbi-af104263",
+  "scv-la": "ncbi-j04692",
 };
 
 /** Coding length in nucleotides, summed over intervals. */

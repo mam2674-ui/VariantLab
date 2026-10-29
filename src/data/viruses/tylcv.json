@@ -1,0 +1,248 @@
+{
+  "id": "tylcv",
+  "commonName": "Tomato yellow leaf curl virus",
+  "abbreviation": "TYLCV",
+  "representative": "Virus-level profile of the ICTV exemplar, Spain-Almeria-Pepper-1999 (AJ489258). Particle description is family-level.",
+  "summary": "A plant virus with a shape nothing else here shares: two incomplete icosahedra stuck together, like a twinned crystal. Its small circular DNA genome is copied in the nucleus using the plant's own machinery.",
+  "taxonomy": {
+    "msl": "MSL41 (VMR v1, 2026-07-29)",
+    "subfamily": null,
+    "subgenus": null,
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ],
+    "realm": "Floreoviria",
+    "kingdom": "Shotokuvirae",
+    "phylum": "Cressdnaviricota",
+    "class": "Repensiviricetes",
+    "order": "Geplafuvirales",
+    "family": "Geminiviridae",
+    "genus": "Begomovirus",
+    "species": "Begomovirus coheni",
+    "ictvId": "ICTV20073780",
+    "vmrId": "VMR1008002",
+    "exemplar": true,
+    "note": "Formerly species Tomato yellow leaf curl virus. TYLCV is monopartite: the exemplar accession is its DNA-A component."
+  },
+  "referenceSequence": {
+    "value": "AJ489258.1 (DNA-A)",
+    "status": "verified",
+    "scope": "isolate",
+    "sourceIds": [
+      "ncbi-aj489258",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostCategory": {
+    "value": "plants",
+    "status": "verified",
+    "scope": "species",
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostDetail": {
+    "value": "Plants; geminiviruses are transmitted by whiteflies, leafhoppers, aphids and treehoppers",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-vmr-msl41",
+      "ictv-geminiviridae-report"
+    ]
+  },
+  "genome": {
+    "nucleicAcid": {
+      "value": "DNA",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-geminiviridae-report",
+        "ictv-vmr-msl41"
+      ]
+    },
+    "ictvLabel": {
+      "value": "ssDNA(+/-)",
+      "status": "verified",
+      "scope": "species",
+      "sourceIds": [
+        "ictv-vmr-msl41"
+      ]
+    },
+    "strandedness": {
+      "value": "single",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-geminiviridae-report"
+      ]
+    },
+    "sense": {
+      "value": null,
+      "status": "not_verified",
+      "scope": "family",
+      "sourceIds": [],
+      "note": "ICTV labels the genome ssDNA(+/-); our sources do not state a single sense for the packaged strand."
+    },
+    "segmented": {
+      "value": false,
+      "status": "verified",
+      "scope": "isolate",
+      "sourceIds": [
+        "ncbi-aj489258"
+      ],
+      "note": "TYLCV is monopartite; other geminiviruses are bipartite."
+    },
+    "segmentCount": {
+      "value": 1,
+      "status": "verified",
+      "scope": "isolate",
+      "sourceIds": [
+        "ncbi-aj489258"
+      ]
+    },
+    "topology": {
+      "value": "circular",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-geminiviridae-report"
+      ]
+    },
+    "lengthKb": {
+      "value": {
+        "min": 2.8,
+        "max": 2.8
+      },
+      "status": "verified",
+      "scope": "isolate",
+      "sourceIds": [
+        "ncbi-aj489258"
+      ],
+      "note": "Geminivirus genomes are 2.5–5.2 kb in total; each twinned virion holds one circle of 2.5–3.2 kb (ICTV)."
+    },
+    "referenceLengthNt": {
+      "value": 2781,
+      "status": "verified",
+      "scope": "isolate",
+      "sourceIds": [
+        "ncbi-aj489258"
+      ]
+    }
+  },
+  "baltimore": {
+    "value": "II",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "viralzone-baltimore",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "envelope": {
+    "value": false,
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-geminiviridae-report"
+    ]
+  },
+  "capsid": {
+    "value": "Twinned (geminate) incomplete icosahedra with T=1 symmetry and a single coat protein; in maize streak virus the pair holds 110 coat-protein subunits in total.",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-geminiviridae-report"
+    ]
+  },
+  "morphology": {
+    "value": "geminate",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-geminiviridae-report"
+    ]
+  },
+  "dimensions": [
+    {
+      "id": "virion-length",
+      "part": "virion",
+      "measure": "length",
+      "label": "Twinned particle length",
+      "min": 38,
+      "max": 38,
+      "unit": "nm",
+      "approximate": false,
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-geminiviridae-report"
+      ]
+    },
+    {
+      "id": "virion-width",
+      "part": "virion",
+      "measure": "width",
+      "label": "Twinned particle width",
+      "min": 22,
+      "max": 22,
+      "unit": "nm",
+      "approximate": false,
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-geminiviridae-report"
+      ]
+    }
+  ],
+  "replication": {
+    "site": {
+      "value": "Nucleus",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-geminiviridae-report"
+      ]
+    },
+    "mRNARoute": {
+      "value": "The single-stranded circle is first made double-stranded in the nucleus by host replication factors; geminiviruses encode no DNA polymerase. Transcription follows from the double-stranded form.",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-geminiviridae-report"
+      ]
+    },
+    "steps": [
+      {
+        "id": "entry",
+        "location": "outside",
+        "title": "Entry by insect vector",
+        "text": "Geminiviruses are carried between plants by insects in four homopteran families.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-geminiviridae-report"
+        ]
+      },
+      {
+        "id": "complementary",
+        "location": "nucleus",
+        "title": "Complementary strand synthesis",
+        "text": "The complementary strand is synthesised in the nucleus by host replication factors.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-geminiviridae-report"
+        ]
+      },
+      {
+        "id": "rolling",
+        "location": "nucleus",
+        "title": "Replication",
+        "text": "Replication uses a rolling-circle mechanism and also a recombination-dependent mechanism.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-geminiviridae-report"
+        ]
+      }
+    ]
+  },
+  "diagramId": "tylcv"
+}

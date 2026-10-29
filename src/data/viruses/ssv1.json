@@ -1,0 +1,243 @@
+{
+  "id": "ssv1",
+  "commonName": "Sulfolobus spindle-shaped virus 1",
+  "abbreviation": "SSV1",
+  "representative": "Virus-level profile of the ICTV exemplar (X07234). Particle shape and size are genus-level ICTV values for alphafuselloviruses.",
+  "summary": "A lemon-shaped virus of heat-loving archaea, with short fibres at one pole. It contains lipids but has no envelope, and its circular DNA genome makes it a temperate virus.",
+  "taxonomy": {
+    "msl": "MSL41 (VMR v1, 2026-07-29)",
+    "subfamily": null,
+    "subgenus": null,
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ],
+    "realm": "Unassigned",
+    "kingdom": "Unassigned",
+    "phylum": "Unassigned",
+    "class": "Unassigned",
+    "order": "Unassigned",
+    "family": "Fuselloviridae",
+    "genus": "Alphafusellovirus",
+    "species": "Alphafusellovirus beppuense",
+    "ictvId": "ICTV19901199",
+    "vmrId": "VMR1005566",
+    "exemplar": true,
+    "note": "MSL41 places Fuselloviridae without assigned ranks above family, so realm through order are listed as unassigned."
+  },
+  "referenceSequence": {
+    "value": "X07234.1",
+    "status": "verified",
+    "scope": "virus",
+    "sourceIds": [
+      "ncbi-x07234",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostCategory": {
+    "value": "archaea",
+    "status": "verified",
+    "scope": "species",
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostDetail": {
+    "value": "Archaea; hyperthermophilic archaea of the order Sulfolobales",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-vmr-msl41",
+      "ictv-fuselloviridae-report"
+    ]
+  },
+  "genome": {
+    "nucleicAcid": {
+      "value": "DNA",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-fuselloviridae-report",
+        "ictv-vmr-msl41"
+      ]
+    },
+    "ictvLabel": {
+      "value": "dsDNA",
+      "status": "verified",
+      "scope": "species",
+      "sourceIds": [
+        "ictv-vmr-msl41"
+      ]
+    },
+    "strandedness": {
+      "value": "double",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-fuselloviridae-report"
+      ]
+    },
+    "sense": {
+      "value": null,
+      "status": "not_applicable",
+      "scope": "family",
+      "sourceIds": [],
+      "note": "Sense applies to single-stranded genomes; this genome is double-stranded."
+    },
+    "segmented": {
+      "value": false,
+      "status": "verified",
+      "scope": "virus",
+      "sourceIds": [
+        "ncbi-x07234"
+      ]
+    },
+    "segmentCount": {
+      "value": 1,
+      "status": "verified",
+      "scope": "virus",
+      "sourceIds": [
+        "ncbi-x07234"
+      ]
+    },
+    "topology": {
+      "value": "circular",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-fuselloviridae-report"
+      ]
+    },
+    "lengthKb": {
+      "value": {
+        "min": 15.5,
+        "max": 15.5
+      },
+      "status": "verified",
+      "scope": "virus",
+      "sourceIds": [
+        "ncbi-x07234"
+      ],
+      "note": "Fusellovirus genomes are 14.8–17.8 kbp (ICTV)."
+    },
+    "referenceLengthNt": {
+      "value": 15465,
+      "status": "verified",
+      "scope": "virus",
+      "sourceIds": [
+        "ncbi-x07234"
+      ]
+    }
+  },
+  "baltimore": {
+    "value": "I",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "viralzone-baltimore",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "envelope": {
+    "value": false,
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-fuselloviridae-report"
+    ],
+    "note": "Lipids are present in the particle, but the virions are not enveloped."
+  },
+  "capsid": {
+    "value": "No icosahedral capsid. A lemon- (spindle-) shaped particle with short terminal fibres at one pole.",
+    "status": "verified",
+    "scope": "genus",
+    "sourceIds": [
+      "ictv-fuselloviridae-report"
+    ]
+  },
+  "morphology": {
+    "value": "lemon",
+    "status": "verified",
+    "scope": "genus",
+    "sourceIds": [
+      "ictv-fuselloviridae-report"
+    ]
+  },
+  "dimensions": [
+    {
+      "id": "virion-length",
+      "part": "virion",
+      "measure": "length",
+      "label": "Lemon length",
+      "min": 90,
+      "max": 90,
+      "unit": "nm",
+      "approximate": true,
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-fuselloviridae-report"
+      ]
+    },
+    {
+      "id": "virion-width",
+      "part": "virion",
+      "measure": "width",
+      "label": "Lemon width",
+      "min": 50,
+      "max": 50,
+      "unit": "nm",
+      "approximate": true,
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-fuselloviridae-report"
+      ]
+    }
+  ],
+  "replication": {
+    "site": {
+      "value": "Archaeal cytoplasm (archaea have no nucleus)",
+      "status": "simplified",
+      "scope": "virus",
+      "sourceIds": [
+        "ictv-fuselloviridae-report",
+        "ictv-vmr-msl41"
+      ]
+    },
+    "mRNARoute": {
+      "value": "As a dsDNA genome, it is transcribed directly into mRNA.",
+      "status": "simplified",
+      "scope": "family",
+      "sourceIds": [
+        "viralzone-baltimore",
+        "ictv-fuselloviridae-report"
+      ]
+    },
+    "steps": [
+      {
+        "id": "entry",
+        "title": "Attachment and entry",
+        "text": "The virus binds and enters its archaeal host.",
+        "status": "not_verified",
+        "sourceIds": []
+      },
+      {
+        "id": "temperate",
+        "title": "Temperate lifestyle",
+        "text": "Fuselloviruses are temperate viruses.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-fuselloviridae-report"
+        ]
+      },
+      {
+        "id": "release",
+        "title": "Release",
+        "text": "How progeny leave the host is not described by our sources.",
+        "status": "not_verified",
+        "sourceIds": []
+      }
+    ]
+  },
+  "diagramId": "ssv1"
+}

@@ -19,8 +19,8 @@ export const emptyFilters: AtlasFilters = { q: "", genome: [], envelope: [], hos
 const ICTV_TO_CLASS: Record<string, GenomeClass> = {
   dsDNA: "dsDNA",
   "ssDNA(+)": "ssDNA",
-  "ssDNA(-)": "ssDNA",
   "ssDNA(+/-)": "ssDNA",
+  "ssDNA(-)": "ssDNA",
   ssDNA: "ssDNA",
   dsRNA: "dsRNA",
   "ssRNA(+)": "+ssRNA",

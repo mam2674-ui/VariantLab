@@ -1,0 +1,248 @@
+{
+  "id": "m13",
+  "commonName": "Bacteriophage M13",
+  "abbreviation": "M13",
+  "representative": "Virus-level profile of the ICTV exemplar (V00604). Particle description is family-level, with M13-specific coat-protein counts.",
+  "summary": "A long, thin phage that does not kill its host: it is extruded through the bacterial envelope while the cell keeps growing. Its circular single-stranded DNA is copied through a double-stranded intermediate.",
+  "taxonomy": {
+    "msl": "MSL41 (VMR v1, 2026-07-29)",
+    "subfamily": null,
+    "subgenus": null,
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ],
+    "realm": "Efunaviria",
+    "kingdom": "Loebvirae",
+    "phylum": "Hofneiviricota",
+    "class": "Faserviricetes",
+    "order": "Tubulavirales",
+    "family": "Inoviridae",
+    "genus": "Inovirus",
+    "species": "Inovirus M13",
+    "ictvId": "ICTV19991030",
+    "vmrId": "VMR1006794",
+    "exemplar": true
+  },
+  "referenceSequence": {
+    "value": "V00604.2",
+    "status": "verified",
+    "scope": "virus",
+    "sourceIds": [
+      "ncbi-v00604",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostCategory": {
+    "value": "bacteria",
+    "status": "verified",
+    "scope": "species",
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostDetail": {
+    "value": "Bacteria; infection starts when the p3 protein interacts with the tip of a pilus",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-vmr-msl41",
+      "ictv-inoviridae-report"
+    ]
+  },
+  "genome": {
+    "nucleicAcid": {
+      "value": "DNA",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-inoviridae-report",
+        "ictv-vmr-msl41"
+      ]
+    },
+    "ictvLabel": {
+      "value": "ssDNA(+)",
+      "status": "verified",
+      "scope": "species",
+      "sourceIds": [
+        "ictv-vmr-msl41"
+      ]
+    },
+    "strandedness": {
+      "value": "single",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-inoviridae-report"
+      ]
+    },
+    "sense": {
+      "value": "positive",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-inoviridae-report"
+      ]
+    },
+    "segmented": {
+      "value": false,
+      "status": "verified",
+      "scope": "virus",
+      "sourceIds": [
+        "ncbi-v00604"
+      ]
+    },
+    "segmentCount": {
+      "value": 1,
+      "status": "verified",
+      "scope": "virus",
+      "sourceIds": [
+        "ncbi-v00604"
+      ]
+    },
+    "topology": {
+      "value": "circular",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-inoviridae-report"
+      ]
+    },
+    "lengthKb": {
+      "value": {
+        "min": 6.4,
+        "max": 6.4
+      },
+      "status": "verified",
+      "scope": "virus",
+      "sourceIds": [
+        "ncbi-v00604"
+      ],
+      "note": "Inovirus genomes are 5.5–10.6 kb (ICTV)."
+    },
+    "referenceLengthNt": {
+      "value": 6407,
+      "status": "verified",
+      "scope": "virus",
+      "sourceIds": [
+        "ncbi-v00604"
+      ]
+    }
+  },
+  "baltimore": {
+    "value": "II",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "viralzone-baltimore",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "envelope": {
+    "value": false,
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-inoviridae-report"
+    ]
+  },
+  "capsid": {
+    "value": "A non-enveloped flexible filament; the M13 virion is composed of 2,700 copies of the major coat protein p8 (CoaB), with p3 at one end.",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-inoviridae-report"
+    ]
+  },
+  "morphology": {
+    "value": "filamentous-nonenveloped",
+    "status": "verified",
+    "scope": "family",
+    "sourceIds": [
+      "ictv-inoviridae-report"
+    ]
+  },
+  "dimensions": [
+    {
+      "id": "filament-length",
+      "part": "filament",
+      "measure": "length",
+      "label": "Filament length (family range)",
+      "min": 600,
+      "max": 2500,
+      "unit": "nm",
+      "approximate": false,
+      "status": "variable",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-inoviridae-report"
+      ]
+    },
+    {
+      "id": "filament-diameter",
+      "part": "virion",
+      "measure": "diameter",
+      "label": "Filament diameter",
+      "min": 6,
+      "max": 10,
+      "unit": "nm",
+      "approximate": false,
+      "status": "variable",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-inoviridae-report"
+      ]
+    }
+  ],
+  "replication": {
+    "site": {
+      "value": "Bacterial cytoplasm (bacteria have no nucleus)",
+      "status": "simplified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-inoviridae-report",
+        "ictv-vmr-msl41"
+      ]
+    },
+    "mRNARoute": {
+      "value": "The single-stranded circle is converted into a double-stranded replicative form, which is transcribed and copied by rolling circle.",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-inoviridae-report"
+      ]
+    },
+    "steps": [
+      {
+        "id": "attach",
+        "location": "outside",
+        "title": "Pilus attachment",
+        "text": "Infection starts when p3 interacts with the tip of a pilus on the bacterial surface.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-inoviridae-report"
+        ]
+      },
+      {
+        "id": "rf",
+        "location": "cytoplasm",
+        "title": "Replicative form",
+        "text": "The genome is converted into a double-stranded replicative form and copied by a rolling-circle mechanism.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-inoviridae-report"
+        ]
+      },
+      {
+        "id": "extrusion",
+        "location": "membrane",
+        "title": "Extrusion",
+        "text": "Progeny virions are released by extrusion without killing the host.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-inoviridae-report"
+        ]
+      }
+    ]
+  },
+  "diagramId": "m13"
+}

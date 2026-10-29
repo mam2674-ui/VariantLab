@@ -49,8 +49,12 @@ const MORPHOLOGY_LABEL: Record<string, string> = {
   "bullet-enveloped": "Bullet-shaped, enveloped",
   "brick-complex": "Brick-shaped, complex",
   "spherical-enveloped": "Small sphere, enveloped",
+  lemon: "Lemon-shaped",
+  geminate: "Twinned icosahedra",
+  "filamentous-nonenveloped": "Filament, no envelope",
+  "icosahedral-fibred": "Icosahedral under a fibre layer",
 };
-export const HOST_LABEL: Record<string, string> = { vertebrates: "Vertebrates", bacteria: "Bacteria", plants: "Plants", "vertebrates-invertebrates": "Vertebrates and invertebrates" };
+export const HOST_LABEL: Record<string, string> = { vertebrates: "Vertebrates", bacteria: "Bacteria", plants: "Plants", "vertebrates-invertebrates": "Vertebrates and invertebrates", archaea: "Archaea", protists: "Protists", fungi: "Fungi" };
 export const morphologyLabel = (m: string | null) => (m ? MORPHOLOGY_LABEL[m] ?? m : "Not verified");
 
 export function compareRows(vs: Virus[]): CompareRow[] {
