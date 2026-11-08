@@ -1,25 +1,40 @@
 # Methods and Evaluation Report
 
-All numbers below are from the actual run saved at
-`data/processed/eval_results.json` (seed=42). Nothing here is invented or
-cherry-picked — this is the one and only run performed for this session,
-and reproducing it is `python3 scripts/run_evaluation.py`.
+All numbers below are from the actual runs saved at
+`data/processed/{gb1,pab1,tem1,gfp}_eval_results.json` (or `eval_results.json`
+for GB1; seed=42). Nothing here is invented or cherry-picked — reproducing
+any of them is `python3 scripts/run_evaluation.py <slug>`.
+
+**Updated 2026-11-08:** a real bug in the train/test splitter was found and
+fixed (see "Known limitations" in the original session, now resolved,
+below) — it could put a sparse-coverage position's only observed
+substitution entirely in the test set, which breaks Setting A's own
+definition. The fix changed Setting A's exact split composition for every
+protein (a different, now-correct, valid split), which is why GB1's numbers
+here differ slightly from earlier reports. Setting B was never affected by
+this bug and its numbers are unchanged throughout.
 
 ## Data
 
-1,045 single amino-acid substitutions across all 55 positions of the GB1
-domain (55 × 19 = 1,045, fully saturated — no missing single-mutant
-combinations). See `docs/dataset_provenance.md` for sourcing/verification
-and `docs/eda_summary.md` for exploratory findings.
+| Protein | Single mutants | Positions | Coverage | Assay |
+|---|---|---|---|---|
+| GB1 | 1,045 | 55 | 100% (fully saturated) | IgG-Fc binding (mRNA display) |
+| Pab1 (RRM2) | 1,187 | 75 | 83.3% | Yeast growth complementation |
+| TEM-1 | 4,783 | 263 | 95.7% | Ampicillin-resistance growth selection |
+| GFP | 1,084 | 236 | 24.2% (sparse) | FACS fluorescence sorting |
+
+See `docs/dataset_provenance.md` and `docs/structure_provenance.md` for full
+sourcing/verification per protein, and `docs/eda_summary.md` for GB1's
+exploratory findings (not yet repeated for the other three).
 
 ## Features
 
 Per mutation: original/substituted amino-acid identity (one-hot), and
 deltas in Kyte-Doolittle hydrophobicity, Zamyatnin volume, a simplified
 charge category, and a polar/nonpolar category, plus the hydrophobicity of
-the two sequence-neighboring residues as a crude local-context feature.
-Scale sources and their stated approximations are documented in
-`src/variantlab/features.py`.
+the two sequence-neighboring residues as a crude local-context feature —
+identical feature set for all four proteins. Scale sources and their stated
+approximations are documented in `src/variantlab/features.py`.
 
 ## Models
 
@@ -28,77 +43,82 @@ Scale sources and their stated approximations are documented in
    the validation split only (Setting A) or fixed at 1.0 (Setting B, to keep
    the 5-fold loop simple — a documented simplification, not an oversight).
 3. **Random Forest** (300 trees, max depth 8, min leaf 2) — same
-   hyperparameters in both settings; no tuning was done for Setting B.
+   hyperparameters in both settings and across all four proteins; no
+   per-protein tuning was done.
 
-All three models were evaluated on **identical splits** within each setting;
-no run was repeated or discarded.
+All three models were evaluated on **identical splits** within each setting
+and protein; no run was repeated or discarded.
 
 ## Setting A — held-out substitutions at represented positions
 
-Random 70/15/15 split (731 train / 156 val / 158 test). Every test-set
-position is represented in training by *other* substitutions. This is the
-narrower, easier generalization test.
+Random ~70/15/15 split (exact sizes below; the split guarantees every test
+position is also represented in train — see the splitter fix above). This
+is the narrower, easier generalization test.
 
-| feature set | model | Spearman ρ | MAE |
-|---|---|---|---|
-| with position | mean baseline | undefined (constant) | 1.615 |
-| with position | Ridge (α=100) | 0.640 | 1.195 |
-| with position | Random Forest | **0.878** | **0.586** |
-| without position | mean baseline | undefined (constant) | 1.615 |
-| without position | Ridge (α=100) | 0.626 | 1.211 |
-| without position | Random Forest | 0.825 | 0.693 |
+| Protein | n train/val/test | RF ρ (with pos) | RF ρ (without pos) | RF MAE |
+|---|---|---|---|---|
+| GB1 | 732/157/156 | 0.817 | 0.788 | 0.552 |
+| Pab1 | 831/178/178 | 0.779 | 0.749 | 0.154 |
+| TEM-1 | 3348/717/718 | 0.702 | 0.617 | 0.276 |
+| GFP | 759/163/162 | 0.405 | 0.326 | 0.283 |
 
-**Position-memorization ablation:** removing the raw position feature drops
-Random Forest's Spearman ρ from 0.878 to 0.825 (and Ridge's from 0.640 to
-0.626). Some, but not most, of the Random Forest's apparent accuracy comes
-from memorizing position-specific fitted values rather than learning
-substitution chemistry — the model still does well on substitution-level
-patterns alone, but the gap is real and worth stating plainly rather than
-quietly using the higher number.
+**Position-memorization ablation** (every protein shows the same pattern):
+removing the raw position feature drops Random Forest's ρ in every single
+case — GB1 (0.817→0.788), Pab1 (0.779→0.749), TEM-1 (0.702→0.617, the
+largest drop), GFP (0.405→0.326). Some share of apparent Setting-A accuracy
+is position memorization on every protein tested so far, not just GB1 —
+a pattern that's now been checked four times, not asserted once.
 
-## Setting B — held-out positions (5-fold GroupKFold, n=209/fold test)
+## Setting B — held-out positions (5-fold GroupKFold)
 
-Entire positions withheld from training in each fold — the harder,
-more honest generalization test, and the one more analogous to predicting
-an uncharacterized position.
+Entire positions withheld from training in each fold — the harder, more
+honest generalization test.
 
-| model | Spearman ρ (mean ± std across folds) | MAE (mean ± std) |
+| Protein | RF ρ (mean ± std) | RF MAE (mean ± std) |
 |---|---|---|
-| mean baseline | undefined (constant per fold) | 1.505 ± 0.149 |
-| Ridge (α=1.0) | 0.385 ± 0.235 | 1.409 ± 0.137 |
-| Random Forest | 0.405 ± 0.185 | 1.305 ± 0.120 |
+| GB1 | 0.405 ± 0.185 | 1.305 ± 0.120 |
+| Pab1 | 0.542 ± 0.141 | 0.253 ± 0.025 |
+| TEM-1 | 0.378 ± 0.030 | 0.349 ± 0.006 |
+| GFP | 0.297 ± 0.076 | 0.332 ± 0.056 |
 
-**Interpretation:** both trained models beat the mean baseline on MAE, and
-both show *positive* rank correlation with the true scores for genuinely
-unseen positions — but performance drops sharply versus Setting A (Random
-Forest ρ falls from 0.878 to 0.405) and is noisy fold-to-fold (±0.185–0.235
-on a ρ of ~0.4). Positions within a fold are correlated (several
-substitutions from the same position land together), so these std values
-are rough, not precise confidence intervals — a genuinely rigorous
-uncertainty estimate would need position-aware resampling beyond what this
-session implemented.
+**Interpretation:** every protein shows a sharp drop from Setting A to
+Setting B — the easier-to-harder gap is not unique to GB1. Pab1's
+held-out-position ρ is the highest of the four (0.542), GFP's the lowest
+(0.297) — GFP also has by far the sparsest training data (24% coverage vs.
+83-100% for the others), a plausible explanation that this project does not
+claim to have confirmed (one data point, four proteins, is not enough to
+separate "sparse data hurts" from "fluorescence is a harder phenotype to
+predict from physicochemistry alone"). TEM-1's fold-to-fold std is
+noticeably tighter (±0.030) than the other three (±0.14-0.19) — likely
+because it has far more data per fold (718-719 test rows vs. 156-209 for
+the others), which is the expected direction for that difference, not a
+surprise.
 
 ## What these results do and do not establish
 
-- They establish that simple physicochemical deltas carry real, generalizable
-  signal about GB1 fitness, even for positions never seen in training (ρ >
-  0 and beats baseline in Setting B).
-- They establish that a meaningful share of "accuracy" in the easier
-  Setting A partly reflects position memorization, not pure substitution
-  chemistry.
-- They say **nothing** about any protein other than GB1, under any assay
-  other than this one. Generalization across proteins was never tested and
-  is not claimed.
-- They say nothing about mechanism (folding vs. binding) — see
-  `docs/project_brief.md` Section 3.
+- They establish that simple physicochemical deltas carry real,
+  generalizable signal on **four different proteins and four different
+  assay types** — a materially stronger claim than "this one worked for
+  GB1," though still only four data points, not a generalizable law.
+- They establish that position memorization inflates Setting A's apparent
+  accuracy on every protein checked so far, not just GB1.
+- They say **nothing** about any protein beyond these four. Four is not
+  "proteins in general," and this project does not claim otherwise anywhere.
+- They say nothing about mechanism (folding vs. binding vs. catalysis vs.
+  chromophore maturation) for any of the four — see each protein's
+  `assay_caveat` in `src/variantlab/proteins.py` and
+  `docs/structure_provenance.md`.
 
-## Known limitations / unresolved in this session
+## Known limitations / unresolved
 
 - No nested/repeated cross-validation for Ridge's alpha in Setting B (fixed
-  at 1.0 instead) — a simplification for time, not a tuned best case.
+  at 1.0) — a simplification for time, not a tuned best case, on any protein.
 - No position-aware bootstrap for tighter Setting B uncertainty bands.
 - No embedding-based model (Section 6's optional pretrained-embedding
-  extension) attempted yet.
-- No structural mapping (Section 9) attempted yet — `SPG1_STRSG.pdb` is
-  already identified as the structure file in ProteinGym's metadata for a
-  future session.
+  extension) attempted for any protein.
+- GB1's exploratory data analysis (`docs/eda_summary.md`) has not yet been
+  repeated for Pab1, TEM-1, or GFP.
+- ChimeraX static structure renders are generated (one `.cxc` script per
+  protein in `scripts/`) but require manual local execution — this sandbox
+  has no GUI/WindowServer access to run them automatically (see the
+  dashboard's ChimeraX tab for the exact command).

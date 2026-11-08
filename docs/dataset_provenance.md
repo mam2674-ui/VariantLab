@@ -1,5 +1,11 @@
 # Dataset Provenance and Licensing Note
 
+> **This document covers GB1 only** — the project's original protein. Three
+> more have since been added (Pab1, TEM-1, GFP), each independently sourced
+> and verified the same way; see `docs/methods_report.md` for their dataset
+> summary table and `docs/structure_provenance.md` for each one's structure
+> provenance in the same depth as GB1's below.
+
 ## What this project uses
 
 **Protein:** GB1 — the B1 immunoglobulin-binding domain of Streptococcal protein G

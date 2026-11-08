@@ -1,5 +1,12 @@
 # VariantLab: Project Brief
 
+> **Scope note:** this brief describes the project's original, GB1-only V1.
+> The question below is now asked of four proteins (GB1, Pab1, TEM-1, GFP),
+> not one — see `docs/methods_report.md` for the four-protein results and
+> `README.md` for the current project structure. The biology, statistics,
+> and architecture reasoning below still apply to every protein; only the
+> "one protein" framing in the question itself is now historical.
+
 ## 1. Scientific question
 
 **How well can simple sequence-derived features predict the experimentally
