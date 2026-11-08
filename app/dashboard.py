@@ -1,5 +1,5 @@
-"""VariantLab dashboard: explore GB1 single-mutant fitness data, the verified
-protein structure, and model predictions.
+"""VariantLab dashboard: explore single-mutant fitness data, verified protein
+structures, and model predictions, for any protein defined in proteins.py.
 
 Run from the project root: streamlit run app/dashboard.py
 """
@@ -20,21 +20,20 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 from variantlab.content import CONCEPTS, PRINCIPLES
-from variantlab.data_prep import PROCESSED_DIR, REFERENCE_SEQUENCE
 from variantlab.features import AA_LIST, build_features
+from variantlab.proteins import GB1, PAB1, PROTEINS
 from variantlab.structure_viz import build_3d_view, per_position_summary, plot_2d_topology
 
-st.set_page_config(page_title="VariantLab — GB1", layout="wide")
+st.set_page_config(page_title="VariantLab", layout="wide")
 
 STRUCTURE_RENDER_DIR = Path(__file__).resolve().parents[1] / "data" / "processed" / "structure_renders"
 
 # --------------------------------------------------------------------------
-# Design system v2 — "Until We Know" world (redesign, replacing the Lab
-# Notebook system). Committed structural blue at page scale (hero + banner),
-# warm paper between. Space Grotesk for display, IBM Plex Sans for body, IBM
-# Plex Mono still reserved for measured values only (that rule survives the
-# world change). See DESIGN.md and .impeccable/surfaces/app-dashboard-py.md
-# for the full direction contract.
+# Design system v2 — "Until We Know" world. Committed structural blue at
+# page scale (hero + banner), warm paper between. Space Grotesk for display,
+# IBM Plex Sans for body, IBM Plex Mono reserved for measured values only.
+# See DESIGN.md and .impeccable/surfaces/app-dashboard-py.md for the full
+# direction contract.
 # --------------------------------------------------------------------------
 st.markdown(
     """
@@ -56,6 +55,8 @@ st.markdown(
         --accent-verified-bg: #eaf4f2;
         --accent-caution: #9a5b12;
         --accent-caution-bg: #faf2e6;
+        --accent-predicted: #5b3f9a;
+        --accent-predicted-bg: #f1ecfa;
     }
 
     html, body, [class*="css"] { font-family: 'IBM Plex Sans', sans-serif; }
@@ -96,10 +97,19 @@ st.markdown(
     }
     .vlab-nav .vlab-links a:hover { color: var(--on-blue); }
 
+    /* ---- Protein switcher ---- */
+    div[data-testid="stHorizontalBlock"] div[role="radiogroup"] {
+        background: var(--paper-subtle); border: 1px solid var(--hairline);
+        border-radius: 999px; padding: 0.3rem; display: inline-flex; gap: 0.2rem;
+    }
+    div[role="radiogroup"] label {
+        border-radius: 999px !important; padding: 0.3rem 0.9rem !important; margin: 0 !important;
+    }
+
     /* ---- Hero ---- */
     .vlab-hero {
         position: relative; overflow: hidden;
-        padding: 3.5rem 1.5rem 4rem 1.5rem; margin-top: -3.2rem;
+        padding: 2rem 1.5rem 4rem 1.5rem; margin-top: -1.5rem;
         background:
             radial-gradient(ellipse 70% 55% at 30% 15%, rgba(63,110,168,0.55), transparent 60%),
             radial-gradient(ellipse 60% 50% at 75% 75%, rgba(11,110,98,0.30), transparent 60%),
@@ -108,12 +118,12 @@ st.markdown(
     }
     .vlab-hero .vlab-tagline {
         font-family: 'IBM Plex Mono', monospace; color: var(--on-blue-secondary);
-        font-size: 0.82rem; letter-spacing: 0.02em; margin: 4.5rem 0 1.4rem 0;
+        font-size: 0.82rem; letter-spacing: 0.02em; margin: 2.5rem 0 1.4rem 0;
     }
     .vlab-hero h1 {
         font-family: 'Space Grotesk', sans-serif; font-weight: 700;
         font-size: clamp(2.2rem, 4.4vw, 3.6rem); letter-spacing: -0.02em; line-height: 1.08;
-        color: var(--on-blue); max-width: 18ch; margin: 0 auto 1.3rem auto;
+        color: var(--on-blue); max-width: 20ch; margin: 0 auto 1.3rem auto;
     }
     .vlab-hero .vlab-finding {
         color: var(--on-blue-secondary); font-size: 1.1rem; line-height: 1.6;
@@ -171,6 +181,10 @@ st.markdown(
         background: var(--paper-subtle); border: 1px solid var(--hairline); border-radius: 10px;
         padding: 1rem 1.2rem; color: var(--ink-secondary); font-size: 0.88rem; line-height: 1.55; margin: 1rem 0;
     }
+    .vlab-predicted-note {
+        background: var(--accent-predicted-bg); border: 1px dashed var(--accent-predicted); border-radius: 10px;
+        padding: 0.9rem 1.1rem; color: var(--ink); font-size: 0.85rem; line-height: 1.55; margin: 0.75rem 0;
+    }
     </style>
 
     <div class="vlab-nav">
@@ -188,13 +202,13 @@ st.markdown(
 
 
 @st.cache_data
-def load_predictions() -> pd.DataFrame:
-    return pd.read_csv(PROCESSED_DIR / "predictions.csv")
+def load_predictions(protein_slug: str) -> pd.DataFrame:
+    return pd.read_csv(PROTEINS[protein_slug].predictions_csv_path)
 
 
 @st.cache_data
-def load_eval_results() -> dict:
-    with open(PROCESSED_DIR / "eval_results.json") as f:
+def load_eval_results(protein_slug: str) -> dict:
+    with open(PROTEINS[protein_slug].eval_results_path) as f:
         return json.load(f)
 
 
@@ -210,12 +224,35 @@ def fmt_rho(value) -> str:
     return "n/a (constant predictor)" if value is None else f"{value:.3f}"
 
 
-df = load_predictions()
-eval_results = load_eval_results()
+# ------------------------------------------------------------- Protein switch
+qp = st.query_params
+qp_protein = qp.get("protein", "gb1")
+if qp_protein not in PROTEINS:
+    qp_protein = "gb1"
+
+st.markdown('<div style="text-align:center; margin: 1rem 0 0.5rem 0;">', unsafe_allow_html=True)
+protein_slug = st.radio(
+    "Protein", options=["gb1", "pab1"],
+    format_func=lambda s: PROTEINS[s].display_name.split(" (")[0],
+    index=["gb1", "pab1"].index(qp_protein),
+    horizontal=True, label_visibility="collapsed",
+)
+st.markdown("</div>", unsafe_allow_html=True)
+st.query_params["protein"] = protein_slug
+
+protein = PROTEINS[protein_slug]
+n_positions = len(protein.reference_sequence)
+
+df = load_predictions(protein_slug)
+eval_results = load_eval_results(protein_slug)
 
 RHO_EASY = eval_results["setting_a_with_position"]["random_forest"]["spearman_rho"]
 RHO_HARD = eval_results["setting_b_position_groupkfold"]["random_forest"]["spearman_rho_mean"]
 RHO_HARD_STD = eval_results["setting_b_position_groupkfold"]["random_forest"]["spearman_rho_std"]
+
+N_SINGLE = len(df)
+N_POSSIBLE = n_positions * 19
+SATURATION_PCT = 100 * N_SINGLE / N_POSSIBLE
 
 # --------------------------------------------------------------------- Hero
 st.markdown(
@@ -224,7 +261,8 @@ st.markdown(
         <div class="vlab-tagline">( one protein. one assay. the honest number. )</div>
         <h1>Does sequence alone predict a mutation's fate?</h1>
         <p class="vlab-finding">
-            A Random Forest trained on simple physicochemical features reaches
+            On <strong>{protein.display_name}</strong>, a Random Forest trained on simple
+            physicochemical features reaches
             <span class="vlab-num">ρ = {RHO_EASY:.2f}</span> on substitutions at
             positions it has already seen — and only
             <span class="vlab-num">ρ = {RHO_HARD:.2f} ± {RHO_HARD_STD:.2f}</span>
@@ -238,14 +276,14 @@ st.markdown(
 
 # ------------------------------------------------------------------ Banner
 st.markdown(
-    """
+    f"""
     <div class="vlab-banner">
         <h2 class="vlab-display">We report the harder number.</h2>
         <p>
-            Olson, Wu &amp; Sun (2014) measured every one of GB1's 1,045 possible
-            single substitutions by mRNA display selected for IgG-Fc binding.
-            Everything below is built on that one verified, cited dataset and
-            the protein's real crystal structure — not a synthetic stand-in,
+            {protein.first_author} et al. ({protein.year}) measured {N_SINGLE:,} of the
+            {N_POSSIBLE:,} possible single substitutions in {protein.display_name} by
+            {protein.assay_description}. Everything below is built on that one verified,
+            cited dataset and the protein's real structure — not a synthetic stand-in,
             and never dressed up as more certain than the splits actually show.
         </p>
     </div>
@@ -257,21 +295,21 @@ st.markdown('<div class="vlab-content">', unsafe_allow_html=True)
 
 with st.expander("Dataset, provenance, and methodology details"):
     st.markdown(
-        """
-- **1,045 of 1,045 possible single substitutions** (55 positions × 19 amino acids —
-  fully saturated, no missing combinations).
+        f"""
+- **{N_SINGLE:,} of {N_POSSIBLE:,} possible single substitutions** ({n_positions} positions ×
+  19 amino acids) — {"fully saturated, no missing combinations" if N_SINGLE == N_POSSIBLE else f"{SATURATION_PCT:.1f}% coverage; this assay's library was not fully saturating"}.
+- **Source:** {protein.first_author} et al. ({protein.year}), *{protein.journal_citation}*.
 - **License & redistribution:** sourced via ProteinGym (MIT-licensed codebase);
   the underlying measurements follow the original publication's terms — used
   here for non-commercial, educational/portfolio analysis with full citation.
-- **What the assay actually measures:** `DMS_score` is the raw reported `lnW`
-  (log enrichment vs. wild type after IgG-Fc binding selection). It conflates
-  folding stability with binding affinity — a low score could mean either, or
-  both. This project does not assume a reduced score means instability.
+- **What the assay actually measures:** {protein.assay_description}.
+  {protein.assay_caveat}
 - **"Large effect" positions** use this assay's own documented binarization
-  cutoff (`lnW < -4`), not an invented threshold.
+  cutoff (`{protein.large_effect_cutoff}`), not an invented threshold.
+- **Structure:** {protein.structure_source}.
+  {"⚠️ This is a **predicted** model, not an experimentally determined structure — see docs/structure_provenance.md for why, and for the per-residue confidence check." if protein.structure_is_predicted else ""}
 - No claim of clinical, therapeutic, or disease relevance is made anywhere —
-  GB1 is a bacterial domain, and this project does not extrapolate to human
-  variant interpretation.
+  this project does not extrapolate to human variant interpretation.
         """
     )
 
@@ -291,45 +329,62 @@ st.markdown(f'<div class="vlab-grid">{principle_tiles}</div>', unsafe_allow_html
 st.markdown('<div id="concepts" class="vlab-section-heading vlab-display">Understanding the science</div>', unsafe_allow_html=True)
 st.markdown('<p class="vlab-section-sub">The biology and statistics behind every number on this page, pulled from this project\'s own written methodology.</p>', unsafe_allow_html=True)
 
+# The "ASSAY" concept is protein-specific; every other concept is general
+# biology/statistics that applies to either protein unchanged.
+assay_concept = {
+    "title": "What was actually measured",
+    "body": f"{protein.assay_description[0].upper() + protein.assay_description[1:]}. {protein.assay_caveat}",
+}
+concepts_for_protein = [c if c["label"] != "ASSAY" else assay_concept for c in CONCEPTS]
+
 concept_tiles = "".join(
     f"""<div class="vlab-tile">
         <div class="vlab-tile-title vlab-display">{c['title']}</div>
         <p>{c['body']}</p>
-    </div>""" for c in CONCEPTS
+    </div>""" for c in concepts_for_protein
 )
 st.markdown(f'<div class="vlab-grid">{concept_tiles}</div>', unsafe_allow_html=True)
 
 # -------------------------------------------------------------- Structure
 st.markdown('<div id="structure" class="vlab-section-heading vlab-display">The verified structure</div>', unsafe_allow_html=True)
 st.markdown(
-    '<p class="vlab-section-sub">PDB 1PGB (Gallagher, Alexander, Bryan &amp; Gilliland, 1994) — the exact '
-    'crystal structure paper Olson et al. (2014) cite for GB1, 1.92 Å X-ray, no missing residues. The reference-'
-    'sequence mapping onto this structure is independently verified position by position in '
+    f'<p class="vlab-section-sub">{protein.structure_source}. The reference-sequence mapping '
+    'onto this structure is independently verified position by position in '
     '<code>docs/structure_provenance.md</code>. Colored by each position\'s mean observed DMS score.</p>',
     unsafe_allow_html=True,
 )
+if protein.structure_is_predicted:
+    st.markdown(
+        '<div class="vlab-predicted-note">⚠️ <strong>Predicted structure, not experimental.</strong> '
+        'No comparable experimental structure of this domain exists (the only alternative on file is '
+        'a 4.8 Å cryo-EM structure of a large multi-protein complex). This AlphaFold model was chosen '
+        'because its per-residue confidence is independently verified high in exactly this domain — '
+        'see docs/structure_provenance.md for the actual pLDDT numbers, not just an assertion.</div>',
+        unsafe_allow_html=True,
+    )
 
-position_summary = per_position_summary(df.rename(columns={"dms_score": "dms_score"}) if "dms_score" in df.columns else df)
+position_summary = per_position_summary(df)
 
 tab_3d, tab_2d, tab_chimerax = st.tabs(["Interactive 3D", "2D topology diagram", "ChimeraX renders"])
 
 with tab_3d:
-    st.caption("Drag to rotate, scroll to zoom. Cartoon colored by mean DMS score per position (RdBu_r scale — red = more fit, blue = less fit); domain position 1 (no verified structural match, see provenance) renders neutral gray.")
-    view = build_3d_view(position_summary)
+    st.caption("Drag to rotate, scroll to zoom. Cartoon colored by mean DMS score per position (RdBu_r scale — red = more fit, blue = less fit)."
+               + (f" Domain position(s) {', '.join(str(p) for p in sorted(protein.unmapped_domain_positions))} (no verified structural match, see provenance) render neutral gray." if protein.unmapped_domain_positions else ""))
+    view = build_3d_view(protein, position_summary)
     components.html(view._make_html(), height=540)
 
 with tab_2d:
-    st.caption("A 2D topology diagram built directly from 1PGB's own HELIX/SHEET records (not a generic cartoon) — GB1's β-grasp fold: four β-strands packed against one α-helix.")
-    fig = plot_2d_topology(position_summary)
+    st.caption(f"A 2D topology diagram built from {protein.secondary_structure[0].source if protein.secondary_structure else 'the structure'} (not a generic cartoon).")
+    fig = plot_2d_topology(protein, position_summary)
     alt = (
-        "2D topology diagram of GB1's secondary structure (four beta strands and one alpha helix, "
-        "derived from the 1PGB crystal structure's own annotations), colored by mean DMS score per position."
+        f"2D topology diagram of {protein.display_name}'s secondary structure, "
+        "colored by mean DMS score per position."
     )
     st.markdown(fig_to_html_img(fig, alt), unsafe_allow_html=True)
 
 with tab_chimerax:
-    chimerax_3d = STRUCTURE_RENDER_DIR / "gb1_3d_view.png"
-    chimerax_2d = STRUCTURE_RENDER_DIR / "gb1_2d_flat_view.png"
+    chimerax_3d = STRUCTURE_RENDER_DIR / f"{protein.slug}_3d_view.png"
+    chimerax_2d = STRUCTURE_RENDER_DIR / f"{protein.slug}_2d_flat_view.png"
     if chimerax_3d.exists() and chimerax_2d.exists():
         st.caption("Rendered with real UCSF ChimeraX, colored by the same mean-DMS-score scale as the interactive view above.")
         c1, c2 = st.columns(2)
@@ -337,7 +392,7 @@ with tab_chimerax:
         c2.image(str(chimerax_2d), caption="Rotated flat view")
     else:
         st.markdown(
-            """
+            f"""
             <div class="vlab-structure-note">
             UCSF ChimeraX 1.12 is installed on this machine, and
             <code>scripts/render_chimerax.cxc</code> is ready to run — but this
@@ -348,7 +403,7 @@ with tab_chimerax:
             <br><br>
             To produce them yourself (one command, from a real Terminal window):
             <br>
-            <code class="vlab-mono">cd ~/Coding/variantlab &amp;&amp; /Applications/ChimeraX-1.12.app/Contents/MacOS/ChimeraX scripts/render_chimerax.cxc</code>
+            <code class="vlab-mono">cd ~/Coding/variantlab &amp;&amp; /Applications/ChimeraX-1.12.app/Contents/MacOS/ChimeraX scripts/render_chimerax_{protein.slug}.cxc</code>
             <br><br>
             Re-run the dashboard afterward and this tab will show them automatically.
             </div>
@@ -356,8 +411,8 @@ with tab_chimerax:
             unsafe_allow_html=True,
         )
 
-st.markdown('<div id="explore" class="vlab-section-heading vlab-display">Explore the data</div>', unsafe_allow_html=True)
-st.markdown('<p class="vlab-section-sub">The underlying tool: every one of the 1,045 measurements, a mutation-by-mutation explorer, and the full model evaluation.</p>', unsafe_allow_html=True)
+st.markdown(f'<div id="explore" class="vlab-section-heading vlab-display">Explore the data</div>', unsafe_allow_html=True)
+st.markdown(f'<p class="vlab-section-sub">The underlying tool: every one of the {N_SINGLE:,} measurements, a mutation-by-mutation explorer, and the full model evaluation.</p>', unsafe_allow_html=True)
 
 tab_heatmap, tab_explorer, tab_eval, tab_limits = st.tabs(
     ["Mutation heatmap", "Mutation explorer", "Model evaluation", "What this does and doesn't show"]
@@ -368,27 +423,23 @@ with tab_heatmap:
     st.header("Experimental fitness heatmap")
     st.write(
         "Every cell is an **observed** experimental measurement (`DMS_score`), not "
-        "a prediction. White cells on the diagonal-equivalent are WT residues — "
-        "not mutations, so not part of this dataset. The color scale alone "
-        "compresses fine distinctions for colorblind viewers; the **Mutation "
-        "explorer** tab gives the same data as exact numeric values per mutation."
+        "a prediction. The color scale alone compresses fine distinctions for "
+        "colorblind viewers; the **Mutation explorer** tab gives the same data "
+        "as exact numeric values per mutation."
     )
     pivot = df.pivot(index="position", columns="new_aa", values="dms_score").reindex(columns=AA_LIST)
-    hm_fig, ax = plt.subplots(figsize=(9, 11))
-    im = ax.imshow(pivot.values, aspect="auto", cmap="RdBu_r", vmin=-6, vmax=2)
+    hm_fig, ax = plt.subplots(figsize=(9, max(6, n_positions * 0.16)))
+    im = ax.imshow(pivot.values, aspect="auto", cmap="RdBu_r")
     ax.set_xticks(range(len(AA_LIST)))
     ax.set_xticklabels(AA_LIST)
-    ax.set_yticks(range(0, 55, 5))
-    ax.set_yticklabels(range(1, 56, 5))
+    ax.set_yticks(range(0, n_positions, 5))
+    ax.set_yticklabels(range(1, n_positions + 1, 5))
     ax.set_xlabel("substituted amino acid")
-    ax.set_ylabel("GB1 domain position (1-55)")
+    ax.set_ylabel(f"{protein.display_name.split(' (')[0]} domain position (1-{n_positions})")
     hm_fig.colorbar(im, ax=ax, label="DMS score (higher = more fit)")
     alt = (
-        "Heatmap of GB1 single-mutant fitness scores: 55 domain positions (rows) by "
-        "19 substituted amino acids (columns). Most substitutions score near or "
-        "above wild type (red); positions 26, 30, 40, 42 and 51 are deleterious "
-        "across nearly all substitutions (blue bands), and proline substitutions "
-        "are deleterious at nearly every position."
+        f"Heatmap of {protein.display_name} single-mutant fitness scores: {n_positions} domain "
+        "positions (rows) by 19 substituted amino acids (columns), colored by DMS score."
     )
     st.markdown(fig_to_html_img(hm_fig, alt), unsafe_allow_html=True)
 
@@ -396,36 +447,41 @@ with tab_heatmap:
 with tab_explorer:
     st.header("Select a supported single substitution")
     st.write(
-        "Only single amino-acid substitutions that exist in the GB1 deep "
+        "Only single amino-acid substitutions that exist in this deep "
         "mutational scan can be selected — this project does not extrapolate "
         "to mutation formats outside that scope (e.g. double mutants, indels, "
         "other proteins)."
     )
 
-    qp = st.query_params
-    qp_position = int(qp.get("position", 1)) if str(qp.get("position", "1")).isdigit() else 1
-    qp_position = qp_position if 1 <= qp_position <= 55 else 1
+    qp_position_raw = qp.get("position", "1")
+    qp_position = int(qp_position_raw) if str(qp_position_raw).isdigit() else 1
+    qp_position = qp_position if 1 <= qp_position <= n_positions else 1
 
     col1, col2 = st.columns(2)
     with col1:
         position = st.selectbox(
-            "Position (1-55)", options=list(range(1, 56)),
+            f"Position (1-{n_positions})", options=list(range(1, n_positions + 1)),
             index=qp_position - 1,
         )
-    wt_aa = REFERENCE_SEQUENCE[position - 1]
+    wt_aa = protein.reference_sequence[position - 1]
     st.write(f"Wild-type residue at position {position}: **{wt_aa}**")
 
     available_subs = sorted(df.loc[df["position"] == position, "new_aa"].unique())
-    qp_aa = qp.get("aa", available_subs[0])
+    qp_aa = qp.get("aa", available_subs[0] if available_subs else "A")
     aa_index = available_subs.index(qp_aa) if qp_aa in available_subs else 0
     with col2:
-        new_aa = st.selectbox("Substituted amino acid", options=available_subs, index=aa_index)
+        if available_subs:
+            new_aa = st.selectbox("Substituted amino acid", options=available_subs, index=aa_index)
+        else:
+            new_aa = None
+            st.selectbox("Substituted amino acid", options=["(none observed at this position)"], disabled=True)
 
     st.query_params["position"] = str(position)
-    st.query_params["aa"] = new_aa
+    if new_aa:
+        st.query_params["aa"] = new_aa
     st.caption("This selection is reflected in the page URL — copy the link to share this exact mutation.")
 
-    row = df[(df["position"] == position) & (df["new_aa"] == new_aa)]
+    row = df[(df["position"] == position) & (df["new_aa"] == new_aa)] if new_aa else pd.DataFrame()
     if row.empty:
         st.warning(
             "This substitution is not present in the dataset "
@@ -442,7 +498,7 @@ with tab_explorer:
                 <div class="vlab-card">
                     <div class="vlab-label">Observed DMS score</div>
                     <div class="vlab-value">{row['dms_score']:.3f}</div>
-                    <div class="vlab-note">Measured directly in the Olson et al. assay.</div>
+                    <div class="vlab-note">Measured directly in the {protein.first_author} et al. assay.</div>
                 </div>
                 <div class="vlab-card vlab-card--verified">
                     <div class="vlab-label">Held-out-position prediction</div>
@@ -462,7 +518,10 @@ with tab_explorer:
         )
 
         st.markdown("**Feature values for this mutation**")
-        feat_row = build_features(pd.DataFrame([{"orig_aa": wt_aa, "position": position, "new_aa": new_aa}])).iloc[0]
+        feat_row = build_features(
+            pd.DataFrame([{"orig_aa": wt_aa, "position": position, "new_aa": new_aa}]),
+            reference_sequence=protein.reference_sequence,
+        ).iloc[0]
         display_feats = feat_row[[c for c in feat_row.index if not c.startswith(("orig_is_", "new_is_"))]]
         st.dataframe(display_feats.rename("value").to_frame())
 
@@ -508,30 +567,47 @@ with tab_eval:
         "treat these as noisy estimates, not precise numbers."
     )
 
+    if protein_slug == "pab1":
+        gb1_results = load_eval_results("gb1")
+        gb1_rho_hard = gb1_results["setting_b_position_groupkfold"]["random_forest"]["spearman_rho_mean"]
+        st.subheader("Cross-protein comparison")
+        st.write(
+            f"On held-out positions (Setting B), Random Forest reaches ρ = {RHO_HARD:.3f} "
+            f"on Pab1 versus ρ = {gb1_rho_hard:.3f} on GB1 — **higher**, not lower, on this "
+            "second protein. This is a real, unselected result from running the identical "
+            "pipeline on a second dataset, not a cherry-picked comparison. It is exactly "
+            "**one** data point on generalization across proteins — nowhere near enough to "
+            "conclude this approach reliably works better on some protein classes than "
+            "others, but it is a genuine empirical fact worth sitting with rather than "
+            "either dismissing or over-interpreting."
+        )
+
 # --------------------------------------------------------------- Limits tab
 with tab_limits:
     st.header("What this dashboard does and doesn't show")
     st.markdown(
-        """
+        f"""
 - **Observed vs. predicted are always visually separated** (see the Mutation
   Explorer tab's three distinctly-colored cards) — a prediction is never
   presented as if it were a measurement.
 - **Setting B (held-out positions) is the only honest generalization test**
   shown per-mutation here; the "refit on all data" number is for inspection
   of the deployable model only, never for judging accuracy.
-- **This is one protein, one assay.** Good performance here says nothing
-  about any other protein — GB1 is a small, fast-folding, single-domain
-  protein, and the assay conflates folding stability with IgG binding (see
-  the "Dataset, provenance, and methodology details" expander above).
+- **Good performance on one protein says nothing about another.** This
+  dashboard now covers two proteins precisely to make that point concrete
+  rather than asserted — see the cross-protein comparison in the Model
+  Evaluation tab. It still says nothing about any protein beyond these two.
+- **{protein.display_name}:** {protein.assay_caveat}
 - **No claim of clinical, therapeutic, or disease relevance is made or
-  implied anywhere in this project.** GB1 is a bacterial domain; nothing
-  here generalizes to human disease variants.
-- **"Large effect" positions** are defined using this assay's own documented
-  binarization cutoff (`lnW < -4`), not a universal biological threshold.
+  implied anywhere in this project.** Nothing here generalizes to human
+  disease variants.
+- **"Large effect" positions** are defined using each assay's own documented
+  binarization cutoff, not a universal biological threshold.
 - **Structural proximity is a hypothesis generator, not proof of mechanism**
   (see `docs/structure_provenance.md`): a sensitive position's location in
   3D space is consistent with several explanations (core packing, binding
   interface, backbone geometry) and this project does not pick one.
+  {"**This structure is predicted, not experimental** — treat the 3D/2D views as a well-justified best estimate, not ground truth geometry." if protein.structure_is_predicted else ""}
         """
     )
 
