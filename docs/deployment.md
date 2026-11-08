@@ -4,14 +4,14 @@ The app builds as a Next.js application, including its server route for the tuto
 
 ## First deployment
 
-1. Push the project to your GitHub repository. The completed application is currently on `virus-atlas-v4-wip`; local `main` still points to the initial starter. Choose the completed branch when importing.
+1. Push the project to your GitHub repository. On GitHub, import the `virus-atlas-live` branch of `mam2674-ui/VariantLab`.
 2. Sign in at https://vercel.com/new and import that repository.
 3. Select **Next.js** as the framework and the repository root (`./`) as the root directory.
 4. Use Node.js **24.x** (also declared in `package.json`). Keep the framework's default output directory. The build command is `npm run build` and the install command is `npm ci`.
 5. Leave environment variables empty for the first deployment. The tutor returns matching curated passages without an API key.
 6. Deploy, then check the returned HTTPS address: atlas, a virus profile, a protein viewer, trait filters, drawing download, and tutor.
 
-For automatic production updates, set Vercel's production branch to the branch containing the completed app. If you later merge the app into `main`, update that setting accordingly. Other branches can have preview deployments.
+The `virus-atlas` Vercel project tracks `virus-atlas-live` for production. Push release commits to that branch to update `virus-atlas.vercel.app`. The `codex/virus-atlas` branch is also available for preview builds.
 
 ## Optional AI tutor
 
