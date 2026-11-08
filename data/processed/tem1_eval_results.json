@@ -1,0 +1,178 @@
+{
+  "seed": 42,
+  "setting_a_with_position": {
+    "mean_baseline": {
+      "spearman_rho": null,
+      "spearman_p": null,
+      "mae": 0.40527298100058906,
+      "n": 718,
+      "note": "constant prediction; Spearman correlation undefined"
+    },
+    "ridge": {
+      "spearman_rho": 0.4008895523552581,
+      "spearman_p": 4.248800465641203e-29,
+      "mae": 0.3517990417832679,
+      "n": 718,
+      "selected_alpha": 100.0
+    },
+    "random_forest": {
+      "spearman_rho": 0.7016176759203684,
+      "spearman_p": 1.7577964356014918e-107,
+      "mae": 0.27615380399565237,
+      "n": 718
+    },
+    "_split_sizes": {
+      "train": 3348,
+      "val": 717,
+      "test": 718
+    }
+  },
+  "setting_a_without_position": {
+    "mean_baseline": {
+      "spearman_rho": null,
+      "spearman_p": null,
+      "mae": 0.40527298100058906,
+      "n": 718,
+      "note": "constant prediction; Spearman correlation undefined"
+    },
+    "ridge": {
+      "spearman_rho": 0.4004651165253781,
+      "spearman_p": 4.917151315187803e-29,
+      "mae": 0.35221902428838,
+      "n": 718,
+      "selected_alpha": 100.0
+    },
+    "random_forest": {
+      "spearman_rho": 0.6169914762769695,
+      "spearman_p": 1.545478471773959e-76,
+      "mae": 0.2971483306847154,
+      "n": 718
+    },
+    "_split_sizes": {
+      "train": 3348,
+      "val": 717,
+      "test": 718
+    }
+  },
+  "setting_b_position_groupkfold": {
+    "mean_baseline": {
+      "spearman_rho_mean": null,
+      "spearman_rho_std": null,
+      "mae_mean": 0.4029657465990561,
+      "mae_std": 0.011651648144241446,
+      "per_fold": [
+        {
+          "spearman_rho": null,
+          "spearman_p": null,
+          "mae": 0.4097061066788735,
+          "n": 960,
+          "note": "constant prediction; Spearman correlation undefined"
+        },
+        {
+          "spearman_rho": null,
+          "spearman_p": null,
+          "mae": 0.3957428806683206,
+          "n": 952,
+          "note": "constant prediction; Spearman correlation undefined"
+        },
+        {
+          "spearman_rho": null,
+          "spearman_p": null,
+          "mae": 0.3912714465856821,
+          "n": 952,
+          "note": "constant prediction; Spearman correlation undefined"
+        },
+        {
+          "spearman_rho": null,
+          "spearman_p": null,
+          "mae": 0.3954470131168803,
+          "n": 960,
+          "note": "constant prediction; Spearman correlation undefined"
+        },
+        {
+          "spearman_rho": null,
+          "spearman_p": null,
+          "mae": 0.4226612859455238,
+          "n": 959,
+          "note": "constant prediction; Spearman correlation undefined"
+        }
+      ]
+    },
+    "ridge": {
+      "spearman_rho_mean": 0.3432432967497524,
+      "spearman_rho_std": 0.05209887723460367,
+      "mae_mean": 0.3560004959177852,
+      "mae_std": 0.007816098407700258,
+      "per_fold": [
+        {
+          "spearman_rho": 0.26945379737696934,
+          "spearman_p": 1.9715079481737818e-17,
+          "mae": 0.3687512560272267,
+          "n": 960
+        },
+        {
+          "spearman_rho": 0.39090599615145494,
+          "spearman_p": 4.072839758453447e-36,
+          "mae": 0.3450314116411155,
+          "n": 952
+        },
+        {
+          "spearman_rho": 0.30835841004253095,
+          "spearman_p": 2.0341808139891239e-22,
+          "mae": 0.35765251160716227,
+          "n": 952
+        },
+        {
+          "spearman_rho": 0.3364887479992648,
+          "spearman_p": 7.645634490728121e-27,
+          "mae": 0.35164452115413447,
+          "n": 960
+        },
+        {
+          "spearman_rho": 0.4110095321785419,
+          "spearman_p": 2.1988924902949487e-40,
+          "mae": 0.35692277915928733,
+          "n": 959
+        }
+      ]
+    },
+    "random_forest": {
+      "spearman_rho_mean": 0.37826205435641896,
+      "spearman_rho_std": 0.03002886684621089,
+      "mae_mean": 0.3492134575075353,
+      "mae_std": 0.005993701005743399,
+      "per_fold": [
+        {
+          "spearman_rho": 0.3569880375860888,
+          "spearman_p": 3.1353459896812165e-30,
+          "mae": 0.34545649535575396,
+          "n": 960
+        },
+        {
+          "spearman_rho": 0.33143695980177146,
+          "spearman_p": 7.653387839715428e-26,
+          "mae": 0.3550006355672558,
+          "n": 952
+        },
+        {
+          "spearman_rho": 0.39507988359760604,
+          "spearman_p": 6.382204899345648e-37,
+          "mae": 0.34832625223577846,
+          "n": 952
+        },
+        {
+          "spearman_rho": 0.41543019782245133,
+          "spearman_p": 2.4026952626686555e-41,
+          "mae": 0.34056186263625915,
+          "n": 960
+        },
+        {
+          "spearman_rho": 0.39237519297417717,
+          "spearman_p": 1.1808062030378663e-36,
+          "mae": 0.3567220417426288,
+          "n": 959
+        }
+      ]
+    }
+  }
+}

@@ -25,6 +25,40 @@ def make_toy_df(n_positions=10, n_subs=5, seed=0):
     return pd.DataFrame(rows)
 
 
+def make_sparse_df(n_positions=40, seed=0):
+    """Mimics GFP's sparse coverage: most positions have only 1-2 observed
+    substitutions, which is exactly the regime that broke a naive random
+    split (a singleton position's only row could land entirely in test)."""
+    rng = np.random.RandomState(seed)
+    rows = []
+    aas = list("ACDEFGHIKL")
+    for pos in range(1, n_positions + 1):
+        orig = aas[pos % len(aas)]
+        n_subs = rng.choice([1, 1, 1, 2, 2, 3])  # skewed toward singletons
+        subs = rng.choice([a for a in aas if a != orig], size=n_subs, replace=False)
+        for new in subs:
+            rows.append({"orig_aa": orig, "position": pos, "new_aa": new,
+                         "dms_score": rng.normal()})
+    return pd.DataFrame(rows)
+
+
+def test_random_split_handles_singleton_positions():
+    # Regression test: a position with exactly one observed substitution
+    # must always land in train, never randomly assigned to test (which
+    # would violate Setting A's own "already-seen position" definition).
+    df = make_sparse_df()
+    for seed in range(10):
+        split = random_split(df, train_frac=0.70, val_frac=0.15, seed=seed)
+        train_positions = set(df.loc[split.train, "position"])
+        test_positions = set(df.loc[split.test, "position"])
+        assert test_positions.issubset(train_positions)
+        singleton_positions = {
+            pos for pos, g in df.groupby("position") if len(g) == 1
+        }
+        singleton_rows = df[df["position"].isin(singleton_positions)].index
+        assert set(singleton_rows).issubset(set(split.train))
+
+
 def test_random_split_no_row_overlap():
     df = make_toy_df()
     split = random_split(df, train_frac=0.6, val_frac=0.2, seed=SEED)

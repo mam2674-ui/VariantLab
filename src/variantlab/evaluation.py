@@ -31,11 +31,46 @@ class SplitIndices:
 
 
 def random_split(df: pd.DataFrame, train_frac: float = 0.70, val_frac: float = 0.15, seed: int = SEED) -> SplitIndices:
-    """Setting A: plain random row split. Fit preprocessing on train only."""
-    idx = df.index.to_numpy()
-    train_idx, rest_idx = train_test_split(idx, train_size=train_frac, random_state=seed)
-    val_size_of_rest = val_frac / (1 - train_frac)
-    val_idx, test_idx = train_test_split(rest_idx, train_size=val_size_of_rest, random_state=seed)
+    """Setting A: random row split, with one guarantee: every position that
+    has more than one observed substitution contributes at least one row to
+    train. On a fully- or densely-saturated dataset (e.g. GB1, TEM-1) this
+    reservation is a no-op -- plain chance already satisfies it. On a sparse
+    dataset (e.g. GFP, where some positions have only 1-2 observed
+    substitutions), pure random splitting has a real chance of putting a
+    position's only examples entirely in test, which Setting A's own
+    definition ("unseen substitution at an *already-seen* position")
+    forbids -- so this reserves one row per position for train first, then
+    splits the remainder randomly. A position with exactly one observed
+    substitution can only ever be a train example here; it is never a valid
+    Setting A test case, which is the correct, honest consequence of having
+    just one data point for it, not a bug to paper over. Fit preprocessing
+    on train only.
+    """
+    rng = np.random.RandomState(seed)
+    reserved = []
+    for _, g in df.groupby("position"):
+        if len(g) > 1:
+            # One row reserved for train; the rest are free to land anywhere.
+            reserved.append(g.sample(n=1, random_state=seed).index[0])
+        else:
+            # A singleton position has no "rest" -- its only row must go to
+            # train (it can never be a valid Setting A test case), not just
+            # a 1-in-N chance of landing there.
+            reserved.extend(g.index.tolist())
+    reserved_train_idx = np.array(reserved)
+
+    remaining_idx = df.index.difference(reserved_train_idx).to_numpy()
+    rng.shuffle(remaining_idx)
+
+    n_total = len(df)
+    n_train_target = max(int(round(train_frac * n_total)) - len(reserved_train_idx), 0)
+    n_val_target = int(round(val_frac * n_total))
+
+    extra_train_idx = remaining_idx[:n_train_target]
+    val_idx = remaining_idx[n_train_target:n_train_target + n_val_target]
+    test_idx = remaining_idx[n_train_target + n_val_target:]
+
+    train_idx = np.concatenate([reserved_train_idx, extra_train_idx])
 
     train_positions = set(df.loc[train_idx, "position"])
     test_positions = set(df.loc[test_idx, "position"])
@@ -43,7 +78,10 @@ def random_split(df: pd.DataFrame, train_frac: float = 0.70, val_frac: float = 0
     if uncovered:
         raise AssertionError(
             f"Setting A requires every test position to appear in train; "
-            f"{len(uncovered)} positions violate this: {sorted(uncovered)}"
+            f"{len(uncovered)} positions violate this: {sorted(uncovered)}. "
+            "These are positions where every observed substitution was "
+            "reserved into train (singleton positions), yet still ended up "
+            "referenced in test -- investigate before trusting this split."
         )
     return SplitIndices(train=train_idx, val=val_idx, test=test_idx)
 

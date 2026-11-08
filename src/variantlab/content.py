@@ -45,9 +45,9 @@ CONCEPTS = [
     {
         "label": "SUBSTITUTION",
         "title": "What a single mutation is",
-        "body": "One amino acid at one of GB1's 55 positions is swapped for "
-                "another — the smallest possible change to a protein's "
-                "sequence, and the unit this entire project measures.",
+        "body": "One amino acid at one of {protein}'s {n_positions} positions is "
+                "swapped for another — the smallest possible change to a "
+                "protein's sequence, and the unit this entire project measures.",
     },
     {
         "label": "FOLD",
@@ -60,10 +60,7 @@ CONCEPTS = [
     {
         "label": "ASSAY",
         "title": "What was actually measured",
-        "body": "GB1 was displayed via mRNA display and selected for IgG-Fc "
-                "binding. The resulting score reflects both folding "
-                "stability and binding affinity, conflated — a low score "
-                "never implies instability alone.",
+        "body": "{assay_description}. {assay_caveat}",
     },
     {
         "label": "SCALE",
@@ -85,8 +82,9 @@ CONCEPTS = [
     {
         "label": "SCOPE",
         "title": "What this project does not claim",
-        "body": "GB1 is a bacterial domain. Good performance here says "
-                "nothing about any other protein, and nothing here "
-                "generalizes to human disease variants.",
+        "body": "{organism_clause} Good performance on one protein says "
+                "nothing about another — see the cross-protein comparison "
+                "in the Model Evaluation tab. Nothing here generalizes to "
+                "human disease variants.",
     },
 ]

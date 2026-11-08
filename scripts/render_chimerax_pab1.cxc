@@ -1,0 +1,89 @@
+open data/raw/pab1/structure/AF-P04147-F1.pdb
+hide atoms
+cartoon
+cartoon style width 1.6 thickness 0.6
+color white
+lighting soft
+set bgColor white
+graphics silhouettes true
+color /A:126 #aed3e6
+color /A:127 #053061
+color /A:128 #90c4dd
+color /A:129 #1c5c9e
+color /A:130 #93c5de
+color /A:131 #256caf
+color /A:132 #f6b496
+color /A:133 #93c5de
+color /A:134 #d96853
+color /A:135 #b92732
+color /A:136 #e6856a
+color /A:137 #71b0d2
+color /A:138 #fae8dd
+color /A:139 #fbe0d0
+color /A:140 #f9e9df
+color /A:141 #f9c5ab
+color /A:142 #bfdceb
+color /A:143 #f9c7ae
+color /A:144 #d7624f
+color /A:145 #f8efea
+color /A:146 #f8f0ec
+color /A:147 #ea8e70
+color /A:148 #f8bfa3
+color /A:149 #8ac0db
+color /A:150 #1a5a9b
+color /A:151 #da6a55
+color /A:152 #276db0
+color /A:153 #f7f5f4
+color /A:154 #165190
+color /A:155 #d5e7f0
+color /A:156 #65a8ce
+color /A:157 #d2e5f0
+color /A:158 #f8f0ec
+color /A:159 #d96853
+color /A:160 #ce5146
+color /A:161 #ad162a
+color /A:162 #c2383a
+color /A:163 #e7886c
+color /A:164 #df755d
+color /A:165 #f8bda1
+color /A:166 #dbe9f1
+color /A:167 #f6b293
+color /A:168 #4996c5
+color /A:169 #256caf
+color /A:170 #3c8abe
+color /A:171 #84bcd9
+color /A:172 #2b73b2
+color /A:173 #337db8
+color /A:174 #d05447
+color /A:175 #c94641
+color /A:176 #e6856a
+color /A:177 #c53e3c
+color /A:178 #c7433f
+color /A:179 #f8eee8
+color /A:180 #d15749
+color /A:181 #f19e7c
+color /A:182 #bddaea
+color /A:183 #f3a380
+color /A:184 #d45d4b
+color /A:185 #f4a683
+color /A:186 #f9ebe3
+color /A:187 #c33b3b
+color /A:188 #fbe1d2
+color /A:189 #f6b293
+color /A:190 #ce5146
+color /A:191 #f2a07e
+color /A:192 #e48065
+color /A:193 #f19e7c
+color /A:194 #67001f
+color /A:195 #c03538
+color /A:196 #d1e5f0
+color /A:197 #f1f4f6
+color /A:198 #f0f3f5
+color /A:199 #f9ece5
+color /A:200 #a71429
+view
+save data/processed/structure_renders/pab1_3d_view.png width 1200 height 1200 supersample 3 transparentBackground false
+turn y 90
+view
+save data/processed/structure_renders/pab1_2d_flat_view.png width 1200 height 1200 supersample 3 transparentBackground false
+exit

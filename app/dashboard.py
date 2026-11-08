@@ -230,11 +230,13 @@ qp_protein = qp.get("protein", "gb1")
 if qp_protein not in PROTEINS:
     qp_protein = "gb1"
 
+PROTEIN_ORDER = ["gb1", "pab1", "tem1", "gfp"]
+
 st.markdown('<div style="text-align:center; margin: 1rem 0 0.5rem 0;">', unsafe_allow_html=True)
 protein_slug = st.radio(
-    "Protein", options=["gb1", "pab1"],
+    "Protein", options=PROTEIN_ORDER,
     format_func=lambda s: PROTEINS[s].display_name.split(" (")[0],
-    index=["gb1", "pab1"].index(qp_protein),
+    index=PROTEIN_ORDER.index(qp_protein),
     horizontal=True, label_visibility="collapsed",
 )
 st.markdown("</div>", unsafe_allow_html=True)
@@ -329,13 +331,20 @@ st.markdown(f'<div class="vlab-grid">{principle_tiles}</div>', unsafe_allow_html
 st.markdown('<div id="concepts" class="vlab-section-heading vlab-display">Understanding the science</div>', unsafe_allow_html=True)
 st.markdown('<p class="vlab-section-sub">The biology and statistics behind every number on this page, pulled from this project\'s own written methodology.</p>', unsafe_allow_html=True)
 
-# The "ASSAY" concept is protein-specific; every other concept is general
-# biology/statistics that applies to either protein unchanged.
-assay_concept = {
-    "title": "What was actually measured",
-    "body": f"{protein.assay_description[0].upper() + protein.assay_description[1:]}. {protein.assay_caveat}",
+# SUBSTITUTION, ASSAY, and SCOPE are protein-specific templates; SCALE and
+# DISTINCTION are genuine general biology/statistics, unchanged per protein.
+protein_short_name = protein.display_name.split(" (")[0]
+organism_clause = f"{protein_short_name} originates from {protein.organism}."
+template_fill = {
+    "protein": protein_short_name,
+    "n_positions": n_positions,
+    "assay_description": protein.assay_description[0].upper() + protein.assay_description[1:],
+    "assay_caveat": protein.assay_caveat,
+    "organism_clause": organism_clause,
 }
-concepts_for_protein = [c if c["label"] != "ASSAY" else assay_concept for c in CONCEPTS]
+concepts_for_protein = [
+    {**c, "body": c["body"].format(**template_fill)} for c in CONCEPTS
+]
 
 concept_tiles = "".join(
     f"""<div class="vlab-tile">
@@ -567,20 +576,28 @@ with tab_eval:
         "treat these as noisy estimates, not precise numbers."
     )
 
-    if protein_slug == "pab1":
-        gb1_results = load_eval_results("gb1")
-        gb1_rho_hard = gb1_results["setting_b_position_groupkfold"]["random_forest"]["spearman_rho_mean"]
-        st.subheader("Cross-protein comparison")
-        st.write(
-            f"On held-out positions (Setting B), Random Forest reaches ρ = {RHO_HARD:.3f} "
-            f"on Pab1 versus ρ = {gb1_rho_hard:.3f} on GB1 — **higher**, not lower, on this "
-            "second protein. This is a real, unselected result from running the identical "
-            "pipeline on a second dataset, not a cherry-picked comparison. It is exactly "
-            "**one** data point on generalization across proteins — nowhere near enough to "
-            "conclude this approach reliably works better on some protein classes than "
-            "others, but it is a genuine empirical fact worth sitting with rather than "
-            "either dismissing or over-interpreting."
-        )
+    st.subheader("Cross-protein comparison")
+    st.write(
+        "The identical pipeline (same features, same models, same two split settings) "
+        "run on all four proteins. Every number below is real and unselected — nothing "
+        "here was cherry-picked to make a cleaner story."
+    )
+    cross_rows = []
+    for slug in PROTEIN_ORDER:
+        p = PROTEINS[slug]
+        r = load_eval_results(slug)["setting_b_position_groupkfold"]["random_forest"]
+        cross_rows.append({
+            "protein": p.display_name.split(" (")[0],
+            "n single mutants": len(load_predictions(slug)),
+            "assay type": p.assay_description.split(" -- ")[0].split(",")[0][:40],
+            "Setting B ρ (held-out positions)": fmt_rho(r["spearman_rho_mean"]),
+        })
+    st.dataframe(pd.DataFrame(cross_rows), hide_index=True)
+    st.write(
+        "No consistent pattern by assay type or protein size is visible across just "
+        "four proteins — and four data points is nowhere near enough to conclude one "
+        "exists. This table exists to make that honestly checkable, not to claim a trend."
+    )
 
 # --------------------------------------------------------------- Limits tab
 with tab_limits:

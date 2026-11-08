@@ -4,54 +4,54 @@
     "mean_baseline": {
       "spearman_rho": null,
       "spearman_p": null,
-      "mae": 0.3006889377209262,
-      "n": 179,
+      "mae": 0.3238254872014359,
+      "n": 178,
       "note": "constant prediction; Spearman correlation undefined"
     },
     "ridge": {
-      "spearman_rho": 0.5971355637854916,
-      "spearman_p": 1.1202264901111738e-18,
-      "mae": 0.22810645949966304,
-      "n": 179,
-      "selected_alpha": 0.01
+      "spearman_rho": 0.601699702849896,
+      "spearman_p": 6.556316090543834e-19,
+      "mae": 0.2403246381277733,
+      "n": 178,
+      "selected_alpha": 100.0
     },
     "random_forest": {
-      "spearman_rho": 0.7954805096980728,
-      "spearman_p": 2.345990430092413e-40,
-      "mae": 0.1555648317693713,
-      "n": 179
+      "spearman_rho": 0.7785045466200107,
+      "spearman_p": 1.9172374019493853e-37,
+      "mae": 0.15365736571539398,
+      "n": 178
     },
     "_split_sizes": {
-      "train": 830,
+      "train": 831,
       "val": 178,
-      "test": 179
+      "test": 178
     }
   },
   "setting_a_without_position": {
     "mean_baseline": {
       "spearman_rho": null,
       "spearman_p": null,
-      "mae": 0.3006889377209262,
-      "n": 179,
+      "mae": 0.3238254872014359,
+      "n": 178,
       "note": "constant prediction; Spearman correlation undefined"
     },
     "ridge": {
-      "spearman_rho": 0.5241418848691346,
-      "spearman_p": 5.084035813575253e-14,
-      "mae": 0.23900695420537174,
-      "n": 179,
+      "spearman_rho": 0.558351747844784,
+      "spearman_p": 5.594034035412059e-16,
+      "mae": 0.24821594447534973,
+      "n": 178,
       "selected_alpha": 100.0
     },
     "random_forest": {
-      "spearman_rho": 0.7782984842438683,
-      "spearman_p": 1.289934115007563e-37,
-      "mae": 0.16570928319492045,
-      "n": 179
+      "spearman_rho": 0.7492597845156389,
+      "spearman_p": 2.5406179722933325e-33,
+      "mae": 0.16820847048224422,
+      "n": 178
     },
     "_split_sizes": {
-      "train": 830,
+      "train": 831,
       "val": 178,
-      "test": 179
+      "test": 178
     }
   },
   "setting_b_position_groupkfold": {
