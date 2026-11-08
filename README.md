@@ -2,7 +2,7 @@
 
 An interactive, source-cited atlas for comparing virus structure, size, genomes and replication strategies. Built for undergraduate biology students. Ready for deployment; see [deployment instructions](docs/deployment.md).
 
-Twenty-four representative viruses, chosen so every Baltimore class is covered, hosts span vertebrates, invertebrates, plants, bacteria, archaea, protists and fungi, and shapes range from 25 nm shells to filaments and bricks:
+Twenty-six representative viruses, chosen so every Baltimore class is covered, hosts span vertebrates, invertebrates, plants, bacteria, archaea, protists and fungi, and shapes range from 25 nm shells to filaments and bricks. Selected profiles:
 
 | Virus | ICTV genome | Baltimore | Envelope | Structure | Host |
 |---|---|---|---|---|---|
@@ -24,18 +24,20 @@ Twenty-four representative viruses, chosen so every Baltimore class is covered, 
 | Zika virus | ssRNA(+) | IV | yes | small smooth sphere | vertebrates and invertebrates |
 | Norwalk virus | ssRNA(+) | IV | no | T=3 capsid with cup-shaped depressions | vertebrates |
 | Bacteriophage MS2 | ssRNA(+) | IV | no | T=3 shell, one A protein | bacteria |
+| Brome mosaic virus | ssRNA(+), 3 segments | IV | no | T=3 icosahedral capsid | plants |
+| Cowpea chlorotic mottle virus | ssRNA(+), 3 segments | IV | no | T=3 icosahedral capsid | plants |
 
 ## What is in it
 
 - **Design**: dark editorial layout; Archivo throughout, with geometric sans headings and plain-text evidence labels; animated page transitions (React ViewTransition) with thumbnail-to-profile morphs; the home page runs as full-screen slides with scroll-linked entrances. All motion is disabled under reduced-motion settings.
 - **Atlas** with search and filters (genome class incl. reverse-transcribing classes, envelope, host, morphology, size), URL-synced.
 - **Structure viewer** per virus, controlled from one toolbar (2D/3D, Show inside, Full names, Pull apart): 2D schematic or 3D model (React Three Fiber, lazy-loaded, WebGL fallback to 2D), exterior/cutaway, layer toggles, "separate layers" exploded view, numbered components with cited descriptions. 3D uses a molecular-graphics look: ambient occlusion (N8AO), depth-edge silhouettes, subunit lattices.
-- **Protein structures**: 36 experimental structures from the PDB (particle components, enzymes, and complexes with host receptors), linked from the matching diagram component, shown as a 2D Cα trace with a secondary-structure map, and in 3D as cartoon, approximate surface or trace. Each page lists what the experiment did and did not capture.
-- **Genome maps**: 709 coding sequences from the NCBI reference records, drawn as linear tracks by strand, rings for circular genomes and one track per segment, plus a 3D strand view coloured by gene.
+- **Protein structures**: 44 experimental structures from the PDB (particle components, enzymes, and complexes with host receptors), linked from the matching diagram component, shown as a 2D Cα trace with a secondary-structure map, and in 3D as cartoon, approximate surface or trace. Each page lists what the experiment did and did not capture.
+- **Genome maps**: 1,748 coding sequences from the NCBI reference records, drawn as linear tracks by strand, rings for circular genomes and one track per segment, plus a 3D strand view coloured by gene.
 - **Compare** 2–3 viruses (rule-based, cited insights; URL-shareable).
 - **Size explorer**: linear to-scale, logarithmic, and labelled-illustration views; nm/µm table.
 - **Genomes & replication**: genome glyphs, Baltimore routes, and an animated cell map that moves to where each replication stage happens (animal, plant or bacterial cell).
-- **Sources**: 90 sources with reverse index and a "known gaps" list.
+- **Sources**: 114 sources with reverse index and a "known gaps" list.
 - **Tutor**: optional, grounded in curated passages; works without a key.
 
 ## Setup

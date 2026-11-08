@@ -10,8 +10,8 @@ const clone = <T,>(x: T): T => JSON.parse(JSON.stringify(x));
 describe("scientific schema", () => {
   it("parses every virus record and cross-checks references", () => {
     const ds = loadDataset();
-    expect(ds.viruses).toHaveLength(24);
-    expect(new Set(ds.viruses.map((v) => v.id)).size).toBe(24);
+    expect(ds.viruses).toHaveLength(26);
+    expect(new Set(ds.viruses.map((v) => v.id)).size).toBe(26);
   });
 
   it("every cited source id exists in the registry", () => {

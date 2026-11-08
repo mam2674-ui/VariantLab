@@ -7,7 +7,7 @@ import { silhouette } from "@/lib/silhouette";
 
 describe("trait explorer", () => {
   it("matches all entries until narrowed and handles the HDV exception", () => {
-    expect(matchTraits(viruses, initialTraits)).toHaveLength(24);
+    expect(matchTraits(viruses, initialTraits)).toHaveLength(26);
     const matches = matchTraits(viruses, { genome: "-ssRNA", envelope: "yes", host: "vertebrates" });
     expect(matches.map(v=>v.id)).toContain("hdv");
     expect(observedClasses(viruses,"-ssRNA")).toEqual(["V"]);

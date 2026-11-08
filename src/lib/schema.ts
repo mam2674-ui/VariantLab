@@ -253,6 +253,7 @@ export const DiagramSpec = z.object({
     "inovirus",
     "deltavirus",
     "totivirus",
+    "bromovirus",
   ]),
   caption: z.string(),
   cannotShow: z.array(z.string()).min(1),

@@ -1,0 +1,238 @@
+{
+  "id": "bmv",
+  "commonName": "Brome mosaic virus",
+  "abbreviation": "BMV",
+  "representative": "ICTV exemplar (Russian wheat), with three NCBI RefSeq genomic RNAs. Particle dimensions are genus-level.",
+  "summary": "Brome mosaic virus is a plant bromovirus with a non-enveloped icosahedral capsid. Its three positive-sense genomic RNAs are packaged across separate particles.",
+  "taxonomy": {
+    "msl": "MSL41 (VMR v1, 2026-07-29)",
+    "subfamily": null,
+    "subgenus": null,
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ],
+    "realm": "Riboviria",
+    "kingdom": "Orthornavirae",
+    "phylum": "Kitrinoviricota",
+    "class": "Alsuviricetes",
+    "order": "Martellivirales",
+    "family": "Bromoviridae",
+    "genus": "Bromovirus",
+    "species": "Bromovirus BMV",
+    "ictvId": "ICTV19710143",
+    "vmrId": "VMR1008558",
+    "exemplar": true
+  },
+  "referenceSequence": {
+    "value": "NC_002026.1, NC_002027.1, NC_002028.2",
+    "status": "verified",
+    "scope": "isolate",
+    "sourceIds": [
+      "ncbi-bmv-segments",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostCategory": {
+    "value": "plants",
+    "status": "verified",
+    "scope": "species",
+    "sourceIds": [
+      "ictv-vmr-msl41"
+    ]
+  },
+  "hostDetail": {
+    "value": "Plants, including grasses and cereal crops",
+    "status": "verified",
+    "scope": "virus",
+    "sourceIds": [
+      "ncbi-bmv-segments",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "genome": {
+    "nucleicAcid": {
+      "value": "RNA",
+      "status": "verified",
+      "scope": "species",
+      "sourceIds": [
+        "ictv-vmr-msl41"
+      ]
+    },
+    "ictvLabel": {
+      "value": "ssRNA(+)",
+      "status": "verified",
+      "scope": "species",
+      "sourceIds": [
+        "ictv-vmr-msl41"
+      ]
+    },
+    "strandedness": {
+      "value": "single",
+      "status": "verified",
+      "scope": "species",
+      "sourceIds": [
+        "ictv-vmr-msl41"
+      ]
+    },
+    "sense": {
+      "value": "positive",
+      "status": "verified",
+      "scope": "species",
+      "sourceIds": [
+        "ictv-vmr-msl41"
+      ]
+    },
+    "segmented": {
+      "value": true,
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-bromoviridae-report",
+        "ictv-bromovirus-report"
+      ]
+    },
+    "segmentCount": {
+      "value": 3,
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-bromoviridae-report",
+        "ictv-bromovirus-report"
+      ]
+    },
+    "topology": {
+      "value": "linear",
+      "status": "verified",
+      "scope": "isolate",
+      "sourceIds": [
+        "ncbi-bmv-segments"
+      ]
+    },
+    "lengthKb": {
+      "value": {
+        "min": 8.21,
+        "max": 8.21
+      },
+      "status": "verified",
+      "scope": "isolate",
+      "sourceIds": [
+        "ncbi-bmv-segments"
+      ]
+    },
+    "referenceLengthNt": {
+      "value": 8210,
+      "status": "verified",
+      "scope": "isolate",
+      "sourceIds": [
+        "ncbi-bmv-segments"
+      ]
+    }
+  },
+  "baltimore": {
+    "value": "IV",
+    "status": "verified",
+    "scope": "species",
+    "sourceIds": [
+      "viralzone-baltimore",
+      "ictv-vmr-msl41"
+    ]
+  },
+  "envelope": {
+    "value": false,
+    "status": "verified",
+    "scope": "genus",
+    "sourceIds": [
+      "ictv-bromoviridae-report",
+      "ictv-bromovirus-report"
+    ]
+  },
+  "capsid": {
+    "value": "T=3 icosahedral shell built from copies of a single coat protein.",
+    "status": "verified",
+    "scope": "virus",
+    "sourceIds": [
+      "pdb-1js9",
+      "ictv-bromovirus-report"
+    ]
+  },
+  "morphology": {
+    "value": "icosahedral-nonenveloped",
+    "status": "verified",
+    "scope": "genus",
+    "sourceIds": [
+      "ictv-bromoviridae-report",
+      "ictv-bromovirus-report"
+    ]
+  },
+  "dimensions": [
+    {
+      "id": "virion-diameter",
+      "part": "virion",
+      "measure": "diameter",
+      "label": "Compact particle diameter",
+      "min": 27,
+      "max": 27,
+      "unit": "nm",
+      "approximate": true,
+      "status": "verified",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-bromovirus-report"
+      ],
+      "note": "ICTV reports 27 nm for compact bromovirus particles and 31 nm for swollen particles."
+    }
+  ],
+  "replication": {
+    "site": {
+      "value": "Cytoplasm, on cytoplasmic membranes",
+      "status": "verified",
+      "scope": "family",
+      "sourceIds": [
+        "ictv-bromoviridae-report"
+      ]
+    },
+    "mRNARoute": {
+      "value": "The genomic RNAs are positive-sense. RNA1 and RNA2 supply replication proteins, and a subgenomic RNA derived from RNA3 supplies coat protein.",
+      "status": "simplified",
+      "scope": "genus",
+      "sourceIds": [
+        "ictv-bromoviridae-report",
+        "ictv-bromovirus-report"
+      ]
+    },
+    "steps": [
+      {
+        "id": "translation",
+        "location": "cytoplasm",
+        "title": "Translation",
+        "text": "Host ribosomes translate the genomic RNAs.",
+        "status": "simplified",
+        "sourceIds": [
+          "ictv-bromoviridae-report"
+        ]
+      },
+      {
+        "id": "rna-synthesis",
+        "location": "cytoplasm",
+        "title": "RNA synthesis",
+        "text": "The viral replication complex copies the RNAs via negative-sense intermediates on cytoplasmic membranes.",
+        "status": "simplified",
+        "sourceIds": [
+          "ictv-bromoviridae-report"
+        ]
+      },
+      {
+        "id": "assembly",
+        "location": "cytoplasm",
+        "title": "Particle assembly",
+        "text": "Coat protein packages the genomic RNAs across separate particles.",
+        "status": "simplified",
+        "sourceIds": [
+          "ictv-bromoviridae-report",
+          "ictv-bromovirus-report"
+        ]
+      }
+    ]
+  },
+  "diagramId": "bmv"
+}

@@ -10,11 +10,8 @@ import { SourceRefs, StatusMark } from "./Evidence";
 import { CellMap } from "./CellMap";
 import { useReducedMotion } from "@/lib/clientEnv";
 
-// Influenza A/PR/8/34 segment lengths (NCBI RefSeq), used only for the segmented glyph.
-const PR8_SEGMENTS = [2341, 2341, 2233, 1778, 1565, 1413, 1027, 890];
-
 /** Genome glyph: double line = double-stranded, single line = single-stranded; ring = circular; arrows mark 5'→3'. */
-function GenomeGlyph({ v, maxNt }: { v: Virus; maxNt: number }) {
+function GenomeGlyph({ v, maxNt, lengths }: { v: Virus; maxNt: number; lengths?: number[] }) {
   const g = v.genome;
   const ds = g.strandedness.value === "double";
   const W = 560;
@@ -34,7 +31,7 @@ function GenomeGlyph({ v, maxNt }: { v: Virus; maxNt: number }) {
     );
   }
 
-  const segs = g.segmented.value && v.id === "influenza-a" ? PR8_SEGMENTS : [total];
+  const segs = lengths?.length ? lengths : [total];
   const segGap = segs.length > 1 ? 4 : 0;
   const widths = segs.map((n) => Math.max(3, (n / maxNt) * W));
   const { xs, end } = rowLayout(widths, segGap, 10);
@@ -113,7 +110,12 @@ function classIStatement(viruses: Virus[]) {
   return `${c1.length} of the ${viruses.length} viruses here are class I, yet they sit in ${realms.size} different ICTV realms.`;
 }
 
-export function GenomeExplorer({ viruses, sources, classes }: { viruses: Virus[]; sources: Source[]; classes: BaltimoreClass[] }) {
+export function GenomeExplorer({ viruses, sources, classes, segmentLengths }: {
+  viruses: Virus[];
+  sources: Source[];
+  classes: BaltimoreClass[];
+  segmentLengths: Record<string, number[] | undefined>;
+}) {
   const params = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -164,7 +166,7 @@ export function GenomeExplorer({ viruses, sources, classes }: { viruses: Virus[]
                   {v.genome.segmented.value ? `, ${v.genome.segmentCount.value} segments` : ""}; Baltimore {v.baltimore.value}
                 </p>
               </div>
-              <GenomeGlyph v={v} maxNt={maxNt} />
+              <GenomeGlyph v={v} maxNt={maxNt} lengths={segmentLengths[v.id]} />
             </li>
           ))}
         </ul>

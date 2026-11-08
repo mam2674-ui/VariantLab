@@ -1,6 +1,6 @@
 {
   "registryVersion": "1.0.0",
-  "accessed": "2026-10-28",
+  "accessed": "2026-11-07",
   "sources": [
     {
       "id": "ictv-vmr-msl41",
@@ -1269,6 +1269,70 @@
       "note": "Released 2020-03-04. Primary citation: Biochemical analysis of a sugar 4,6-dehydratase from Acanthamoeba polyphaga Mimivirus. (Protein Sci, 2020).",
       "year": 2020,
       "doi": "10.1002/pro.3843"
+    },
+    {
+      "id": "ictv-bromoviridae-report",
+      "kind": "taxonomy",
+      "title": "Family: Bromoviridae",
+      "authors": "ICTV Bromoviridae Study Group",
+      "container": "ICTV",
+      "url": "https://ictv.global/report/chapter/bromoviridae/bromoviridae",
+      "accessed": "2026-11-07",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "ictv-bromovirus-report",
+      "kind": "taxonomy",
+      "title": "Genus: Bromovirus",
+      "authors": "ICTV Bromoviridae Study Group",
+      "container": "ICTV",
+      "url": "https://ictv.global/report/chapter/bromoviridae/bromoviridae/bromovirus",
+      "accessed": "2026-11-07",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "ncbi-bmv-segments",
+      "kind": "database",
+      "title": "Brome mosaic virus RNAs 1–3, NCBI RefSeq",
+      "authors": "NCBI Nucleotide",
+      "container": "NCBI",
+      "url": "https://www.ncbi.nlm.nih.gov/nuccore/NC_002026.1,NC_002027.1,NC_002028.2",
+      "accessed": "2026-11-07",
+      "note": "RNA1–3 lengths: 3234, 2865, 2111 nt. Total: 8,210 nt."
+    },
+    {
+      "id": "pdb-1js9",
+      "kind": "database",
+      "title": "1JS9: Brome mosaic virus capsid",
+      "authors": "Lucas, R.W., Larson, S.B., McPherson, A.",
+      "container": "RCSB Protein Data Bank",
+      "url": "https://www.rcsb.org/structure/1JS9",
+      "accessed": "2026-11-07",
+      "year": 2002,
+      "license": "CC0 (coordinates)",
+      "note": "Released 2002-04-03; X-ray diffraction, 3.4 Å."
+    },
+    {
+      "id": "ncbi-ccmv-segments",
+      "kind": "database",
+      "title": "Cowpea chlorotic mottle virus RNAs 1–3, NCBI RefSeq",
+      "authors": "NCBI Nucleotide",
+      "container": "NCBI",
+      "url": "https://www.ncbi.nlm.nih.gov/nuccore/NC_003543.1,NC_003541.1,NC_003542.1",
+      "accessed": "2026-11-07",
+      "note": "RNA1–3 lengths: 3171, 2774, 2173 nt. Total: 8,118 nt."
+    },
+    {
+      "id": "pdb-1cwp",
+      "kind": "database",
+      "title": "1CWP: Cowpea chlorotic mottle virus capsid",
+      "authors": "Speir, J.A., Munshi, S., Wang, G.",
+      "container": "RCSB Protein Data Bank",
+      "url": "https://www.rcsb.org/structure/1CWP",
+      "accessed": "2026-11-07",
+      "year": 1995,
+      "license": "CC0 (coordinates)",
+      "note": "Released 1995-05-22; X-ray diffraction, 3.2 Å."
     }
   ]
 }

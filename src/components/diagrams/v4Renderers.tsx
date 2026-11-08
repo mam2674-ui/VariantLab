@@ -39,7 +39,29 @@ export const deltavirusRenderer: Renderer = {
   viewBox:"0 0 400 400",parts:["envelope","dag","genome"],interior:["dag","genome"],markers:{envelope:[285,140],dag:[245,190],genome:[200,225]},
   Draw:p=><><Part id="envelope" p={p}><circle cx={200} cy={200} r={115} className="stroke-envelope" strokeWidth={9} fill={p.view === "cutaway" ? "none" : "var(--c-envelope-soft)"}/>{Array.from({length:24},(_,i)=>{const a=polar(200,200,116,i*15), b=polar(200,200,128,i*15);return <line key={i} x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} className="stroke-surface" strokeWidth={5}/>;})}</Part>{p.view === "cutaway" && <><Part id="dag" p={p}>{Array.from({length:10},(_,i)=><ellipse key={i} cx={i%2 ? 218:182} cy={145+Math.floor(i/2)*27} rx={10} ry={13} className="fill-nucleocapsid"/>)}</Part><Part id="genome" p={p}><RnaPath d="M 195 130 L 195 270 Q 200 280 205 270 L 205 130 Q 200 120 195 130 Z"/></Part></>}</>,
 };
-export const totivirusRenderer: Renderer = {
-  viewBox:"0 0 400 400", parts:["capsid","genome"], interior:["genome"], markers:{capsid:[280,180],genome:[200,200]},
-  Draw:p=><><Part id="capsid" p={p}><polygon points={hex(200,125)} className="stroke-capsid" strokeWidth={7} fill={p.view === "cutaway" ? "none" : "var(--c-capsid-soft)"}/>{p.view === "exterior" && [0,60,120,180,240,300].map(a=>{const [x,y]=polar(200,200,125,a);return <line key={a} x1={200} y1={200} x2={x} y2={y} className="stroke-capsid" strokeWidth={2}/>;})}</Part><Genome p={p} double/></>,
-};
+function icosahedralRnaRenderer(doubleStranded: boolean): Renderer {
+  return {
+    viewBox: "0 0 400 400",
+    parts: ["capsid", "genome"],
+    interior: ["genome"],
+    markers: { capsid: [280, 180], genome: [200, 200] },
+    Draw(p) {
+      return (
+        <>
+          <Part id="capsid" p={p}>
+            <polygon points={hex(200, 125)} className="stroke-capsid" strokeWidth={7}
+              fill={p.view === "cutaway" ? "none" : "var(--c-capsid-soft)"} />
+            {p.view === "exterior" && [0, 60, 120, 180, 240, 300].map(angle => {
+              const [x, y] = polar(200, 200, 125, angle);
+              return <line key={angle} x1={200} y1={200} x2={x} y2={y} className="stroke-capsid" strokeWidth={2} />;
+            })}
+          </Part>
+          <Genome p={p} double={doubleStranded} />
+        </>
+      );
+    },
+  };
+}
+
+export const totivirusRenderer = icosahedralRnaRenderer(true);
+export const bromovirusRenderer = icosahedralRnaRenderer(false);

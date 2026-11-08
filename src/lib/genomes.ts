@@ -34,6 +34,8 @@ export const ANNOTATION_SOURCE: Record<string, string> = {
   "poliovirus-1": "ncbi-v01149",
   "rotavirus-a": "ncbi-rva-sa11",
   tmv: "ncbi-nc001367",
+  bmv: "ncbi-bmv-segments",
+  ccmv: "ncbi-ccmv-segments",
   "phage-t4": "ncbi-af158101",
   phix174: "ncbi-j02482",
   ebola: "ncbi-af086833",

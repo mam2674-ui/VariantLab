@@ -2,12 +2,18 @@ import type { Metadata } from "next";
 import { SectionHead } from "@/components/SectionHead";
 import { Suspense } from "react";
 import { sources, viruses } from "@/lib/data";
+import { genomeMaps } from "@/lib/genomes";
 import { baltimoreClasses } from "@/data/baltimore";
 import { GenomeExplorer } from "@/components/GenomeExplorer";
 
 export const metadata: Metadata = { title: "Genomes and replication" };
 
 export default function GenomesPage() {
+  const segmentLengths = Object.fromEntries(
+    viruses.filter(virus => virus.genome.segmented.value).map(virus => [
+      virus.id, genomeMaps[virus.id]?.map(molecule => molecule.length),
+    ]),
+  );
   return (
     <div className="container-atlas pt-14">
       <SectionHead index="04 Genomes" title="Genomes and replication" />
@@ -16,7 +22,7 @@ export default function GenomesPage() {
       </p>
       <div className="mt-10">
         <Suspense fallback={<p className="text-mute">Loading genomes…</p>}>
-          <GenomeExplorer viruses={viruses} sources={sources} classes={baltimoreClasses} />
+          <GenomeExplorer viruses={viruses} sources={sources} classes={baltimoreClasses} segmentLengths={segmentLengths} />
         </Suspense>
       </div>
     </div>

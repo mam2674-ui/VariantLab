@@ -24,6 +24,8 @@ import tylcv from "@/data/viruses/tylcv.json";
 import m13 from "@/data/viruses/m13.json";
 import hdv from "@/data/viruses/hdv.json";
 import scvLa from "@/data/viruses/scv-la.json";
+import bmv from "@/data/viruses/bmv.json";
+import ccmv from "@/data/viruses/ccmv.json";
 import { diagramSpecs } from "@/data/diagrams";
 
 /** Raw records in display order. Adding a virus = add its JSON here + a diagram spec. */
@@ -47,6 +49,8 @@ export const rawViruses: unknown[] = [
   rotavirusA,
   scvLa,
   tmv,
+  bmv,
+  ccmv,
   tylcv,
   phageT4,
   m13,

@@ -916,6 +916,33 @@ const totivirus: Model3D = {
   },
 };
 
+const bromovirus: Model3D = {
+  parts: ["capsid", "genome"],
+  distance: 4.1,
+  Model() {
+    // T=3 grouping, with illustrative subunit positions.
+    const shell = useOnce(() => [
+      ...geodesicPoints(0, 1).five.flatMap(point => ringMatrices(point, 5, 0.085, 0.095, 0, 0)),
+      ...icosaFaceCentres(1).flatMap(point => ringMatrices(point, 6, 0.105, 0.09, 0, 0)),
+    ]);
+    const rna = useOnce(() => wanderCurve(0.6, 14, 52));
+    return (
+      <>
+        <Part3D id="capsid" rank={1.5} shell>
+          <Spheres matrices={shell} type="capsid" />
+          <mesh>
+            <icosahedronGeometry args={[0.91, 2]} />
+            <Mat type="capsid" />
+          </mesh>
+        </Part3D>
+        <Part3D id="genome" rank={0}>
+          <Strand curve={rna} radius={0.018} />
+        </Part3D>
+      </>
+    );
+  },
+};
+
 export const models3d: Record<DiagramSpec["renderer"], Model3D> = {
   influenza,
   coronavirus,
@@ -935,5 +962,5 @@ export const models3d: Record<DiagramSpec["renderer"], Model3D> = {
   flavivirus,
   calicivirus,
   levivirus,
-  fusellovirus, mimivirus, geminivirus, inovirus, deltavirus, totivirus,
+  fusellovirus, mimivirus, geminivirus, inovirus, deltavirus, totivirus, bromovirus,
 };

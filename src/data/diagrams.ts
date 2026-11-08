@@ -360,4 +360,82 @@ export const diagramSpecs: DiagramSpec[] = [
       { id: "genome", type: "genome", layer: "interior", labelSimple: "dsRNA", labelDetailed: "Single uncapped dsRNA (4,579 bp)", description: "A single double-stranded RNA molecule; positive- and negative-strand synthesis happens from it while it stays associated with the virion.", status: "verified", sourceIds: ["ictv-orthototiviridae-report", "ncbi-j04692"] },
     ],
   },
+  {
+    "id": "bmv",
+    "virusId": "bmv",
+    "renderer": "bromovirus",
+    "caption": "Schematic of one bromovirus particle, with a T=3 capsid and a representative RNA strand in cutaway.",
+    "cannotShow": [
+      "How different genomic RNAs are distributed across separate particles.",
+      "The precise folding and positions of RNA inside the shell.",
+      "Changes in capsid geometry between compact and swollen particles."
+    ],
+    "components": [
+      {
+        "id": "capsid",
+        "type": "capsid",
+        "layer": "exterior",
+        "labelSimple": "Capsid",
+        "labelDetailed": "T=3 icosahedral coat protein shell",
+        "description": "A single coat protein occupies three environments in the T=3 shell.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-bromovirus-report",
+          "pdb-1js9"
+        ]
+      },
+      {
+        "id": "genome",
+        "type": "genome",
+        "layer": "interior",
+        "labelSimple": "RNA",
+        "labelDetailed": "One representative positive-sense RNA",
+        "description": "Three linear genomic RNAs make up the reference genome. The drawing represents a particle containing one of those RNAs.",
+        "status": "simplified",
+        "sourceIds": [
+          "ictv-bromoviridae-report",
+          "ncbi-bmv-segments"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ccmv",
+    "virusId": "ccmv",
+    "renderer": "bromovirus",
+    "caption": "Schematic of one bromovirus particle, with a T=3 capsid and a representative RNA strand in cutaway.",
+    "cannotShow": [
+      "How different genomic RNAs are distributed across separate particles.",
+      "The precise folding and positions of RNA inside the shell.",
+      "Changes in capsid geometry between compact and swollen particles."
+    ],
+    "components": [
+      {
+        "id": "capsid",
+        "type": "capsid",
+        "layer": "exterior",
+        "labelSimple": "Capsid",
+        "labelDetailed": "T=3 icosahedral coat protein shell",
+        "description": "A single coat protein occupies three environments in the T=3 shell.",
+        "status": "verified",
+        "sourceIds": [
+          "ictv-bromovirus-report",
+          "pdb-1cwp"
+        ]
+      },
+      {
+        "id": "genome",
+        "type": "genome",
+        "layer": "interior",
+        "labelSimple": "RNA",
+        "labelDetailed": "One representative positive-sense RNA",
+        "description": "Three linear genomic RNAs make up the reference genome. The drawing represents a particle containing one of those RNAs.",
+        "status": "simplified",
+        "sourceIds": [
+          "ictv-bromoviridae-report",
+          "ncbi-ccmv-segments"
+        ]
+      }
+    ]
+  },
 ];

@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 test("filters documented traits and resets an absent combination", async ({page})=>{
   await page.goto("/explore");
-  await expect(page.getByText("24 documented matches",{exact:true})).toBeVisible();
+  await expect(page.getByText("26 documented matches",{exact:true})).toBeVisible();
   await page.getByLabel("Genome type",{exact:true}).selectOption("dsDNA");
   await page.getByLabel("Host category",{exact:true}).selectOption("archaea");
   await expect(page.getByText("1 documented match",{exact:true})).toBeVisible();
@@ -10,7 +10,7 @@ test("filters documented traits and resets an absent combination", async ({page}
   await page.getByLabel("Envelope",{exact:true}).selectOption("yes");
   await expect(page.getByText("0 documented matches",{exact:true})).toBeVisible();
   await page.getByRole("button",{name:"Reset filters",exact:true}).click();
-  await expect(page.getByText("24 documented matches",{exact:true})).toBeVisible();
+  await expect(page.getByText("26 documented matches",{exact:true})).toBeVisible();
 });
 
 test("edits and downloads an explicitly fictional illustration",async({page})=>{
